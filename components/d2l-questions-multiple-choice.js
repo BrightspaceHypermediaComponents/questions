@@ -1,8 +1,8 @@
-import './d2l-questions-multiple-choice.js';
+import '@brightspace-ui/core/components/inputs/input-checkbox.js';
 import { css, html, LitElement } from 'lit-element';
 import { LocalizeDynamicMixin } from '@brightspace-ui/core/mixins/localize-dynamic-mixin.js';
 
-class D2lQuestionsQuestion extends LocalizeDynamicMixin(LitElement) {
+class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 
 	static get properties() {
 		return {
@@ -35,9 +35,11 @@ class D2lQuestionsQuestion extends LocalizeDynamicMixin(LitElement) {
 
 	render() {
 		return html`
-			<d2l-questions-multiple-choice></d2l-questions-multiple-choice>
+			<h2>${this.localize('hello')} ${this.prop1}!</h2>
+			<d2l-input-checkbox id="checkbox">Label for checkbox</d2l-input-checkbox>
+			<d2l-input-checkbox>Label for second checkbox</d2l-input-checkbox>
 		`;
 	}
 
 }
-customElements.define('d2l-questions-question', D2lQuestionsQuestion);
+customElements.define('d2l-questions-multiple-choice', D2lQuestionsMultipleChoice);
