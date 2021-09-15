@@ -1,8 +1,8 @@
-# @brightspace-hypermedia-componenets/d2l-questions
+# @brightspace-hypermedia-components/d2l-questions
 
 [![NPM version](https://img.shields.io/npm/v/@brightspace-hypermedia-components/d2l-questions.svg)](https://www.npmjs.org/package/@brightspace-hypermedia-components/d2l-questions)
 
-Questions for use in quizzing and/or surveys
+Question components for use in quizzing and/or surveys
 
 ## Installation
 
