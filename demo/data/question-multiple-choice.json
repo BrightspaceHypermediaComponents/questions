@@ -1,0 +1,101 @@
+{
+  "class": [
+    "named-entity",
+    "MultipleChoice"
+  ],
+  "properties": {
+    "name": "MC Question",
+    "type": 1,
+    "typeText": "Multiple Choice"
+  },
+  "entities": [
+    {
+      "class": [
+        "richtext",
+        "questionText"
+      ],
+      "rel": [
+        "item",
+        "https://questions.api.brightspace.com/rels/questionText"
+      ],
+      "properties": {
+        "text": "MC Question",
+        "html": "MC Question"
+      }
+    },
+    {
+      "class": [
+        "atoms"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/atoms"
+      ],
+      "properties": {
+        "shuffleAtoms": false,
+        "enumerationType": "None"
+      },
+      "entities": [
+        {
+          "class": [
+            "atom"
+          ],
+          "rel": [
+            "https://questions.api.brightspace.com/rels/atom"
+          ],
+          "properties": {
+            "atomId": 33,
+            "sortOrder": 1,
+            "value": "Option 1",
+            "isCorrect": true,
+            "weight": 100
+          }
+        },
+        {
+          "class": [
+            "atom"
+          ],
+          "rel": [
+            "https://questions.api.brightspace.com/rels/atom"
+          ],
+          "properties": {
+            "atomId": 34,
+            "sortOrder": 2,
+            "value": "Option 2",
+            "isCorrect": false,
+            "weight": 0
+          }
+        },
+        {
+          "class": [
+            "atom"
+          ],
+          "rel": [
+            "https://questions.api.brightspace.com/rels/atom"
+          ],
+          "properties": {
+            "atomId": 35,
+            "sortOrder": 3,
+            "value": "Option 3",
+            "isCorrect": false,
+            "weight": 0
+          }
+        },
+        {
+          "class": [
+            "atom"
+          ],
+          "rel": [
+            "https://questions.api.brightspace.com/rels/atom"
+          ],
+          "properties": {
+            "atomId": 36,
+            "sortOrder": 4,
+            "value": "Option 4",
+            "isCorrect": false,
+            "weight": 0
+          }
+        }
+      ]
+    }
+  ]
+}
