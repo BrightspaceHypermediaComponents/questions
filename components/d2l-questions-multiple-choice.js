@@ -28,8 +28,8 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 				display: none;
 			}
 			.d2l-questions-multiple-choice-group {
-				display:flex;
-				flex-direction:column;
+				display: flex;
+				flex-direction: column;
 			}
 			.d2l-questions-multiple-choice-question-text {
 				padding-bottom: 1rem;
@@ -44,7 +44,6 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 				margin-top: 0.2rem;
 			}
 			.d2l-questions-multiple-choice-without-icon {
-				display: inline;
 				width: 1.2rem;
 			}
 		`];

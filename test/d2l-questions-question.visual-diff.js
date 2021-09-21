@@ -20,9 +20,13 @@ describe('d2l-questions-question', () => {
 
 	after(async() => await browser.close());
 
-	it('passes visual-diff comparison', async function() {
-		const rect = await visualDiff.getRect(page, '#default');
+	it('passess v-diff for correct multiple choice', async function() {
+		const rect = await visualDiff.getRect(page, '#multiple-choice');
 		await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
 	});
 
+	it('passess v-diff for incorrect multiple choice', async function() {
+		const rect = await visualDiff.getRect(page, '#multiple-choice-incorrect');
+		await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+	});
 });

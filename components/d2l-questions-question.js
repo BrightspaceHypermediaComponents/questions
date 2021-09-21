@@ -87,11 +87,11 @@ class D2lQuestionsQuestion extends (LitElement) {
 		} else if (this.question.entity.hasClass('MultiSelect')) {
 			await import('./d2l-questions-multi-select.js');
 			return html`
-				<d2l-questions-multiple-select
+				<d2l-questions-multi-select
 					?disabled=${this.disabled}
 					.question=${this.question}
 					.questionResponse=${this.questionResponse}>
-				</d2l-questions-multiple-select>`;
+				</d2l-questions-multi-select>`;
 		} else {
 			console.error('Unknown question type');
 		}
