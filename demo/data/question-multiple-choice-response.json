@@ -28,7 +28,7 @@
       ],
       "properties": {
         "atomId": 34,
-        "response": "0",
+        "response": "1",
         "responseIsCorrect": false
       }
     },
@@ -42,7 +42,7 @@
       "properties": {
         "atomId": 35,
         "response": "0",
-        "responseIsCorrect": false
+        "responseIsCorrect": true
       }
     },
     {
