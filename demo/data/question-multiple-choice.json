@@ -76,7 +76,7 @@
             "atomId": 35,
             "sortOrder": 3,
             "value": "Option 3",
-            "isCorrect": true,
+            "isCorrect": false,
             "weight": 0
           }
         },
