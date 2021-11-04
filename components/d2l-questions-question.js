@@ -22,7 +22,7 @@ class D2lQuestionsQuestion extends (LitElement) {
 				attribute: false,
 				type: Object
 			},
-			disabled: {
+			readonly: {
 				type: Boolean
 			},
 			token: {
@@ -80,7 +80,7 @@ class D2lQuestionsQuestion extends (LitElement) {
 			await import('./d2l-questions-multiple-choice.js');
 			return html`
 				<d2l-questions-multiple-choice
-					?disabled=${this.disabled}
+					?readonly=${this.readonly}
 					.question=${this.question}
 					.questionResponse=${this.questionResponse}>
 				</d2l-questions-multiple-choice>`;
@@ -88,7 +88,7 @@ class D2lQuestionsQuestion extends (LitElement) {
 			await import('./d2l-questions-multi-select.js');
 			return html`
 				<d2l-questions-multi-select
-					?disabled=${this.disabled}
+					?readonly=${this.readonly}
 					.question=${this.question}
 					.questionResponse=${this.questionResponse}>
 				</d2l-questions-multi-select>`;
