@@ -1,6 +1,6 @@
 
 import '@brightspace-ui/core/components/colors/colors.js';
-import '@brightspace-ui/core/components/icons/icon.js';
+import '@brightspace-ui/core/components/icons/icon-custom.js';
 import { html, LitElement } from 'lit-element/lit-element.js';
 
 class D2lQuestionsIconsCheckboxUnchecked extends LitElement {

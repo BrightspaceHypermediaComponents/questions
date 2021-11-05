@@ -20,7 +20,7 @@ describe('d2l-questions-question', () => {
 
 	after(async() => await browser.close());
 
-	describe('multiple-chocie', () => {
+	describe('multiple-choice', () => {
 		it('default', async function() {
 			const rect = await visualDiff.getRect(page, '#multiple-choice');
 			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
