@@ -45,8 +45,8 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 			}
 			.d2l-questions-multiple-choice-row d2l-questions-icons-radio-unchecked,
 			.d2l-questions-multiple-choice-row d2l-questions-icons-radio-checked {
-				margin-top: -0.1rem;
 				margin-right: 0.3rem;
+				margin-top: -0.1rem;
 			}
 			.d2l-questions-multiple-choice-incorrect-icon {
 				color: var(--d2l-color-cinnabar);
