@@ -20,13 +20,25 @@ describe('d2l-questions-question', () => {
 
 	after(async() => await browser.close());
 
-	it('passess v-diff for correct multiple choice', async function() {
-		const rect = await visualDiff.getRect(page, '#multiple-choice');
-		await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
-	});
+	describe('multiple-chocie', () => {
+		it('default', async function() {
+			const rect = await visualDiff.getRect(page, '#multiple-choice');
+			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+		});
 
-	it('passess v-diff for incorrect multiple choice', async function() {
-		const rect = await visualDiff.getRect(page, '#multiple-choice-incorrect');
-		await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+		it('default readonly', async function() {
+			const rect = await visualDiff.getRect(page, '#multiple-choice-readonly');
+			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+		});
+
+		it('incorrect', async function() {
+			const rect = await visualDiff.getRect(page, '#multiple-choice-incorrect');
+			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+		});
+
+		it('incorrect readonly', async function() {
+			const rect = await visualDiff.getRect(page, '#multiple-choice-incorrect-readonly');
+			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+		});
 	});
 });
