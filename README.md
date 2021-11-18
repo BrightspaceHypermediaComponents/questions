@@ -1,8 +1,8 @@
-# @brightspace-hypermedia-componenets/d2l-questions
+# @brightspace-hypermedia-components/d2l-questions
 
 [![NPM version](https://img.shields.io/npm/v/@brightspace-hypermedia-components/d2l-questions.svg)](https://www.npmjs.org/package/@brightspace-hypermedia-components/d2l-questions)
 
-Questions for use in quizzing and/or surveys
+Question components for use in quizzing and/or surveys
 
 ## Installation
 
@@ -73,7 +73,7 @@ If you'd like to run the tests locally to help troubleshoot or develop new tests
 
 ```shell
 # install dependencies locally
-npm install esm mocha puppeteer @brightspace-ui/visual-diff --no-save
+npm install esm mocha@8 puppeteer @brightspace-ui/visual-diff --no-save
 # run visual-diff tests
 npx mocha './test/**/*.visual-diff.js' -t 10000 --require esm
 # subset of visual-diff tests:

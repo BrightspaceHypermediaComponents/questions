@@ -1,0 +1,62 @@
+{
+  "class": [
+    "question-response"
+  ],
+  "properties": {
+    "savedTime": "2013-12-16T01:06:41.803Z"
+  },
+  "entities": [
+    {
+      "class": [
+        "question-response-atom"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/question-response-atom"
+      ],
+      "properties": {
+        "atomId": 33,
+        "response": "1",
+        "responseIsCorrect": true
+      }
+    },
+    {
+      "class": [
+        "question-response-atom"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/question-response-atom"
+      ],
+      "properties": {
+        "atomId": 34,
+        "response": "0",
+        "responseIsCorrect": false
+      }
+    },
+    {
+      "class": [
+        "question-response-atom"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/question-response-atom"
+      ],
+      "properties": {
+        "atomId": 35,
+        "response": "0",
+        "responseIsCorrect": false
+      }
+    },
+    {
+      "class": [
+        "question-response-atom"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/question-response-atom"
+      ],
+      "properties": {
+        "atomId": 36,
+        "response": "0",
+        "responseIsCorrect": false
+      }
+    }
+  ]
+}

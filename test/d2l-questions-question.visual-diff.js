@@ -20,9 +20,25 @@ describe('d2l-questions-question', () => {
 
 	after(async() => await browser.close());
 
-	it('passes visual-diff comparison', async function() {
-		const rect = await visualDiff.getRect(page, '#default');
-		await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
-	});
+	describe('multiple-choice', () => {
+		it('default', async function() {
+			const rect = await visualDiff.getRect(page, '#multiple-choice');
+			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+		});
 
+		it('default readonly', async function() {
+			const rect = await visualDiff.getRect(page, '#multiple-choice-readonly');
+			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+		});
+
+		it('incorrect', async function() {
+			const rect = await visualDiff.getRect(page, '#multiple-choice-incorrect');
+			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+		});
+
+		it('incorrect readonly', async function() {
+			const rect = await visualDiff.getRect(page, '#multiple-choice-incorrect-readonly');
+			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+		});
+	});
 });

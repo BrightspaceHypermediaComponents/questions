@@ -1,11 +1,33 @@
+import 'd2l-polymer-siren-behaviors/store/entity-store.js';
 import { css, html, LitElement } from 'lit-element';
-import { LocalizeDynamicMixin } from '@brightspace-ui/core/mixins/localize-dynamic-mixin.js';
+import { runAsync } from '@brightspace-ui/core/directives/run-async/run-async.js';
 
-class D2lQuestionsQuestion extends LocalizeDynamicMixin(LitElement) {
+class D2lQuestionsQuestion extends (LitElement) {
 
 	static get properties() {
 		return {
-			prop1: { type: String },
+			questionHref: {
+				attribute: 'question-href',
+				type: String
+			},
+			questionResponseHref: {
+				attribute: 'question-response-href',
+				type: String
+			},
+			question: {
+				attribute: false,
+				type: Object
+			},
+			questionResponse: {
+				attribute: false,
+				type: Object
+			},
+			readonly: {
+				type: Boolean
+			},
+			token: {
+				type: String
+			}
 		};
 	}
 
@@ -20,22 +42,63 @@ class D2lQuestionsQuestion extends LocalizeDynamicMixin(LitElement) {
 		`;
 	}
 
-	constructor() {
-		super();
-
-		this.prop1 = 'd2l-questions-question';
-	}
-
-	static get localizeConfig() {
-		return {
-			importFunc: async lang => (await import(`../lang/${lang}.js`)).default
-		};
+	async firstUpdated() {
+		await this._update();
 	}
 
 	render() {
-		return html`
-			<h2>${this.localize('hello')} ${this.prop1}!</h2>
-		`;
+		return html`${runAsync(
+			this.question,
+			() => this._renderType(),
+			{
+				success: type => type
+			},
+			{
+				pendingState: false
+			}
+		)}`;
+	}
+
+	async updated(changedProperties) {
+		if (changedProperties.has('question-href')
+		|| changedProperties.has('question-response-href')) {
+			await this._update();
+		}
+	}
+
+	async _getQuestion() {
+		if (this.questionHref) {
+			this.question = await window.D2L.Siren.EntityStore.fetch(this.questionHref, this.token);
+		}
+		if (this.questionResponseHref) {
+			this.questionResponse = await window.D2L.Siren.EntityStore.fetch(this.questionResponseHref, this.token);
+		}
+	}
+
+	async _renderType() {
+		if (this.question.entity.hasClass('MultipleChoice')) {
+			await import('./d2l-questions-multiple-choice.js');
+			return html`
+				<d2l-questions-multiple-choice
+					?readonly=${this.readonly}
+					.question=${this.question}
+					.questionResponse=${this.questionResponse}>
+				</d2l-questions-multiple-choice>`;
+		} else if (this.question.entity.hasClass('MultiSelect')) {
+			await import('./d2l-questions-multi-select.js');
+			return html`
+				<d2l-questions-multi-select
+					?readonly=${this.readonly}
+					.question=${this.question}
+					.questionResponse=${this.questionResponse}>
+				</d2l-questions-multi-select>`;
+		} else {
+			throw 'Unknown question type';
+		}
+	}
+
+	async _update() {
+		await this._getQuestion();
 	}
 
 }

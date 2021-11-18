@@ -8,10 +8,47 @@
 		<title>d2l-questions-question visual-diff tests</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="UTF-8">
+		<style>
+			html {
+				font-size: 20px;
+			}
+			div {
+				margin: 10px;
+				width: 200px;
+				display: flex;
+			}
+		</style>
 	</head>
 	<body class="d2l-typography">
-		<div>
-			<d2l-questions-question id="default"></d2l-questions-question>
+		<div id="multiple-choice">
+			<d2l-questions-question
+				question-href="./data/question-multiple-choice.json"
+				question-response-href="./data/question-multiple-choice-response.json"
+				token="token">
+			</d2l-questions-question>
+		</div>
+		<div id="multiple-choice-readonly">
+			<d2l-questions-question
+				readonly
+				question-href="./data/question-multiple-choice.json"
+				question-response-href="./data/question-multiple-choice-response.json"
+				token="token">
+			</d2l-questions-question>
+		</div>
+		<div id="multiple-choice-incorrect">
+			<d2l-questions-question
+				question-href="./data/question-multiple-choice.json"
+				question-response-href="./data/question-multiple-choice-response-incorrect.json"
+				token="token">
+			</d2l-questions-question>
+		</div>
+		<div id="multiple-choice-incorrect-readonly">
+			<d2l-questions-question
+				readonly
+				question-href="./data/question-multiple-choice.json"
+				question-response-href="./data/question-multiple-choice-response-incorrect.json"
+				token="token">
+			</d2l-questions-question>
 		</div>
 	</body>
 </html>
