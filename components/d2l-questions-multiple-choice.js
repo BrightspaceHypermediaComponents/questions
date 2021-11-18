@@ -102,32 +102,7 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 	_renderChoice(choice) {
 		const checked = choice.response === IS_CHECKED;
 		if (this.readonly) {
-			let icon = undefined;
-			let lang = '';
-			let iconStyle = '';
-			if (choice.response) {
-				if (checked && choice.isCorrect) {
-					icon = 'check';
-					lang = 'correctResponse';
-				} else if (checked && !choice.isCorrect) {
-					icon = 'close-large-thick';
-					lang = 'incorrectResponse';
-					iconStyle = 'd2l-questions-multiple-choice-incorrect-icon';
-				} else if (choice.response === IS_NOT_CHECKED && choice.isCorrect) {
-					icon = 'arrow-thin-right';
-					lang = 'correctAnswer';
-					iconStyle = 'd2l-questions-multiple-choice-correct-icon';
-				}
-			}
-
-			return html`
-				<div class="d2l-questions-multiple-choice-row d2l-body-compact">
-					${icon ? html`<d2l-icon icon="tier1:${icon}" class="${iconStyle}"></d2l-icon>` : html`<div class="d2l-questions-multiple-choice-without-icon"></div>`}
-					${checked ? html`<d2l-questions-icons-radio-checked></d2l-questions-icons-radio-checked>` : html`<d2l-questions-icons-radio-unchecked></d2l-questions-icons-radio-unchecked>`}
-					<d2l-offscreen>${this.localize(lang)} ${choice.value}</d2l-offscreen>
-					<span aria-hidden="true">${choice.value}</span>
-				</div>
-		`;
+			return this._renderReadonlyChoice(choice, checked);
 		} else {
 			return html`
 				<div class="d2l-questions-multiple-choice-row">
@@ -140,6 +115,34 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 			</div>
 			`;
 		}
+	}
+
+	_renderReadonlyChoice(choice, checked) {
+		let icon = undefined;
+		let lang = '';
+		let iconStyle = '';
+		if (choice.response) {
+			if (checked && choice.isCorrect) {
+				icon = 'check';
+				lang = 'correctResponse';
+			} else if (checked && !choice.isCorrect) {
+				icon = 'close-large-thick';
+				lang = 'incorrectResponse';
+				iconStyle = 'd2l-questions-multiple-choice-incorrect-icon';
+			} else if (choice.response === IS_NOT_CHECKED && choice.isCorrect) {
+				icon = 'arrow-thin-right';
+				lang = 'correctAnswer';
+				iconStyle = 'd2l-questions-multiple-choice-correct-icon';
+			}
+		}
+
+		return html`
+			<div class="d2l-questions-multiple-choice-row d2l-body-compact">
+				${icon ? html`<d2l-icon icon="tier1:${icon}" class="${iconStyle}"></d2l-icon>` : html`<div class="d2l-questions-multiple-choice-without-icon"></div>`}
+				${checked ? html`<d2l-questions-icons-radio-checked></d2l-questions-icons-radio-checked>` : html`<d2l-questions-icons-radio-unchecked></d2l-questions-icons-radio-unchecked>`}
+				<d2l-offscreen>${this.localize(lang)} ${choice.value}</d2l-offscreen>
+				<span aria-hidden="true">${choice.value}</span>
+			</div>`;
 	}
 }
 customElements.define('d2l-questions-multiple-choice', D2lQuestionsMultipleChoice);

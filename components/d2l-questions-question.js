@@ -47,16 +47,16 @@ class D2lQuestionsQuestion extends (LitElement) {
 	}
 
 	render() {
-		return html`
-			${runAsync(
-		this.question,
-		() => this._renderType(),
-		{
-			success: type => type
-		},
-		{ pendingState: false }
-	)}
-		`;
+		return html`${runAsync(
+			this.question,
+			() => this._renderType(),
+			{
+				success: type => type
+			},
+			{
+				pendingState: false
+			}
+		)}`;
 	}
 
 	async updated(changedProperties) {
@@ -93,7 +93,7 @@ class D2lQuestionsQuestion extends (LitElement) {
 					.questionResponse=${this.questionResponse}>
 				</d2l-questions-multi-select>`;
 		} else {
-			console.error('Unknown question type');
+			throw 'Unknown question type';
 		}
 	}
 
