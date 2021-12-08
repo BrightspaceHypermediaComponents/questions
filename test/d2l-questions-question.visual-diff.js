@@ -1,9 +1,9 @@
 import puppeteer from 'puppeteer';
-import VisualDiff from '@brightspace-ui/visual-diff';
+import { VisualDiff } from '@brightspace-ui/visual-diff';
 
 describe('d2l-questions-question', () => {
 
-	const visualDiff = new VisualDiff('d2l-questions-question', __dirname);
+	const visualDiff = new VisualDiff('d2l-questions-question', import.meta.url);
 
 	let browser, page;
 
