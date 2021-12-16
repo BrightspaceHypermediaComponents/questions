@@ -11,7 +11,9 @@
     "start": "web-dev-server --app-index demo/index.html --node-resolve --open --watch",
     "test": "npm run lint && npm run test:headless",
     "test:headless": "web-test-runner",
-    "test:headless:watch": "web-test-runner --watch"
+    "test:headless:watch": "web-test-runner --watch",
+    "vdiff": "npx mocha './test/**/*.visual-diff.js' -t 10000",
+    "vdiff:goldens": "npx mocha './test/**/*.visual-diff.js' -t 10000 --golden"
   },
   "author": "D2L Corporation",
   "license": "Apache-2.0",
