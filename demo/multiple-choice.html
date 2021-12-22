@@ -6,25 +6,46 @@
 			import '@brightspace-ui/core/components/demo/demo-page.js';
 			import '../components/d2l-questions-question.js';
 		</script>
-		<title>D2lQuestionsQuestion</title>
+		<title>D2lQuestionsQuestion Multiple Choice</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="UTF-8">
 	</head>
 	<body>
-		<d2l-demo-page page-title="D2l Questions">
-			<h2>D2l-Questions-Question Multiple Choice</h2>
+		<d2l-demo-page page-title="D2l Questions Question Multiple Choice">
+			<h2>Answerable - No Response</h2>
 			<d2l-demo-snippet>
 				<d2l-questions-question
-					question-href="./data/question-multiple-choice.json"
-					question-response-href="./data/question-multiple-choice-response.json"
+					question-href="./data/multiple-choice/question.json"
+					question-response-href="./data/multiple-choice/question-response-correct.json"
 					token="token"></d2l-questions-question>
 			</d2l-demo-snippet>
-			<h2>D2l-Questions-Question Multiple Choice ReadOnly</h2>
+			<h2>Answerable - No Response</h2>
+			<d2l-demo-snippet>
+				<d2l-questions-question
+					question-href="./data/multiple-choice/question.json"
+					token="token"></d2l-questions-question>
+			</d2l-demo-snippet>
+			<h2>Readonly - No Response</h2>
 			<d2l-demo-snippet>
 				<d2l-questions-question
 					readonly
-					question-href="./data/question-multiple-choice.json"
-					question-response-href="./data/question-multiple-choice-response.json"
+					question-href="./data/multiple-choice/question.json"
+					token="token"></d2l-questions-question>
+			</d2l-demo-snippet>
+			<h2>ReadOnly - Correct</h2>
+			<d2l-demo-snippet>
+				<d2l-questions-question
+					readonly
+					question-href="./data/multiple-choice/question.json"
+					question-response-href="./data/multiple-choice/question-response-correct.json"
+					token="token"></d2l-questions-question>
+			</d2l-demo-snippet>
+			<h2>ReadOnly - Incorrect</h2>
+			<d2l-demo-snippet>
+				<d2l-questions-question
+					readonly
+					question-href="./data/multiple-choice/question.json"
+					question-response-href="./data/multiple-choice/question-response-incorrect.json"
 					token="token"></d2l-questions-question>
 			</d2l-demo-snippet>
 		</d2l-demo-page>

@@ -1,0 +1,33 @@
+{
+  "class": [
+    "simple-choice"
+  ],
+  "entities": [
+    {
+      "class": [
+        "richtext"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/text"
+      ],
+      "properties": {
+        "text": "Ocean",
+        "html": "Ocean"
+      }
+    }
+  ],
+  "links": [
+    {
+      "rel": [
+        "https://questions.api.brightspace.com/rels/interaction"
+      ],
+      "href": "#not-included-in-demo-data"
+    },
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "#"
+    }
+  ]
+}

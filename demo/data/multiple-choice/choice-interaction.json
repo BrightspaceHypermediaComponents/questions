@@ -1,0 +1,80 @@
+{
+  "class": [
+    "choice-interaction",
+    "shuffle"
+  ],
+  "properties": {
+    "maxChoices": 1,
+    "enumerationType": "None"
+  },
+  "entities": [
+    {
+      "class": [
+        "richtext"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/prompt"
+      ],
+      "properties": {
+        "text": "Mark the item that is blue.",
+        "html": "Mark the item that is blue."
+      }
+    },
+    {
+      "class": [
+        "simple-choice"
+      ],
+      "rel": [
+        "item"
+      ],
+      "href": "./data/multiple-choice/simple-choice-1.json"
+    },
+    {
+      "class": [
+        "simple-choice"
+      ],
+      "rel": [
+        "item"
+      ],
+      "href": "./data/multiple-choice/simple-choice-2.json"
+    },
+    {
+      "class": [
+        "simple-choice"
+      ],
+      "rel": [
+        "item"
+      ],
+      "href": "./data/multiple-choice/simple-choice-3.json"
+    },
+    {
+      "class": [
+        "simple-choice"
+      ],
+      "rel": [
+        "item"
+      ],
+      "href": "./data/multiple-choice/simple-choice-4.json"
+    }
+  ],
+  "links": [
+    {
+      "rel": [
+        "https://questions.api.brightspace.com/rels/item-body"
+      ],
+      "href": "./data/multiple-choice/item-body.json"
+    },
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "#"
+    },
+    {
+      "rel": [
+        "https://questions.api.brightspace.com/rels/response-declaration"
+      ],
+      "href": "./data/multiple-choice/response-declaration.json"
+    }
+  ]
+}
