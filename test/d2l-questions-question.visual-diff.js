@@ -26,18 +26,23 @@ describe('d2l-questions-question', () => {
 			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
 		});
 
-		it('default readonly', async function() {
+		it('unanswered', async function() {
+			const rect = await visualDiff.getRect(page, '#multiple-choice-unanswered');
+			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+		});
+
+		it('readonly', async function() {
 			const rect = await visualDiff.getRect(page, '#multiple-choice-readonly');
 			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
 		});
 
-		it('incorrect', async function() {
-			const rect = await visualDiff.getRect(page, '#multiple-choice-incorrect');
+		it('readonly-correct', async function() {
+			const rect = await visualDiff.getRect(page, '#multiple-choice-readonly-correct');
 			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
 		});
 
-		it('incorrect readonly', async function() {
-			const rect = await visualDiff.getRect(page, '#multiple-choice-incorrect-readonly');
+		it('readonly-incorrect', async function() {
+			const rect = await visualDiff.getRect(page, '#multiple-choice-readonly-incorrect');
 			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
 		});
 	});

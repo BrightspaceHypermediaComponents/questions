@@ -1,4 +1,4 @@
 {
   "extends": "brightspace/lit-config",
-  "ignorePatterns": ["**/test/**/screenshots/**/*.html"]
+  "ignorePatterns": ["**/test/screenshots/**/*.html"]
 }
