@@ -1,5 +1,8 @@
 /* eslint quotes: 0 */
 
 export default {
-	"hello": "여보세요"
+	"correctAnswer": "정답",
+	"incorrectAnswer": "오답",
+	"correctResponse": "정확한 응답",
+	"incorrectResponse": "부정확한 응답"
 };
