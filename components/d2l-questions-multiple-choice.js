@@ -94,9 +94,10 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 		super.updated();
 		if ((changedProperties.has('question') || changedProperties.has('questionResponse'))) {
 			try {
-				this._loadChoices();
-			} catch (e) {
-				console.error('d2l-questions-multiple-choice: Unable to load choices from question');
+				await this._loadChoices();
+			} catch (err) {
+				console.error(err);
+				throw new Error('d2l-questions-multiple-choice: Unable to load choices from question');
 			}
 		}
 	}
