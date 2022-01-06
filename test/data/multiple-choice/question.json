@@ -1,0 +1,37 @@
+{
+  "class": [
+    "named-entity",
+    "MultipleChoice"
+  ],
+  "properties": {
+    "name": "Multiple Choice Question 1",
+    "type": 1,
+    "typeText": "Multiple Choice"
+  },
+  "entities": [
+    {
+      "class": [
+        "richtext",
+        "questionText"
+      ],
+      "rel": [
+        "item",
+        "https://questions.api.brightspace.com/rels/questionText",
+        "https://questions.api.brightspace.com/rels/title"
+      ],
+      "properties": {
+        "text": "Mark the item that is blue.",
+        "html": "Mark the item that is blue."
+      }
+    },
+    {
+      "class": [
+        "item-body"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/item-body"
+      ],
+      "href": "./data/multiple-choice/item-body.json"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "class": [
+    "question-response"
+  ],
+  "properties": {
+    "savedTime": "2011-01-11T12:05:00.000Z"
+  },
+  "entities": [
+    {
+      "class": [
+        "candidate-response"
+      ],
+      "rel": [
+        "item"
+      ],
+      "properties": {
+        "baseType": "identifier",
+        "cardinality": "single"
+      },
+      "entities": [
+        {
+          "class": [
+            "value"
+          ],
+          "rel": [
+            "item"
+          ],
+          "links": [
+            {
+              "rel": [
+                "https://questions.api.brightspace.com/rels/identifier"
+              ],
+              "href": "./data/multiple-choice/simple-choice-1.json"
+            }
+          ]
+        },
+        {
+          "class": [
+            "value"
+          ],
+          "rel": [
+            "item"
+          ],
+          "links": [
+            {
+              "rel": [
+                "https://questions.api.brightspace.com/rels/identifier"
+              ],
+              "href": "./data/multiple-choice/simple-choice-2.json"
+            }
+          ]
+        },
+        {
+          "class": [
+            "value",
+            "selected"
+          ],
+          "rel": [
+            "item"
+          ],
+          "links": [
+            {
+              "rel": [
+                "https://questions.api.brightspace.com/rels/identifier"
+              ],
+              "href": "./data/multiple-choice/simple-choice-3.json"
+            }
+          ]
+        },
+        {
+          "class": [
+            "value"
+          ],
+          "rel": [
+            "item"
+          ],
+          "links": [
+            {
+              "rel": [
+                "https://questions.api.brightspace.com/rels/identifier"
+              ],
+              "href": "./data/multiple-choice/simple-choice-4.json"
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "rel": [
+            "https://questions.api.brightspace.com/rels/interaction"
+          ],
+          "href": "./data/multiple-choice/choice-interaction.json"
+        },
+        {
+          "rel": [
+            "https://questions.api.brightspace.com/rels/response-declaration"
+          ],
+          "href": "./data/multiple-choice/response-declaration.json"
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "#"
+    }
+  ]
+}

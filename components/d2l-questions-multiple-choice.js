@@ -9,16 +9,19 @@ import { getUniqueId } from '@brightspace-ui/core/helpers/uniqueId.js';
 import { LocalizeDynamicMixin } from '@brightspace-ui/core/mixins/localize-dynamic-mixin.js';
 import { radioStyles } from '@brightspace-ui/core/components/inputs/input-radio-styles.js';
 
-//Database is using magic numbers
-const IS_CHECKED = '1';
-const IS_NOT_CHECKED = '0';
+const REL_IDENTIFIER = 'https://questions.api.brightspace.com/rels/identifier';
+const REL_ITEM_BODY = 'https://questions.api.brightspace.com/rels/item-body';
+const REL_INTERACTION = 'https://questions.api.brightspace.com/rels/interaction';
+const REL_RESPONSE_DECLARATION = 'https://questions.api.brightspace.com/rels/response-declaration';
 class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 
 	static get properties() {
 		return {
 			readonly: { type: Boolean },
 			question: { type: Object },
-			questionResponse: { type: Object }
+			questionResponse: { type: Object },
+			token: { type: Object },
+			_choices: { type: Object }
 		};
 	}
 
@@ -75,74 +78,122 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 	}
 
 	render() {
-		this._loadChoices();
 		const questionText = this.question.entity.getSubEntityByClass('questionText');
-		if (this.displayChoices !== undefined) {
+		if (this._choices !== undefined) {
 			return html`
 				<div class="d2l-questions-multiple-choice-question-text">${questionText.properties.html}</div>
 
 				<div class="d2l-questions-multiple-choice-group">
-					${this.displayChoices.map((choice) => this._renderChoice(choice))}
+					${this._choices.map((choice) => this._renderChoice(choice))}
 				</div>
 				`;
-		} else {
-			return html``;
 		}
 	}
 
-	_loadChoices() {
-		const choices = this.question.entity.getSubEntityByClass('atoms').entities;
-		const answers = this.questionResponse.entity.entities;
-		this.displayChoices = choices.map(choice => {
-			const answer = answers.find(answer => answer.properties && answer.properties.atomId === choice.properties.atomId);
-			return { ...choice.properties, ...answer.properties };
-		});
+	async updated(changedProperties) {
+		super.updated();
+		if ((changedProperties.has('question') || changedProperties.has('questionResponse'))) {
+			try {
+				await this._loadChoices();
+			} catch (err) {
+				console.error(err);
+				throw new Error('d2l-questions-multiple-choice: Unable to load choices from question');
+			}
+		}
+	}
+
+	async _getEntityFromHref(targetHref, bypassCache) {
+		return await window.D2L.Siren.EntityStore.fetch(targetHref, this.token, bypassCache);
+	}
+
+	async _loadChoices() {
+		// Reponse has the choices more readily available than the actual question does + the answer/correctness states
+		if (this.questionResponse) {
+			return await this._loadChoicesFromResponse();
+		}
+		const itemBodyHref = this.question.entity.getSubEntityByRel(REL_ITEM_BODY);
+		const itemBodyEntity = await this._getEntityFromHref(itemBodyHref);
+		const interactionHref = itemBodyEntity.entity.getSubEntityByRel(REL_INTERACTION);
+		const interactionEntity = await this._getEntityFromHref(interactionHref);
+		const choices = await Promise.all(interactionEntity.entity.getSubEntitiesByClass('simple-choice').map(async choice => {
+			const choiceEntity = await this._getEntityFromHref(choice.href, false);
+			return {
+				text: choiceEntity.entity.getSubEntityByClass('richtext').properties.text,
+				href: choice.href
+			};
+		}));
+		this._choices = choices;
+	}
+
+	async _loadChoicesFromResponse() {
+		let hasCorrectAnswer = false;
+		const candidateResponse = this.questionResponse.entity.getSubEntityByClass('candidate-response');
+		const choices = await Promise.all(candidateResponse.entities.map(async choice => {
+			if (choice.hasClass('correct-response')) {
+				hasCorrectAnswer = true;
+			}
+			const choiceHref = choice.getLinkByRel(REL_IDENTIFIER).href;
+			const choiceEntity = await this._getEntityFromHref(choiceHref, false);
+			return {
+				text: choiceEntity.entity.getSubEntityByClass('richtext').properties.text,
+				selected: choice.hasClass('selected'),
+				correct: choice.hasClass('correct-response'),
+				href: choiceHref
+			};
+		}));
+		if (!hasCorrectAnswer) {
+			const responseHref = candidateResponse.getLinkByRel(REL_RESPONSE_DECLARATION).href;
+			const response = await this._getEntityFromHref(responseHref, false);
+			const correctResponse = response.entity.getSubEntityByClass('correct-response');
+			const correctChoiceHref = correctResponse.getSubEntityByClass('value').getLinkByRel(REL_IDENTIFIER).href;
+			choices.find(choice => choice.href === correctChoiceHref).correct = true;
+		}
+		this._choices = choices;
+		return;
 	}
 
 	_renderChoice(choice) {
-		const checked = choice.response === IS_CHECKED;
 		if (this.readonly) {
-			return this._renderReadonlyChoice(choice, checked);
+			return this._renderReadonlyChoice(choice);
 		} else {
 			return html`
 				<div class="d2l-questions-multiple-choice-row">
 					<label class="d2l-input-radio-label">
 						<input type="radio" name="${this.radioGroupId}"
-						?checked=${checked}
-						aria-label="${choice.value}">
-						${choice.value}
+						?checked=${choice.selected}
+						aria-label="${choice.text}">
+						${choice.text}
 					</label>
 			</div>
 			`;
 		}
 	}
 
-	_renderReadonlyChoice(choice, checked) {
+	_renderReadonlyChoice(choice) {
 		let icon = undefined;
 		let lang = '';
 		let iconStyle = '';
-		if (choice.response) {
-			if (checked && choice.isCorrect) {
-				icon = 'check';
-				lang = 'correctResponse';
-			} else if (checked && !choice.isCorrect) {
-				icon = 'close-large-thick';
-				lang = 'incorrectResponse';
-				iconStyle = 'd2l-questions-multiple-choice-incorrect-icon';
-			} else if (choice.response === IS_NOT_CHECKED && choice.isCorrect) {
-				icon = 'arrow-thin-right';
-				lang = 'correctAnswer';
-				iconStyle = 'd2l-questions-multiple-choice-correct-icon';
-			}
+		if (choice.selected && choice.correct) {
+			icon = 'check';
+			lang = 'correctResponse';
+		} else if (choice.selected && !choice.correct) {
+			icon = 'close-large-thick';
+			lang = 'incorrectResponse';
+			iconStyle = 'd2l-questions-multiple-choice-incorrect-icon';
+		} else if (!choice.selected && choice.correct) {
+			icon = 'arrow-thin-right';
+			lang = 'correctAnswer';
+			iconStyle = 'd2l-questions-multiple-choice-correct-icon';
 		}
 
 		return html`
 			<div class="d2l-questions-multiple-choice-row d2l-body-compact">
 				${icon ? html`<d2l-icon icon="tier1:${icon}" class="${iconStyle}"></d2l-icon>` : html`<div class="d2l-questions-multiple-choice-without-icon"></div>`}
-				${checked ? html`<d2l-questions-icons-radio-checked></d2l-questions-icons-radio-checked>` : html`<d2l-questions-icons-radio-unchecked></d2l-questions-icons-radio-unchecked>`}
-				<d2l-offscreen>${this.localize(lang)} ${choice.value}</d2l-offscreen>
-				<span aria-hidden="true">${choice.value}</span>
+				${choice.selected ? html`<d2l-questions-icons-radio-checked></d2l-questions-icons-radio-checked>` : html`<d2l-questions-icons-radio-unchecked></d2l-questions-icons-radio-unchecked>`}
+				<d2l-offscreen>${this.localize(lang)} ${choice.text}</d2l-offscreen>
+				<span aria-hidden="true">${choice.text}</span>
 			</div>`;
 	}
+
 }
 customElements.define('d2l-questions-multiple-choice', D2lQuestionsMultipleChoice);

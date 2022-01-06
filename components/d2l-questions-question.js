@@ -82,7 +82,8 @@ class D2lQuestionsQuestion extends (LitElement) {
 				<d2l-questions-multiple-choice
 					?readonly=${this.readonly}
 					.question=${this.question}
-					.questionResponse=${this.questionResponse}>
+					.questionResponse=${this.questionResponse}
+					.token=${this.token}>
 				</d2l-questions-multiple-choice>`;
 		} else if (this.question.entity.hasClass('MultiSelect')) {
 			await import('./d2l-questions-multi-select.js');

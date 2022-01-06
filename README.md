@@ -80,11 +80,11 @@ Then run the tests:
 
 ```shell
 # run visual-diff tests
-npx mocha './test/**/*.visual-diff.js' -t 10000
+npm run vdiff
 # subset of visual-diff tests:
 npx mocha './test/**/*.visual-diff.js' -t 10000 -g some-pattern
 # update visual-diff goldens
-npx mocha './test/**/*.visual-diff.js' -t 10000 --golden
+npm run vdiff:golden
 ```
 
 ### Running the demos
