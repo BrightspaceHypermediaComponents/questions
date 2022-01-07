@@ -1,6 +1,7 @@
-# @brightspace-hypermedia-components/d2l-questions
+# @brightspace-hmc/questions
 
-[![NPM version](https://img.shields.io/npm/v/@brightspace-hypermedia-components/d2l-questions.svg)](https://www.npmjs.org/package/@brightspace-hypermedia-components/d2l-questions)
+[![NPM version](https://img.shields.io/npm/v/@brightspace-hmc/questions.svg)](https://www.npmjs.org/package/@brightspace-hmc/questions)
+[![NPM downloads](https://img.shields.io/npm/dt/@brightspace-hmc/questions.svg)](https://www.npmjs.com/package/@brightspace-hmc/questions)
 
 Question components for use in quizzing and/or surveys
 
@@ -9,27 +10,34 @@ Question components for use in quizzing and/or surveys
 Install from NPM:
 
 ```shell
-npm install @brightspace-hypermedia-components/d2l-questions
+npm install @brightspace-hmc/questions
 ```
 
 ## Usage
 
 ```html
 <script type="module">
-    import '@brightspace-hypermedia-components/d2l-questions/d2l-questions-question.js';
+    import '@brightspace-hmc/questions/d2l-questions-question.js';
 </script>
-<d2l-questions-question>My element</d2l-questions-question>
+<d2l-questions-question
+	question-href=""
+	question-response-href=""
+	token="">
+</d2l-questions-question>
 ```
 
 **Properties:**
 
 | Property | Type | Description |
 |--|--|--|
-| | | |
+| question-href | String | (required) Hypermedia href to the question |
+| question-response-href | String | Hypermedia href to the question response |
+| readonly | Boolean | If true, the question is not clickable/answerable |
+| token | String | Hypermedia token |
 
 **Accessibility:**
 
-To make your usage of `d2l-questions` accessible, use the following properties when applicable:
+To make your usage of `questions` accessible, use the following properties when applicable:
 
 | Attribute | Description |
 |--|--|
