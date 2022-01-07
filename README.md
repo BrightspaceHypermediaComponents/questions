@@ -37,7 +37,7 @@ npm install @brightspace-hmc/questions
 
 **Accessibility:**
 
-To make your usage of `questions` accessible, use the following properties when applicable:
+To make your usage of `d2l-questions-question` accessible, use the following properties when applicable:
 
 | Attribute | Description |
 |--|--|
