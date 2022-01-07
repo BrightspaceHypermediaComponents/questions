@@ -1,8 +1,9 @@
 {
-  "name": "@brightspace-hypermedia-components/d2l-questions",
+  "name": "@brightspace-hmc/questions",
   "description": "Questions for use in quizzing and/or surveys",
   "type": "module",
-  "repository": "https://github.com/BrightspaceHypermediaComponents/d2l-questions.git",
+  "version": "0.0.1",
+  "repository": "https://github.com/BrightspaceHypermediaComponents/questions.git",
   "scripts": {
     "lint": "npm run lint:eslint && npm run lint:lit && npm run lint:style",
     "lint:eslint": "eslint . --ext .js,.html",
