@@ -1,5 +1,6 @@
 import 'd2l-polymer-siren-behaviors/store/entity-store.js';
 import { css, html, LitElement } from 'lit-element';
+import { Classes } from 'd2l-hypermedia-constants';
 import { runAsync } from '@brightspace-ui/core/directives/run-async/run-async.js';
 
 class D2lQuestionsQuestion extends (LitElement) {
@@ -76,7 +77,7 @@ class D2lQuestionsQuestion extends (LitElement) {
 	}
 
 	async _renderType() {
-		if (this.question.entity.hasClass('MultipleChoice')) {
+		if (this.question.entity.hasClass(Classes.questions.multipleChoice)) {
 			await import('./d2l-questions-multiple-choice.js');
 			return html`
 				<d2l-questions-multiple-choice
@@ -85,7 +86,7 @@ class D2lQuestionsQuestion extends (LitElement) {
 					.questionResponse=${this.questionResponse}
 					.token=${this.token}>
 				</d2l-questions-multiple-choice>`;
-		} else if (this.question.entity.hasClass('MultiSelect')) {
+		} else if (this.question.entity.hasClass(Classes.questions.multiSelect)) {
 			await import('./d2l-questions-multi-select.js');
 			return html`
 				<d2l-questions-multi-select
