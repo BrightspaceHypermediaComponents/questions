@@ -1,5 +1,8 @@
 /* eslint quotes: 0 */
 
 export default {
-	"hello": "Bonjour"
+	"correctAnswer": "Réponse exacte",
+	"incorrectAnswer": "Réponse incorrecte",
+	"correctResponse": "Réponse exacte",
+	"incorrectResponse": "Réponse incorrecte"
 };

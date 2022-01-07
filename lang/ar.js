@@ -1,5 +1,8 @@
 /* eslint quotes: 0 */
 
 export default {
-	"hello": "مرحبا"
+	"correctAnswer": "جواب صحيح",
+	"incorrectAnswer": "جواب غير صحيح",
+	"correctResponse": "إجابة صحيحة",
+	"incorrectResponse": "إجابة غير صحيحة"
 };
