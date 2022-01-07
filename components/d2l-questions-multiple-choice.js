@@ -3,16 +3,13 @@ import '@brightspace-ui/core/components/colors/colors.js';
 import '@brightspace-ui/core/components/icons/icon.js';
 import '@brightspace-ui/core/components/offscreen/offscreen.js';
 import 'd2l-polymer-siren-behaviors/store/entity-store.js';
+import { Classes, Rels } from 'd2l-hypermedia-constants';
 import { css, html, LitElement } from 'lit-element';
 import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
 import { getUniqueId } from '@brightspace-ui/core/helpers/uniqueId.js';
 import { LocalizeDynamicMixin } from '@brightspace-ui/core/mixins/localize-dynamic-mixin.js';
 import { radioStyles } from '@brightspace-ui/core/components/inputs/input-radio-styles.js';
 
-const REL_IDENTIFIER = 'https://questions.api.brightspace.com/rels/identifier';
-const REL_ITEM_BODY = 'https://questions.api.brightspace.com/rels/item-body';
-const REL_INTERACTION = 'https://questions.api.brightspace.com/rels/interaction';
-const REL_RESPONSE_DECLARATION = 'https://questions.api.brightspace.com/rels/response-declaration';
 class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 
 	static get properties() {
@@ -78,7 +75,7 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 	}
 
 	render() {
-		const questionText = this.question.entity.getSubEntityByClass('questionText');
+		const questionText = this.question.entity.getSubEntityByClass(Classes.questions.questionText);
 		if (this._choices !== undefined) {
 			return html`
 				<div class="d2l-questions-multiple-choice-question-text">${questionText.properties.html}</div>
@@ -111,14 +108,14 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 		if (this.questionResponse) {
 			return await this._loadChoicesFromResponse();
 		}
-		const itemBodyHref = this.question.entity.getSubEntityByRel(REL_ITEM_BODY);
+		const itemBodyHref = this.question.entity.getSubEntityByRel(Rels.Questions.itemBody);
 		const itemBodyEntity = await this._getEntityFromHref(itemBodyHref);
-		const interactionHref = itemBodyEntity.entity.getSubEntityByRel(REL_INTERACTION);
+		const interactionHref = itemBodyEntity.entity.getSubEntityByRel(Rels.Questions.interaction);
 		const interactionEntity = await this._getEntityFromHref(interactionHref);
-		const choices = await Promise.all(interactionEntity.entity.getSubEntitiesByClass('simple-choice').map(async choice => {
+		const choices = await Promise.all(interactionEntity.entity.getSubEntitiesByClass(Classes.questions.simpleChoice).map(async choice => {
 			const choiceEntity = await this._getEntityFromHref(choice.href, false);
 			return {
-				text: choiceEntity.entity.getSubEntityByClass('richtext').properties.text,
+				text: choiceEntity.entity.getSubEntityByClass(Classes.text.richtext).properties.text,
 				href: choice.href
 			};
 		}));
@@ -127,25 +124,25 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 
 	async _loadChoicesFromResponse() {
 		let hasCorrectAnswer = false;
-		const candidateResponse = this.questionResponse.entity.getSubEntityByClass('candidate-response');
+		const candidateResponse = this.questionResponse.entity.getSubEntityByClass(Classes.questions.candidateResponse);
 		const choices = await Promise.all(candidateResponse.entities.map(async choice => {
-			if (choice.hasClass('correct-response')) {
+			if (choice.hasClass(Classes.questions.correctResponse)) {
 				hasCorrectAnswer = true;
 			}
-			const choiceHref = choice.getLinkByRel(REL_IDENTIFIER).href;
+			const choiceHref = choice.getLinkByRel(Rels.Questions.identifier).href;
 			const choiceEntity = await this._getEntityFromHref(choiceHref, false);
 			return {
-				text: choiceEntity.entity.getSubEntityByClass('richtext').properties.text,
-				selected: choice.hasClass('selected'),
-				correct: choice.hasClass('correct-response'),
+				text: choiceEntity.entity.getSubEntityByClass(Classes.text.richtext).properties.text,
+				selected: choice.hasClass(Classes.questions.selected),
+				correct: choice.hasClass(Classes.questions.correctResponse),
 				href: choiceHref
 			};
 		}));
 		if (!hasCorrectAnswer) {
-			const responseHref = candidateResponse.getLinkByRel(REL_RESPONSE_DECLARATION).href;
+			const responseHref = candidateResponse.getLinkByRel(Rels.Questions.responseDeclaration).href;
 			const response = await this._getEntityFromHref(responseHref, false);
-			const correctResponse = response.entity.getSubEntityByClass('correct-response');
-			const correctChoiceHref = correctResponse.getSubEntityByClass('value').getLinkByRel(REL_IDENTIFIER).href;
+			const correctResponse = response.entity.getSubEntityByClass(Classes.questions.correctResponse);
+			const correctChoiceHref = correctResponse.getSubEntityByClass(Classes.questions.value).getLinkByRel(Rels.Questions.identifier).href;
 			choices.find(choice => choice.href === correctChoiceHref).correct = true;
 		}
 		this._choices = choices;
