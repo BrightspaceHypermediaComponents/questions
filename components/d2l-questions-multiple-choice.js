@@ -4,7 +4,7 @@ import '@brightspace-ui/core/components/icons/icon.js';
 import '@brightspace-ui/core/components/offscreen/offscreen.js';
 import 'd2l-polymer-siren-behaviors/store/entity-store.js';
 import { Classes, Rels } from 'd2l-hypermedia-constants';
-import { css, html, LitElement } from 'lit-element';
+import { css, html, LitElement } from 'lit-element/lit-element.js';
 import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
 import { getUniqueId } from '@brightspace-ui/core/helpers/uniqueId.js';
 import { LocalizeDynamicMixin } from '@brightspace-ui/core/mixins/localize-dynamic-mixin.js';
