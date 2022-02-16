@@ -77,11 +77,14 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 
 	render() {
 		const questionText = this.question.entity.getSubEntityByClass(Classes.questions.questionText);
-		const htmlQuestionText = unsafeHTML(questionText.properties.html);
 
 		if (this._choices !== undefined) {
 			return html`
-				<div class="d2l-questions-multiple-choice-question-text">${htmlQuestionText}</div>
+				<div class="d2l-questions-multiple-choice-question-text">
+					<d2l-html-block>
+						${unsafeHTML(questionText.properties.html)}
+					</d2l-html-block>
+				</div>
 
 				<div class="d2l-questions-multiple-choice-group">
 					${this._choices.map((choice) => this._renderChoice(choice))}
@@ -164,7 +167,9 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 						<input type="radio" name="${this.radioGroupId}"
 						?checked=${choice.selected}
 						aria-label="${choice.text}">
-						${choice.text}
+						<d2l-html-block>
+							${unsafeHTML(choice.htmlText)}
+						</d2l-html-block>
 					</label>
 				</div>
 			`;
@@ -192,8 +197,10 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 			<div class="d2l-questions-multiple-choice-row d2l-body-compact">
 				${icon ? html`<d2l-icon icon="tier1:${icon}" class="${iconStyle}"></d2l-icon>` : html`<div class="d2l-questions-multiple-choice-without-icon"></div>`}
 				${choice.selected ? html`<d2l-questions-icons-radio-checked></d2l-questions-icons-radio-checked>` : html`<d2l-questions-icons-radio-unchecked></d2l-questions-icons-radio-unchecked>`}
-				<d2l-offscreen>${this.localize(lang)} ${choice.text}</d2l-offscreen>
-				<span aria-hidden="true">${choice.text}</span>
+				<d2l-offscreen>${this.localize(lang)}${choice.text}</d2l-offscreen>
+				<d2l-html-block aria-hitten="true">
+					${unsafeHTML(choice.htmlText)}
+				</d2l-html-block>
 			</div>`;
 	}
 
