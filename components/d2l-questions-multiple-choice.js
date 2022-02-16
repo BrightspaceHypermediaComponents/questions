@@ -9,6 +9,7 @@ import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/st
 import { getUniqueId } from '@brightspace-ui/core/helpers/uniqueId.js';
 import { LocalizeDynamicMixin } from '@brightspace-ui/core/mixins/localize-dynamic-mixin.js';
 import { radioStyles } from '@brightspace-ui/core/components/inputs/input-radio-styles.js';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
 class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 
@@ -76,14 +77,16 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 
 	render() {
 		const questionText = this.question.entity.getSubEntityByClass(Classes.questions.questionText);
+		const htmlQuestionText = unsafeHTML(questionText.properties.html);
+
 		if (this._choices !== undefined) {
 			return html`
-				<div class="d2l-questions-multiple-choice-question-text">${questionText.properties.html}</div>
+				<div class="d2l-questions-multiple-choice-question-text">${htmlQuestionText}</div>
 
 				<div class="d2l-questions-multiple-choice-group">
 					${this._choices.map((choice) => this._renderChoice(choice))}
 				</div>
-				`;
+			`;
 		}
 	}
 
@@ -115,8 +118,9 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 		const choices = await Promise.all(interactionEntity.entity.getSubEntitiesByClass(Classes.questions.simpleChoice).map(async choice => {
 			const choiceEntity = await this._getEntityFromHref(choice.href, false);
 			return {
+				href: choice.href,
+				htmlText: choiceEntity.entity.getSubEntityByClass(Classes.text.richtext).properties.html,
 				text: choiceEntity.entity.getSubEntityByClass(Classes.text.richtext).properties.text,
-				href: choice.href
 			};
 		}));
 		this._choices = choices;
@@ -132,6 +136,7 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 			const choiceHref = choice.getLinkByRel(Rels.Questions.identifier).href;
 			const choiceEntity = await this._getEntityFromHref(choiceHref, false);
 			return {
+				htmlText: choiceEntity.entity.getSubEntityByClass(Classes.text.richtext).properties.html,
 				text: choiceEntity.entity.getSubEntityByClass(Classes.text.richtext).properties.text,
 				selected: choice.hasClass(Classes.questions.selected),
 				correct: choice.hasClass(Classes.questions.correctResponse),
@@ -161,7 +166,7 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 						aria-label="${choice.text}">
 						${choice.text}
 					</label>
-			</div>
+				</div>
 			`;
 		}
 	}

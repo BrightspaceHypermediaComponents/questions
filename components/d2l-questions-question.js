@@ -55,7 +55,7 @@ class D2lQuestionsQuestion extends (LitElement) {
 
 	render() {
 		return html`${runAsync(
-			this._questionType,
+			this._questionKey,
 			() => this._renderType(),
 			{
 				success: type => type
