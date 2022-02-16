@@ -15,11 +15,11 @@ class D2lQuestionsQuestion extends (LitElement) {
 				attribute: 'question-response-href',
 				type: String
 			},
-			question: {
+			_question: {
 				attribute: false,
 				type: Object
 			},
-			questionResponse: {
+			_questionResponse: {
 				attribute: false,
 				type: Object
 			},
@@ -27,6 +27,12 @@ class D2lQuestionsQuestion extends (LitElement) {
 				type: Boolean
 			},
 			token: {
+				type: String
+			},
+			_questionType: {
+				type: String
+			},
+			_questionKey: {
 				type: String
 			}
 		};
@@ -49,7 +55,7 @@ class D2lQuestionsQuestion extends (LitElement) {
 
 	render() {
 		return html`${runAsync(
-			this.question,
+			this._questionType,
 			() => this._renderType(),
 			{
 				success: type => type
@@ -61,41 +67,52 @@ class D2lQuestionsQuestion extends (LitElement) {
 	}
 
 	async updated(changedProperties) {
-		if (changedProperties.has('question-href')
-		|| changedProperties.has('question-response-href')) {
+		if (changedProperties.has('questionHref')
+		|| changedProperties.has('questionResponseHref')) {
 			await this._update();
+			this._questionKey = `${this.questionHref}${this.questionResponseHref}`;
 		}
 	}
 
 	async _getQuestion() {
 		if (this.questionHref) {
-			this.question = await window.D2L.Siren.EntityStore.fetch(this.questionHref, this.token);
+			this._question= await window.D2L.Siren.EntityStore.fetch(this.questionHref, this.token);
 		}
 		if (this.questionResponseHref) {
-			this.questionResponse = await window.D2L.Siren.EntityStore.fetch(this.questionResponseHref, this.token);
+			this._questionResponse= await window.D2L.Siren.EntityStore.fetch(this.questionResponseHref, this.token);
+		}
+
+		if (this._question.entity.hasClass(Classes.questions.multipleChoice)) {
+			this._questionType = Classes.questions.multipleChoice;
+		} else if (this._question.entity.hasClass(Classes.questions.multiSelect)) {
+			this._questionType = Classes.questions.multiSelect;
 		}
 	}
 
 	async _renderType() {
-		if (this.question.entity.hasClass(Classes.questions.multipleChoice)) {
-			await import('./d2l-questions-multiple-choice.js');
-			return html`
-				<d2l-questions-multiple-choice
-					?readonly=${this.readonly}
-					.question=${this.question}
-					.questionResponse=${this.questionResponse}
-					.token=${this.token}>
-				</d2l-questions-multiple-choice>`;
-		} else if (this.question.entity.hasClass(Classes.questions.multiSelect)) {
-			await import('./d2l-questions-multi-select.js');
-			return html`
-				<d2l-questions-multi-select
-					?readonly=${this.readonly}
-					.question=${this.question}
-					.questionResponse=${this.questionResponse}>
-				</d2l-questions-multi-select>`;
-		} else {
-			throw 'Unknown question type';
+		switch(this._questionType) {
+
+			case Classes.questions.multipleChoice:
+				await import('./d2l-questions-multiple-choice.js');
+				return html`
+					<d2l-questions-multiple-choice
+						?readonly=${this.readonly}
+						.question=${this._question}
+						.questionResponse=${this._questionResponse}
+						.token=${this.token}>
+					</d2l-questions-multiple-choice>`;
+
+			case Classes.questions.multiSelect:
+				await import('./d2l-questions-multi-select.js');
+				return html`
+					<d2l-questions-multi-select
+						?readonly=${this.readonly}
+						.question=${this._question}
+						.questionResponse=${this._questionResponse}>
+					</d2l-questions-multi-select>`;
+
+			default:
+				throw 'Unknown question type';
 		}
 	}
 
