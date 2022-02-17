@@ -39,27 +39,27 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 				padding-bottom: 1rem;
 			}
 			.d2l-questions-multiple-choice-row {
+				align-items: flex-start;
 				color: var(--d2l-color-galena);
 				display: flex;
 				flex-wrap: nowrap;
-				align-items: flex-start;
 				padding-bottom: 1.2rem;
 			}
 			.d2l-input-radio-label {
+				align-items: flex-start;
 				color: var(--d2l-color-galena);
 				display: flex;
 				flex-wrap: nowrap;
-				align-items: flex-start;
 			}
 			.d2l-questions-multiple-choice-row d2l-questions-icons-radio-unchecked,
 			.d2l-questions-multiple-choice-row d2l-questions-icons-radio-checked {
+				flex: none;
 				margin-right: 0.3rem;
 				margin-top: -0.1rem;
-				flex: none;
 			}
 			.d2l-questions-multiple-choice-row d2l-icon {
-				margin-right: 0.3rem;
 				flex: none;
+				margin-right: 0.3rem;
 			}
 			.d2l-questions-multiple-choice-incorrect-icon {
 				color: var(--d2l-color-cinnabar);
@@ -68,8 +68,8 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 				color: var(--d2l-color-olivine);
 			}
 			.d2l-questions-multiple-choice-without-icon {
-				width: 1.2rem;
 				flex: none;
+				width: 1.2rem;
 			}
 		`];
 	}

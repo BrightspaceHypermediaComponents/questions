@@ -76,10 +76,10 @@ class D2lQuestionsQuestion extends (LitElement) {
 
 	async _getQuestion() {
 		if (this.questionHref) {
-			this._question= await window.D2L.Siren.EntityStore.fetch(this.questionHref, this.token);
+			this._question = await window.D2L.Siren.EntityStore.fetch(this.questionHref, this.token);
 		}
 		if (this.questionResponseHref) {
-			this._questionResponse= await window.D2L.Siren.EntityStore.fetch(this.questionResponseHref, this.token);
+			this._questionResponse = await window.D2L.Siren.EntityStore.fetch(this.questionResponseHref, this.token);
 		}
 
 		if (this._question.entity.hasClass(Classes.questions.multipleChoice)) {
@@ -90,7 +90,7 @@ class D2lQuestionsQuestion extends (LitElement) {
 	}
 
 	async _renderType() {
-		switch(this._questionType) {
+		switch (this._questionType) {
 
 			case Classes.questions.multipleChoice:
 				await import('./d2l-questions-multiple-choice.js');
