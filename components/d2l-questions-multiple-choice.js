@@ -42,15 +42,24 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 				color: var(--d2l-color-galena);
 				display: flex;
 				flex-wrap: nowrap;
-				height: 2.5rem;
+				align-items: flex-start;
+				padding-bottom: 1rem;
+			}
+			.d2l-input-radio-label {
+				color: var(--d2l-color-galena);
+				display: flex;
+				flex-wrap: nowrap;
+				align-items: flex-start;
 			}
 			.d2l-questions-multiple-choice-row d2l-questions-icons-radio-unchecked,
 			.d2l-questions-multiple-choice-row d2l-questions-icons-radio-checked {
 				margin-right: 0.3rem;
 				margin-top: -0.1rem;
+				flex: none;
 			}
 			.d2l-questions-multiple-choice-row d2l-icon {
 				margin-right: 0.3rem;
+				flex: none;
 			}
 			.d2l-questions-multiple-choice-incorrect-icon {
 				color: var(--d2l-color-cinnabar);
@@ -60,6 +69,7 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 			}
 			.d2l-questions-multiple-choice-without-icon {
 				width: 1.2rem;
+				flex: none;
 			}
 		`];
 	}
