@@ -43,7 +43,7 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 				display: flex;
 				flex-wrap: nowrap;
 				align-items: flex-start;
-				padding-bottom: 1rem;
+				padding-bottom: 1.2rem;
 			}
 			.d2l-input-radio-label {
 				color: var(--d2l-color-galena);
