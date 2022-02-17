@@ -198,7 +198,7 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 				${icon ? html`<d2l-icon icon="tier1:${icon}" class="${iconStyle}"></d2l-icon>` : html`<div class="d2l-questions-multiple-choice-without-icon"></div>`}
 				${choice.selected ? html`<d2l-questions-icons-radio-checked></d2l-questions-icons-radio-checked>` : html`<d2l-questions-icons-radio-unchecked></d2l-questions-icons-radio-unchecked>`}
 				<d2l-offscreen>${this.localize(lang)}${choice.text}</d2l-offscreen>
-				<d2l-html-block aria-hitten="true">
+				<d2l-html-block aria-hidden="true">
 					${unsafeHTML(choice.htmlText)}
 				</d2l-html-block>
 			</div>`;
