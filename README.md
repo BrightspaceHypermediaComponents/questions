@@ -17,7 +17,7 @@ npm install @brightspace-hmc/questions
 
 ```html
 <script type="module">
-    import '@brightspace-hmc/questions/d2l-questions-question.js';
+    import '@brightspace-hmc/questions/components/d2l-questions-question.js';
 </script>
 <d2l-questions-question
 	question-href=""
