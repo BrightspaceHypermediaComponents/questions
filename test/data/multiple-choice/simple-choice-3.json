@@ -11,8 +11,8 @@
         "https://questions.api.brightspace.com/rels/text"
       ],
       "properties": {
-        "text": "Oil",
-        "html": "Oil"
+        "text": "Oil and a really long answer for testing. lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "html": "Oil and a really long answer for testing. lorem ipsum dolor sit amet, consectetur adipiscing elit."
       }
     }
   ],
