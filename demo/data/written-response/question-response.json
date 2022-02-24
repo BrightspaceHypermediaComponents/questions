@@ -1,0 +1,55 @@
+{
+  "class": [
+    "question-response"
+  ],
+  "properties": {
+    "questionNumber": 1,
+    "savedTime": "2022-02-23T19:16:14.410Z"
+  },
+  "entities": [
+    {
+      "class": [
+        "candidate-response",
+        "extended-text"
+      ],
+      "rel": [
+        "item"
+      ],
+      "properties": {
+        "baseType": "string",
+        "cardinality": "single"
+      },
+      "entities": [
+        {
+          "class": [
+            "richtext"
+          ],
+          "rel": [
+            "item"
+          ],
+          "properties": {
+            "text": "Initial Text Is The Following - More Words",
+            "html": "Initial Text Is The Following - More Words",
+            "wordCount": 8
+          }
+        }
+      ],
+      "links": [
+        {
+          "rel": [
+            "https://questions.api.brightspace.com/rels/interaction"
+          ],
+          "href": "./data/written-response/extended-text-interaction.json"
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "./data/written-response/question-response.json"
+    }
+  ]
+}

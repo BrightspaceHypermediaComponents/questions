@@ -86,6 +86,8 @@ class D2lQuestionsQuestion extends (LitElement) {
 			this._questionType = Classes.questions.multipleChoice;
 		} else if (this._question.entity.hasClass(Classes.questions.multiSelect)) {
 			this._questionType = Classes.questions.multiSelect;
+		} else if (this._question.entity.hasClass('LongAnswer')) {
+			this._questionType = 'LongAnswer'; // Temporary -> Long Answer missing in Classes.questions
 		}
 	}
 
@@ -110,6 +112,16 @@ class D2lQuestionsQuestion extends (LitElement) {
 						.question=${this._question}
 						.questionResponse=${this._questionResponse}>
 					</d2l-questions-multi-select>`;
+
+			case 'LongAnswer': // Temporary -> Long Answer missing in Classes.questions
+				await import('./d2l-questions-written-response.js');
+				return html`
+					<d2l-questions-written-response
+						?readonly=${this.readonly}
+						.question=${this._question}
+						.questionResponse=${this._questionResponse}
+						.token=${this.token}>
+					</d2l-questions-written-response>`;
 
 			default:
 				throw 'Unknown question type';
