@@ -46,4 +46,11 @@ describe('d2l-questions-question', () => {
 			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
 		});
 	});
+
+	describe('written-response', () => {
+		it('readonly', async function() {
+			const rect = await visualDiff.getRect(page, '#written-response-readonly');
+			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+		});
+	});
 });
