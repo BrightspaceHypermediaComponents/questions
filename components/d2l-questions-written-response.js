@@ -32,9 +32,9 @@ class D2lQuestionWrittenResponse extends LocalizeDynamicMixin(LitElement) {
 				padding-bottom: 1.2rem;
 			}
 			.d2l-questions-written-response-question-initial-text {
-				padding-bottom: 0.619rem;
 				margin-left: 0.95rem;
-				margin-right: 0.95rem
+				margin-right: 0.95rem;
+				padding-bottom: 0.619rem;
 			}
 			.d2l-questions-written-response-question-answer-key {
 				padding-bottom: 0.8rem;
