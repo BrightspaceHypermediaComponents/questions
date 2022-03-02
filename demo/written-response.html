@@ -12,12 +12,27 @@
 	</head>
 	<body>
 		<d2l-demo-page page-title="D2l Questions - Written Response">
-			<h2>D2l-Questions-Question Written Response Readonly</h2>
+			<h2>Readonly - With Repsonse</h2>
 			<d2l-demo-snippet>
 				<d2l-questions-question
 					readonly
 					question-href="./data/written-response/question.json"
 					question-response-href="./data/written-response/question-response.json"
+					token="token"></d2l-questions-question>
+			</d2l-demo-snippet>
+			<h2>Readonly - No Response</h2>
+			<d2l-demo-snippet>
+				<d2l-questions-question
+					readonly
+					question-href="./data/written-response/question.json"
+					token="token"></d2l-questions-question>
+			</d2l-demo-snippet>
+			<h2>Readonly - No Answer Key</h2>
+			<d2l-demo-snippet>
+				<d2l-questions-question
+					readonly
+					question-href="./data/written-response/question-no-answer-key.json"
+					question-response-href="./data/written-response/question-response-no-answer-key.json"
 					token="token"></d2l-questions-question>
 			</d2l-demo-snippet>
 		</d2l-demo-page>

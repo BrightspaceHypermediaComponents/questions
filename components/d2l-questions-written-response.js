@@ -108,7 +108,7 @@ class D2lQuestionWrittenResponse extends LocalizeDynamicMixin(LitElement) {
 	}
 
 	_renderInitialText() {
-		if (this.readonly) {
+		if (this.readonly && this.questionResponse) {
 			const responseEntities = this.questionResponse.entity.getSubEntityByClass(Classes.questions.candidateResponse);
 			const initialTextResponse = responseEntities.getSubEntityByClass(Classes.text.richtext);
 

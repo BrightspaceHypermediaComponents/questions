@@ -1,0 +1,37 @@
+{
+  "class": [
+    "named-entity",
+    "LongAnswer"
+  ],
+  "properties": {
+    "name": null,
+    "type": 7,
+    "typeText": "Written Response"
+  },
+  "entities": [
+    {
+      "class": [
+        "richtext",
+        "questionText"
+      ],
+      "rel": [
+        "item",
+        "https://questions.api.brightspace.com/rels/questionText",
+        "https://questions.api.brightspace.com/rels/title"
+      ],
+      "properties": {
+        "text": "Random Question",
+        "html": "Random Question"
+      }
+    },
+    {
+      "class": [
+        "item-body"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/item-body"
+      ],
+      "href": "./data/written-response/item-body-no-answer-key.json"
+    }
+  ]
+}

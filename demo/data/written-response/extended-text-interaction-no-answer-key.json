@@ -37,7 +37,7 @@
       "rel": [
         "https://questions.api.brightspace.com/rels/item-body"
       ],
-      "href": "./data/written-response/item-body.json"
+      "href": "./data/written-response/item-body-no-answer-key.json"
     },
     {
       "rel": [
