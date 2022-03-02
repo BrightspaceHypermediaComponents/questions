@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script type="module">
+			import '@brightspace-ui/core/components/typography/typography.js';
+			import '../components/d2l-questions-question.js';
+		</script>
+		<title>d2l-questions-written-response visual-diff tests</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+		<style>
+			html {
+				font-size: 20px;
+			}
+			div {
+				display: flex;
+				margin: 10px;
+				width: 200px;
+			}
+		</style>
+	</head>
+	<body class="d2l-typography">
+		<div id="written-response-readonly">
+			<d2l-questions-question
+				readonly
+				question-href="./data/written-response/question.json"
+				question-response-href="./data/written-response/question-response.json"
+				token="token">
+			</d2l-questions-question>
+		</div>
+		<div id="written-response-readonly-no-response">
+			<d2l-questions-question
+				readonly
+				question-href="./data/written-response/question.json"
+				token="token">
+			</d2l-questions-question>
+		</div>
+		<div id="written-response-readonly-no-answer-key">
+			<d2l-questions-question
+				readonly
+				question-href="./data/written-response/question-no-answer-key.json"
+				question-response-href="./data/written-response/question-response-no-answer-key.json"
+				token="token">
+			</d2l-questions-question>
+		</div>
+	</body>
+</html>
