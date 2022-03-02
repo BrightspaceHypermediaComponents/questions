@@ -86,8 +86,8 @@ class D2lQuestionsQuestion extends (LitElement) {
 			this._questionType = Classes.questions.multipleChoice;
 		} else if (this._question.entity.hasClass(Classes.questions.multiSelect)) {
 			this._questionType = Classes.questions.multiSelect;
-		} else if (this._question.entity.hasClass('LongAnswer')) {
-			this._questionType = 'LongAnswer'; // Temporary -> Long Answer missing in Classes.questions
+		} else if (this._question.entity.hasClass(Classes.questions.longAnswer)) {
+			this._questionType = Classes.questions.longAnswer;
 		}
 	}
 
@@ -113,7 +113,7 @@ class D2lQuestionsQuestion extends (LitElement) {
 						.questionResponse=${this._questionResponse}>
 					</d2l-questions-multi-select>`;
 
-			case 'LongAnswer': // Temporary -> Long Answer missing in Classes.questions
+			case Classes.questions.longAnswer:
 				await import('./d2l-questions-written-response.js');
 				return html`
 					<d2l-questions-written-response
