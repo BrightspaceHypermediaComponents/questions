@@ -86,7 +86,7 @@ class D2lQuestionsQuestion extends (LitElement) {
 			this._questionType = Classes.questions.multipleChoice;
 		} else if (this._question.entity.hasClass(Classes.questions.multiSelect)) {
 			this._questionType = Classes.questions.multiSelect;
-		} else if (this._question.entity.hasClass(Classes.questions.longAnswer)) {
+		} else if (this._question.entity.hasClass(Classes.questions.longAnswer)) { // previous naming convention for "Written Response" is "Long Answer", API response displaying LongAnswer currently
 			this._questionType = Classes.questions.longAnswer;
 		}
 	}
