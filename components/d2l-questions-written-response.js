@@ -82,11 +82,14 @@ class D2lQuestionWrittenResponse extends LocalizeDynamicMixin(LitElement) {
 
 	async _loadAnswerKey() {
 		const itemBodyHref = this.question.entity.getSubEntityByRel(Rels.Questions.itemBody);
-		const itemBodyEntity = await this._getEntityFromHref(itemBodyHref);
-		const answerKeyEntity = itemBodyEntity.entity.getSubEntityByClass(Classes.text.richtext);
 
-		if (answerKeyEntity !== undefined) {
-			this._answerKey = answerKeyEntity.properties.html;
+		if (itemBodyHref !== undefined) {
+			const itemBodyEntity = await this._getEntityFromHref(itemBodyHref);
+			const answerKeyEntity = itemBodyEntity.entity.getSubEntityByClass(Classes.text.richtext);
+
+			if (answerKeyEntity !== undefined) {
+				this._answerKey = answerKeyEntity.properties.html;
+			}
 		}
 	}
 
@@ -110,16 +113,19 @@ class D2lQuestionWrittenResponse extends LocalizeDynamicMixin(LitElement) {
 	_renderInitialText() {
 		if (this.readonly && this.questionResponse) {
 			const responseEntities = this.questionResponse.entity.getSubEntityByClass(Classes.questions.candidateResponse);
-			const initialTextResponse = responseEntities.getSubEntityByClass(Classes.text.richtext);
 
-			if (initialTextResponse !== undefined) {
-				return html`
-					<div class="d2l-questions-written-response-question-initial-text">
-						<d2l-html-block>
-							${unsafeHTML(removeParagraphFormat(initialTextResponse.properties.html))}
-						</d2l-html-block>
-					</div>
-				`;
+			if (responseEntities !== undefined) {
+				const initialTextResponse = responseEntities.getSubEntityByClass(Classes.text.richtext);
+
+				if (initialTextResponse !== undefined) {
+					return html`
+						<div class="d2l-questions-written-response-question-initial-text">
+							<d2l-html-block>
+								${unsafeHTML(removeParagraphFormat(initialTextResponse.properties.html))}
+							</d2l-html-block>
+						</div>
+					`;
+				}
 			}
 		}
 
