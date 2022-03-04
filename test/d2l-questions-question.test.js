@@ -5,11 +5,22 @@ import { runConstructor } from '@brightspace-ui/core/tools/constructor-test-help
 describe('D2lQuestionsQuestion', () => {
 
 	describe('accessibility', () => {
-		it('should pass all aXe tests', async() => {
+		it('multiple-choice pass all aXe tests', async() => {
 			const el = await fixture(html`
 					<d2l-questions-question
-						question-href="./data/question-multiple-choice.json"
-						question-response-href="./data/question-multiple-choice-response.json"
+						question-href="./data/multiple-choice/question.json"
+						question-response-href="./data/multiple-choice/question-response-correct.json"
+						token="token">
+					</d2l-questions-question>
+				`);
+			await expect(el).to.be.accessible();
+		});
+
+		it('written-response pass all aXe tests', async() => {
+			const el = await fixture(html`
+					<d2l-questions-question
+						question-href="./data/written-response/question.json"
+						question-response-href="./data/written-response/question-response.json"
 						token="token">
 					</d2l-questions-question>
 				`);
@@ -22,5 +33,4 @@ describe('D2lQuestionsQuestion', () => {
 			runConstructor('d2l-questions-question');
 		});
 	});
-
 });

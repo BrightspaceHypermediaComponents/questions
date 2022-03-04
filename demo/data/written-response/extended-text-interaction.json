@@ -1,0 +1,49 @@
+{
+  "class": [
+    "extended-text-interaction"
+  ],
+  "properties": {
+    "format": "plain",
+    "heightLines": 15
+  },
+  "entities": [
+    {
+      "class": [
+        "richtext"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/prompt"
+      ],
+      "properties": {
+        "text": "Random Question",
+        "html": "Random Question"
+      }
+    },
+    {
+      "class": [
+        "richtext"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/placeholder-text"
+      ],
+      "properties": {
+        "text": "Initial Text Is The Following",
+        "html": "Initial Text Is The Following"
+      }
+    }
+  ],
+  "links": [
+    {
+      "rel": [
+        "https://questions.api.brightspace.com/rels/item-body"
+      ],
+      "href": "./data/written-response/item-body.json"
+    },
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "#"
+    }
+  ]
+}

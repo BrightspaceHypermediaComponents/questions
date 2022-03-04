@@ -1,0 +1,24 @@
+{
+  "class": [
+    "item-body"
+  ],
+  "entities": [
+    {
+      "class": [
+        "extended-text-interaction"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/interaction"
+      ],
+      "href": "./data/written-response/extended-text-interaction-no-answer-key.json"
+    }
+  ],
+  "links": [
+    {
+      "rel": [
+        "https://questions.api.brightspace.com/rels/question"
+      ],
+      "href": "./data/written-response/question-no-answer-key.json"
+    }
+  ]
+}

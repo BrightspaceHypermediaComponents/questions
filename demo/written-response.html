@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="/node_modules/@brightspace-ui/core/components/demo/styles.css" type="text/css">
+		<script type="module">
+			import '@brightspace-ui/core/components/demo/demo-page.js';
+			import '../components/d2l-questions-question.js';
+		</script>
+		<title>D2lQuestionsQuestion Multiple Choice</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<d2l-demo-page page-title="D2l Questions - Written Response">
+			<h2>Readonly - With Repsonse</h2>
+			<d2l-demo-snippet>
+				<d2l-questions-question
+					readonly
+					question-href="./data/written-response/question.json"
+					question-response-href="./data/written-response/question-response.json"
+					token="token"></d2l-questions-question>
+			</d2l-demo-snippet>
+			<h2>Readonly - No Response</h2>
+			<d2l-demo-snippet>
+				<d2l-questions-question
+					readonly
+					question-href="./data/written-response/question.json"
+					token="token"></d2l-questions-question>
+			</d2l-demo-snippet>
+			<h2>Readonly - No Answer Key</h2>
+			<d2l-demo-snippet>
+				<d2l-questions-question
+					readonly
+					question-href="./data/written-response/question-no-answer-key.json"
+					question-response-href="./data/written-response/question-response-no-answer-key.json"
+					token="token"></d2l-questions-question>
+			</d2l-demo-snippet>
+		</d2l-demo-page>
+	</body>
+</html>
