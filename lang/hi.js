@@ -1,8 +1,8 @@
 /* eslint quotes: 0 */
 
 export default {
-	"correctAnswer": "Correct Answer",
-	"incorrectAnswer": "Incorrect Answer",
-	"correctResponse": "Correct Response",
-	"incorrectResponse": "Incorrect Response"
+	"correctAnswer": "सही उत्तर",
+	"incorrectAnswer": "गलत उत्तर",
+	"correctResponse": "सही प्रतिक्रिया",
+	"incorrectResponse": "गलत प्रतिक्रिया"
 };
