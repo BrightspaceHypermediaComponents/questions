@@ -81,13 +81,14 @@ class D2lQuestionsQuestion extends (LitElement) {
 		if (this.questionResponseHref) {
 			this._questionResponse = await window.D2L.Siren.EntityStore.fetch(this.questionResponseHref, this.token);
 		}
-
-		if (this._question.entity.hasClass(Classes.questions.multipleChoice)) {
-			this._questionType = Classes.questions.multipleChoice;
-		} else if (this._question.entity.hasClass(Classes.questions.multiSelect)) {
-			this._questionType = Classes.questions.multiSelect;
-		} else if (this._question.entity.hasClass(Classes.questions.longAnswer)) { // previous naming convention for "Written Response" is "Long Answer", API response displaying LongAnswer currently
-			this._questionType = Classes.questions.longAnswer;
+		if (this._question && this._question.entity) {
+			if (this._question.entity.hasClass(Classes.questions.multipleChoice)) {
+				this._questionType = Classes.questions.multipleChoice;
+			} else if (this._question.entity.hasClass(Classes.questions.multiSelect)) {
+				this._questionType = Classes.questions.multiSelect;
+			} else if (this._question.entity.hasClass(Classes.questions.longAnswer)) { // previous naming convention for "Written Response" is "Long Answer", API response displaying LongAnswer currently
+				this._questionType = Classes.questions.longAnswer;
+			}
 		}
 	}
 
