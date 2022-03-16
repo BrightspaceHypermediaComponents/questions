@@ -9,6 +9,7 @@ import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/st
 import { getUniqueId } from '@brightspace-ui/core/helpers/uniqueId.js';
 import { LocalizeDynamicMixin } from '@brightspace-ui/core/mixins/localize-dynamic-mixin.js';
 import { radioStyles } from '@brightspace-ui/core/components/inputs/input-radio-styles.js';
+import { removeParagraphFormat } from './helpers/htmlTextHelper.js';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
 class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
@@ -92,7 +93,7 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 			return html`
 				<div class="d2l-questions-multiple-choice-question-text">
 					<d2l-html-block>
-						${unsafeHTML(questionText.properties.html)}
+						${unsafeHTML(removeParagraphFormat(questionText.properties.html))}
 					</d2l-html-block>
 				</div>
 
@@ -178,7 +179,7 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 						?checked=${choice.selected}
 						aria-label="${choice.text}">
 						<d2l-html-block>
-							${unsafeHTML(choice.htmlText)}
+							${unsafeHTML(removeParagraphFormat(choice.htmlText))}
 						</d2l-html-block>
 					</label>
 				</div>
@@ -209,7 +210,7 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 				${choice.selected ? html`<d2l-questions-icons-radio-checked></d2l-questions-icons-radio-checked>` : html`<d2l-questions-icons-radio-unchecked></d2l-questions-icons-radio-unchecked>`}
 				<d2l-offscreen>${this.localize(lang)}${choice.text}</d2l-offscreen>
 				<d2l-html-block aria-hidden="true">
-					${unsafeHTML(choice.htmlText)}
+					${unsafeHTML(removeParagraphFormat(choice.htmlText))}
 				</d2l-html-block>
 			</div>`;
 	}

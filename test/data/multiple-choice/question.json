@@ -21,7 +21,7 @@
       ],
       "properties": {
         "text": "Mark the item that is blue.",
-        "html": "Mark the item that is <em>blue</em>."
+        "html": "<p>Mark the item that is <em>blue</em>.</p>"
       }
     },
     {
