@@ -35,5 +35,10 @@ describe('d2l-questions-written-response', () => {
 			const rect = await visualDiff.getRect(page, '#written-response-readonly-no-answer-key');
 			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
 		});
+
+		it('readonly-empty-response', async function() {
+			const rect = await visualDiff.getRect(page, '#written-response-readonly-empty-response');
+			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+		});
 	});
 });
