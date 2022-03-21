@@ -12,7 +12,7 @@
       ],
       "properties": {
         "text": "Oil and a really long answer for testing. lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "html": "Oil and a really long answer for testing. lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        "html": "<p>Oil and a really long answer for testing. lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>"
       }
     }
   ],
