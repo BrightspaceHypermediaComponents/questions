@@ -39,6 +39,13 @@ class D2lQuestionWrittenResponse extends LocalizeDynamicMixin(LitElement) {
 			.d2l-questions-written-response-question-answer-key {
 				padding-bottom: 0.8rem;
 			}
+			.d2l-questions-written-response-question-word-count {
+				padding-top: 0.5rem;
+				padding-bottom: 0.5rem;
+			}
+			.d2l-questions-written-response-question-word-count > h3 {
+				font-size: 13px;
+			}
 		`];
 	}
 
@@ -123,6 +130,11 @@ class D2lQuestionWrittenResponse extends LocalizeDynamicMixin(LitElement) {
 							<d2l-html-block>
 								${unsafeHTML(removeParagraphFormat(initialTextResponse.properties.html))}
 							</d2l-html-block>
+							<div class="d2l-questions-written-response-question-word-count">
+								<h3 class="d2l-label-text">
+									${initialTextResponse.properties.wordCount} ${this.localize('words')}
+								</h3>
+							</div>
 						</div>
 					`;
 				}
