@@ -40,8 +40,8 @@ class D2lQuestionWrittenResponse extends LocalizeDynamicMixin(LitElement) {
 				padding-bottom: 0.8rem;
 			}
 			.d2l-questions-written-response-question-word-count {
-				padding-top: 0.5rem;
 				padding-bottom: 0.5rem;
+				padding-top: 0.5rem;
 			}
 			.d2l-questions-written-response-question-word-count > h3 {
 				font-size: 13px;
