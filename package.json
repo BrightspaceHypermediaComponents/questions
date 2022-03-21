@@ -47,6 +47,6 @@
     "@brightspace-ui/core": "^1",
     "d2l-hypermedia-constants": "^6.60.0",
     "lit-element": "^2",
-    "siren-sdk": "github:BrightspaceHypermediaComponents/siren-sdk#semver:^1"
+    "siren-sdk": "github:BrightspaceHypermediaComponents/siren-sdk#semver:^2"
   }
 }
