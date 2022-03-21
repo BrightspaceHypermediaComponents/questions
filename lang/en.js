@@ -5,5 +5,6 @@ export default {
 	"incorrectAnswer": "Incorrect Answer",
 	"correctResponse": "Correct Response",
 	"incorrectResponse": "Incorrect Response",
-	"answerKey": "Answer Key"
+	"answerKey": "Answer Key",
+	"words": "Words"
 };

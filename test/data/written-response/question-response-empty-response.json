@@ -1,0 +1,54 @@
+{
+  "class": [
+    "question-response"
+  ],
+  "properties": {
+    "questionNumber": 1
+  },
+  "entities": [
+    {
+      "class": [
+        "candidate-response",
+        "extended-text"
+      ],
+      "rel": [
+        "item"
+      ],
+      "properties": {
+        "baseType": "string",
+        "cardinality": "single"
+      },
+      "entities": [
+        {
+          "class": [
+            "richtext"
+          ],
+          "rel": [
+            "item"
+          ],
+          "properties": {
+            "text": "",
+            "html": "",
+            "wordCount": 0
+          }
+        }
+      ],
+      "links": [
+        {
+          "rel": [
+            "https://questions.api.brightspace.com/rels/interaction"
+          ],
+          "href": "./data/written-response/extended-text-interaction.json"
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "./data/written-response/question-response-empty-response.json"
+    }
+  ]
+}
