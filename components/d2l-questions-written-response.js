@@ -44,7 +44,7 @@ class D2lQuestionWrittenResponse extends LocalizeDynamicMixin(LitElement) {
 				padding-top: 0.5rem;
 			}
 			.d2l-questions-written-response-question-word-count > h3 {
-				font-size: 13px;
+				font-size: 0.7rem;
 			}
 		`];
 	}
