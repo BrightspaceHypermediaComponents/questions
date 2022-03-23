@@ -1,0 +1,92 @@
+{
+  "class": [
+    "question-response"
+  ],
+  "properties": {
+    "questionNumber": 1,
+    "savedTime": "2022-03-22T20:28:29.380Z"
+  },
+  "entities": [
+    {
+      "class": [
+        "candidate-response",
+        "extended-text"
+      ],
+      "rel": [
+        "item"
+      ],
+      "properties": {
+        "baseType": "string",
+        "cardinality": "single"
+      },
+      "entities": [
+        {
+          "class": [
+            "richtext"
+          ],
+          "rel": [
+            "item"
+          ],
+          "properties": {
+            "text": "Biscuit jelly gummi bears pudding croissant dragée jelly-o. Chocolate liquorice jelly pastry jelly beans carrot cake. Cake croissant tiramisu cake sweet roll brownie cupcake fruitcake sweet. Pudding marshmallow halvah chupa chups soufflé chocolate cupcake. Toffee donut liquorice dessert liquorice. Icing shortbread cheesecake sesame snaps cheesecake halvah icing. Croissant muffin chocolate bar fruitcake chocolate. Dragée lemon drops chocolate bar carrot cake danish carrot cake sweet roll powder chocolate bar. Danish chupa chups gummi bears gummies marshmallow bonbon. Pastry candy pie lollipop topping chocolate cake soufflé. Cake brownie pudding tart donut. Brownie jelly chupa chups sesame snaps marzipan bear claw pastry gummi bears pudding. Wafer croissant candy canes bonbon chupa chups.",
+            "html": "Biscuit jelly gummi bears pudding croissant dragée jelly-o. Chocolate liquorice jelly pastry jelly beans carrot cake. Cake croissant tiramisu cake sweet roll brownie cupcake fruitcake sweet. Pudding marshmallow halvah chupa chups soufflé chocolate cupcake. Toffee donut liquorice dessert liquorice. Icing shortbread cheesecake sesame snaps cheesecake halvah icing. Croissant muffin chocolate bar fruitcake chocolate. Dragée lemon drops chocolate bar carrot cake danish carrot cake sweet roll powder chocolate bar. Danish chupa chups gummi bears gummies marshmallow bonbon. Pastry candy pie lollipop topping chocolate cake soufflé. Cake brownie pudding tart donut. Brownie jelly chupa chups sesame snaps marzipan bear claw pastry gummi bears pudding. Wafer croissant candy canes bonbon chupa chups.",
+            "wordCount": 109
+          }
+        }
+      ],
+      "links": [
+        {
+          "rel": [
+            "https://questions.api.brightspace.com/rels/interaction"
+          ],
+          "href": "./data/written-response/extended-text-interaction.json"
+        }
+      ]
+    },
+    {
+      "class": [
+        "candidate-response",
+        "file-upload"
+      ],
+      "rel": [
+        "item"
+      ],
+      "properties": {
+        "baseType": "file",
+        "cardinality": "multiple"
+      },
+      "entities": [
+        {
+          "class": [
+            "file"
+          ],
+          "rel": [
+            "item"
+          ],
+          "properties": {
+            "name": "ImageAttachment.png",
+            "extension": "png",
+            "size": 14327,
+            "href": "http://d2l-semmv08dxue.desire2learn.d2l:44446/d2l/common/viewFile.d2lfile/Database/MTA5NA/ImageAttachment.png?ou=6609"
+          }
+        }
+      ],
+      "links": [
+        {
+          "rel": [
+            "https://questions.api.brightspace.com/rels/interaction"
+          ],
+          "href": "./data/written-response/extended-text-interaction.json"
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "./data/written-response/question-response-single-attachment.json"
+    }
+  ]
+}

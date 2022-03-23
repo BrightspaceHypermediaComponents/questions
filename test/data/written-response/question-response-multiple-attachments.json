@@ -1,0 +1,134 @@
+{
+  "class": [
+    "question-response"
+  ],
+  "properties": {
+    "questionNumber": 1,
+    "savedTime": "2022-03-22T20:26:13.420Z"
+  },
+  "entities": [
+    {
+      "class": [
+        "candidate-response",
+        "extended-text"
+      ],
+      "rel": [
+        "item"
+      ],
+      "properties": {
+        "baseType": "string",
+        "cardinality": "single"
+      },
+      "entities": [
+        {
+          "class": [
+            "richtext"
+          ],
+          "rel": [
+            "item"
+          ],
+          "properties": {
+            "text": "Jelly-o cookie candy pudding brownie bear claw powder tiramisu. Jelly chocolate chocolate pie tootsie roll. Sugar plum soufflé sugar plum marshmallow danish. Ice cream chupa chups carrot cake fruitcake cupcake sweet roll candy canes. Chocolate cake jelly-o soufflé lollipop candy canes muffin sesame snaps lollipop soufflé. Fruitcake dragée tiramisu carrot cake pie wafer gingerbread candy canes. Biscuit fruitcake powder donut cupcake tiramisu jujubes chocolate. Tootsie roll cake chocolate bar macaroon fruitcake marshmallow. Liquorice carrot cake pudding chocolate cake jelly beans cheesecake gummi bears topping. Chocolate lemon drops cupcake pie bonbon chupa chups lemon drops. Cookie apple pie carrot cake pie fruitcake danish carrot cake. Candy brownie cake bear claw biscuit donut shortbread sesame snaps.",
+            "html": "Jelly-o cookie candy pudding brownie bear claw powder tiramisu. Jelly chocolate chocolate pie tootsie roll. Sugar plum soufflé sugar plum marshmallow danish. Ice cream chupa chups carrot cake fruitcake cupcake sweet roll candy canes. Chocolate cake jelly-o soufflé lollipop candy canes muffin sesame snaps lollipop soufflé. Fruitcake dragée tiramisu carrot cake pie wafer gingerbread candy canes. Biscuit fruitcake powder donut cupcake tiramisu jujubes chocolate. Tootsie roll cake chocolate bar macaroon fruitcake marshmallow. Liquorice carrot cake pudding chocolate cake jelly beans cheesecake gummi bears topping. Chocolate lemon drops cupcake pie bonbon chupa chups lemon drops. Cookie apple pie carrot cake pie fruitcake danish carrot cake. Candy brownie cake bear claw biscuit donut shortbread sesame snaps.",
+            "wordCount": 114
+          }
+        }
+      ],
+      "links": [
+        {
+          "rel": [
+            "https://questions.api.brightspace.com/rels/interaction"
+          ],
+          "href": "./data/written-response/extended-text-interaction.json"
+        }
+      ]
+    },
+    {
+      "class": [
+        "candidate-response",
+        "file-upload"
+      ],
+      "rel": [
+        "item"
+      ],
+      "properties": {
+        "baseType": "file",
+        "cardinality": "multiple"
+      },
+      "entities": [
+        {
+          "class": [
+            "file"
+          ],
+          "rel": [
+            "item"
+          ],
+          "properties": {
+            "name": "ImageAttachment.png",
+            "extension": "png",
+            "size": 14327,
+            "href": "http://d2l-semmv08dxue.desire2learn.d2l:44446/d2l/common/viewFile.d2lfile/Database/MTA5MA/ImageAttachment.png?ou=6609"
+          }
+        },
+        {
+          "class": [
+            "file"
+          ],
+          "rel": [
+            "item"
+          ],
+          "properties": {
+            "name": "PDFDocumentAttachment.pdf",
+            "extension": "pdf",
+            "size": 25697,
+            "href": "http://d2l-semmv08dxue.desire2learn.d2l:44446/d2l/common/viewFile.d2lfile/Database/MTA5MQ/PDFDocumentAttachment.pdf?ou=6609"
+          }
+        },
+        {
+          "class": [
+            "file"
+          ],
+          "rel": [
+            "item"
+          ],
+          "properties": {
+            "name": "TextFileAttachment.txt",
+            "extension": "txt",
+            "size": 11,
+            "href": "http://d2l-semmv08dxue.desire2learn.d2l:44446/d2l/common/viewFile.d2lfile/Database/MTA5Mg/TextFileAttachment.txt?ou=6609"
+          }
+        },
+        {
+          "class": [
+            "file"
+          ],
+          "rel": [
+            "item"
+          ],
+          "properties": {
+            "name": "WordDocumentAttachment.docx",
+            "extension": "docx",
+            "size": 11863,
+            "href": "http://d2l-semmv08dxue.desire2learn.d2l:44446/d2l/common/viewFile.d2lfile/Database/MTA5Mw/WordDocumentAttachment.docx?ou=6609"
+          }
+        }
+      ],
+      "links": [
+        {
+          "rel": [
+            "https://questions.api.brightspace.com/rels/interaction"
+          ],
+          "href": "./data/written-response/extended-text-interaction.json"
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "./data/written-response/question-response-multiple-attachments.json"
+    }
+  ]
+}

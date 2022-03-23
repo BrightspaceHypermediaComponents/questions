@@ -1,8 +1,15 @@
 import '@brightspace-ui/core/components/inputs/input-textarea.js';
+import '@brightspace-ui/core/components/icons/icon.js';
+import '@brightspace-ui/core/components/list/list.js';
+import '@brightspace-ui/core/components/list/list-item.js';
+import '@brightspace-ui/core/components/html-block/html-block.js';
 import 'd2l-polymer-siren-behaviors/store/entity-store.js';
-import { bodyStandardStyles, labelStyles } from '@brightspace-ui/core/components/typography/styles.js';
+import { AttachmentTypes, getAttachmentType, getLinkIconTypeFromUrl, getReadableFileSizeString } from './helpers/attachmentsHelper.js';
+import { bodySmallStyles, bodyStandardStyles, labelStyles } from '@brightspace-ui/core/components/typography/styles.js';
 import { Classes, Rels } from 'd2l-hypermedia-constants';
 import { css, html, LitElement } from 'lit-element/lit-element.js';
+import { getFileIconTypeFromExtension } from '@brightspace-ui/core/components/icons/getFileIconType';
+import { linkStyles } from '@brightspace-ui/core/components/link/link.js';
 import { LocalizeDynamicMixin } from '@brightspace-ui/core/mixins/localize-dynamic-mixin.js';
 import { removeParagraphFormat } from './helpers/htmlTextHelper.js';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
@@ -20,12 +27,18 @@ class D2lQuestionWrittenResponse extends LocalizeDynamicMixin(LitElement) {
 	}
 
 	static get styles() {
-		return [bodyStandardStyles, labelStyles, css`
+		return [bodyStandardStyles, bodySmallStyles, labelStyles, linkStyles, css`
 			:host {
 				display: inline-block;
 			}
 			:host([hidden]) {
 				display: none;
+			}
+			.d2l-questions-written-response-attachment-container {
+				overflow: hidden;
+				overflow-wrap: break-word;
+				text-overflow: ellipsis;
+				white-space: nowrap;
 			}
 			.d2l-questions-written-response-question-text {
 				font-weight: 700;
@@ -45,6 +58,10 @@ class D2lQuestionWrittenResponse extends LocalizeDynamicMixin(LitElement) {
 			}
 			.d2l-questions-written-response-question-word-count > h3 {
 				font-size: 0.65rem;
+			}
+			.d2l-questions-written-response-question-attachment-list {
+				padding-bottom: 0.1rem;
+				padding-top: 0.1rem;
 			}
 		`];
 	}
@@ -83,6 +100,10 @@ class D2lQuestionWrittenResponse extends LocalizeDynamicMixin(LitElement) {
 		}
 	}
 
+	_downloadAttachment(href) {
+		window.location.href = href;
+	}
+
 	async _getEntityFromHref(targetHref) {
 		return await window.D2L.Siren.EntityStore.fetch(targetHref, this.token);
 	}
@@ -117,6 +138,59 @@ class D2lQuestionWrittenResponse extends LocalizeDynamicMixin(LitElement) {
 		return html``;
 	}
 
+	_renderAttachments() {
+		if (this.readonly && this.questionResponse) {
+			const fileUploadEntities = this.questionResponse.entity.getSubEntityByClass('file-upload');
+
+			if (fileUploadEntities && fileUploadEntities.entities) {
+				const fileAttachments = fileUploadEntities.entities;
+
+				return html`${fileAttachments.map((fileAttachment, index) => {
+					const { name, size, extension, href } = fileAttachment.properties;
+
+					const onClickHandler = () => this._downloadAttachment(href);
+					const onKeydownHandler = (e) => {
+						if (e.key === 'Enter' || e.key === ' ') {
+							this._downloadAttachment(href);
+						}
+					};
+
+					const attachmentType = getAttachmentType(fileAttachment);
+
+					let iconType;
+					switch (attachmentType) {
+						case AttachmentTypes.LINK:
+							iconType = getLinkIconTypeFromUrl(href);
+							break;
+						case AttachmentTypes.PAGE:
+							iconType = 'browser';
+							break;
+						default:
+							iconType = getFileIconTypeFromExtension(extension);
+					}
+
+					return html`
+						<d2l-list-item key=${index} class="d2l-questions-written-response-attachment-list-item">
+							<div class="d2l-questions-written-response-attachment-container">
+								<d2l-icon icon="tier1:${iconType}"></d2l-icon>
+								<a
+									class="d2l-link d2l-body-compact"
+									tabindex="0"
+									aria-label="${this.localize('clickToDownloadAttachmentFile', 'fileName', name)}"
+									@keydown=${onKeydownHandler}
+									@click=${onClickHandler}
+								>${name}</a>
+								${attachmentType === AttachmentTypes.LINK ? html`` : html`<span class="d2l-body-compact">(${getReadableFileSizeString(size, this.localize.bind(this))})</span>`}
+							</div>
+						</d2l-list-item>
+					`;
+				})}`;
+			}
+		}
+
+		return html``;
+	}
+
 	_renderInitialText() {
 		if (this.readonly && this.questionResponse) {
 			const responseEntities = this.questionResponse.entity.getSubEntityByClass(Classes.questions.candidateResponse);
@@ -135,6 +209,9 @@ class D2lQuestionWrittenResponse extends LocalizeDynamicMixin(LitElement) {
 									${initialTextResponse.properties.wordCount} ${this.localize('words')}
 								</h3>
 							</div>
+							<d2l-list class="d2l-questions-written-response-question-attachment-list" aria-role="attachment list" separators="between">
+								${this._renderAttachments()}
+							</d2l-list>
 						</div>
 					`;
 				}

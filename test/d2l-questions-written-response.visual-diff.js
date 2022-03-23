@@ -40,5 +40,15 @@ describe('d2l-questions-written-response', () => {
 			const rect = await visualDiff.getRect(page, '#written-response-readonly-empty-response');
 			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
 		});
+
+		it('readonly-single-attachment', async function() {
+			const rect = await visualDiff.getRect(page, '#written-response-readonly-single-attachment');
+			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+		});
+
+		it('readonly-multiple-attachments', async function() {
+			const rect = await visualDiff.getRect(page, '#written-response-readonly-multiple-attachment');
+			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+		});
 	});
 });
