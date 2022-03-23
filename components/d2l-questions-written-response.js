@@ -34,6 +34,12 @@ class D2lQuestionWrittenResponse extends LocalizeDynamicMixin(LitElement) {
 			:host([hidden]) {
 				display: none;
 			}
+			.d2l-questions-written-response-attachment-container {
+				overflow: hidden;
+				overflow-wrap: break-word;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
 			.d2l-questions-written-response-question-text {
 				font-weight: 700;
 				padding-bottom: 1.2rem;
@@ -165,7 +171,7 @@ class D2lQuestionWrittenResponse extends LocalizeDynamicMixin(LitElement) {
 
 					return html`
 						<d2l-list-item key=${index} class="d2l-questions-written-response-attachment-list-item">
-							<div>
+							<div class="d2l-questions-written-response-attachment-container">
 								<d2l-icon icon="tier1:${iconType}"></d2l-icon>
 								<a
 									class="d2l-link d2l-body-compact"
