@@ -1,0 +1,17 @@
+name: "Lint PR"
+on:
+  pull_request_target:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+jobs:
+  main:
+    #Check the name of the PR includes 'fix:' 'feat:' or another trigger for the semantic-release bot
+    name: PR Title Includes Semver Keyword
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Brightspace/third-party-actions@amannn/action-semantic-pull-request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
