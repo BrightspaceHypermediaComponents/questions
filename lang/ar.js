@@ -1,8 +1,14 @@
 /* eslint quotes: 0 */
 
 export default {
+	"GB": "جيجابايت",
+	"MB": "ميجابايت",
+	"answerKey": "مفتاح الإجابة",
+	"clickToDownloadAttachmentFile": "انقر لتنزيل المرفق {fileName}",
 	"correctAnswer": "جواب صحيح",
-	"incorrectAnswer": "جواب غير صحيح",
 	"correctResponse": "إجابة صحيحة",
-	"incorrectResponse": "إجابة غير صحيحة"
+	"incorrectAnswer": "جواب غير صحيح",
+	"incorrectResponse": "إجابة غير صحيحة",
+	"kB": "كيلوبايت",
+	"words": "الكلمات"
 };
