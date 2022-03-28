@@ -1,8 +1,14 @@
 /* eslint quotes: 0 */
 
 export default {
+	"GB": "GB",
+	"MB": "MB",
+	"answerKey": "Clave de respuesta",
+	"clickToDownloadAttachmentFile": "Haga clic para descargar el archivo adjunto {fileName}",
 	"correctAnswer": "Respuesta correcta",
-	"incorrectAnswer": "Respuesta incorrecta",
 	"correctResponse": "Respuesta correcta",
-	"incorrectResponse": "Respuesta incorrecta"
+	"incorrectAnswer": "Respuesta incorrecta",
+	"incorrectResponse": "Respuesta incorrecta",
+	"kB": "KB",
+	"words": "palabras"
 };

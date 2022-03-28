@@ -1,8 +1,14 @@
 /* eslint quotes: 0 */
 
 export default {
+	"GB": "GB",
+	"MB": "MB",
+	"answerKey": "Svarsnyckel",
+	"clickToDownloadAttachmentFile": "Klicka för att hämta bilagan {fileName}",
 	"correctAnswer": "Rätt svar",
-	"incorrectAnswer": "Fel svar",
 	"correctResponse": "Rätt respons",
-	"incorrectResponse": "Fel respons"
+	"incorrectAnswer": "Fel svar",
+	"incorrectResponse": "Fel respons",
+	"kB": "kB",
+	"words": "Ord"
 };
