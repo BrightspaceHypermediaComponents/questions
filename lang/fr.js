@@ -1,8 +1,14 @@
 /* eslint quotes: 0 */
 
 export default {
+	"GB": "Go",
+	"MB": "Mo",
+	"answerKey": "Clé de correction",
+	"clickToDownloadAttachmentFile": "Cliquez pour télécharger la pièce jointe {fileName}",
 	"correctAnswer": "Bonne réponse",
-	"incorrectAnswer": "Mauvaise réponse",
 	"correctResponse": "Bonne réponse",
-	"incorrectResponse": "Mauvaise réponse"
+	"incorrectAnswer": "Mauvaise réponse",
+	"incorrectResponse": "Mauvaise réponse",
+	"kB": "Ko",
+	"words": "Mots"
 };
