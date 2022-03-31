@@ -41,7 +41,6 @@ class D2lQuestionWrittenResponse extends LocalizeDynamicMixin(LitElement) {
 				white-space: nowrap;
 			}
 			.d2l-questions-written-response-question-text {
-				font-weight: 700;
 				padding-bottom: 1.2rem;
 			}
 			.d2l-questions-written-response-question-initial-text {
