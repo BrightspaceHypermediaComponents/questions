@@ -3,7 +3,7 @@
 export default {
 	"GB": "Go",
 	"MB": "Mo",
-	"answerKey": "Answer Key",
+	"answerKey": "Clé de correction",
 	"clickToDownloadAttachmentFile": "Cliquez pour télécharger la pièce jointe {fileName}",
 	"correctAnswer": "Bonne réponse",
 	"correctResponse": "Bonne réponse",
