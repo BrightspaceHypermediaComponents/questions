@@ -61,12 +61,6 @@ class D2lQuestionsMultiSelect extends LocalizeQuestions(LitElement) {
 		`];
 	}
 
-	static get localizeConfig() {
-		return {
-			importFunc: async lang => (await import(`../lang/${lang}.js`)).default
-		};
-	}
-
 	render() {
 		this._loadChoices();
 		const questionText = this.question.entity.getSubEntityByClass('questionText');

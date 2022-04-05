@@ -80,12 +80,6 @@ class D2lQuestionsMultipleChoice extends LocalizeQuestions(LitElement) {
 		this.radioGroupId = getUniqueId();
 	}
 
-	static get localizeConfig() {
-		return {
-			importFunc: async lang => (await import(`../lang/${lang}.js`)).default
-		};
-	}
-
 	render() {
 		const questionText = this.question.entity.getSubEntityByClass(Classes.questions.questionText);
 
