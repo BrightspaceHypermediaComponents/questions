@@ -38,7 +38,8 @@
   "files": [
     "/components",
     "d2l-questions.serge.json",
-    "/lang"
+    "/lang",
+    "localize-questions.js"
   ],
   "publishConfig": {
     "access": "public"
