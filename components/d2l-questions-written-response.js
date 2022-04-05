@@ -39,6 +39,7 @@ class D2lQuestionWrittenResponse extends LocalizeQuestions(LitElement) {
 				overflow-wrap: break-word;
 				text-overflow: ellipsis;
 				white-space: nowrap;
+				z-index: 1;
 			}
 			.d2l-questions-written-response-question-text {
 				padding-bottom: 1.2rem;
