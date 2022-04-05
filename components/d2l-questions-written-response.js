@@ -7,12 +7,12 @@ import 'd2l-polymer-siren-behaviors/store/entity-store.js';
 import { AttachmentTypes, getAttachmentType, getLinkIconTypeFromUrl, getReadableFileSizeString } from './helpers/attachmentsHelper.js';
 import { bodySmallStyles, bodyStandardStyles, labelStyles } from '@brightspace-ui/core/components/typography/styles.js';
 import { Classes, Rels } from 'd2l-hypermedia-constants';
-import { css, html, LitElement } from 'lit-element/lit-element.js';
+import { css, html, LitElement } from 'lit';
 import { getFileIconTypeFromExtension } from '@brightspace-ui/core/components/icons/getFileIconType';
 import { linkStyles } from '@brightspace-ui/core/components/link/link.js';
 import { LocalizeQuestions } from '../localize-questions.js';
 import { removeParagraphFormat } from './helpers/htmlTextHelper.js';
-import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 class D2lQuestionWrittenResponse extends LocalizeQuestions(LitElement) {
 

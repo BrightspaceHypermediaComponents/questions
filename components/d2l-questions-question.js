@@ -1,5 +1,5 @@
 import 'd2l-polymer-siren-behaviors/store/entity-store.js';
-import { css, html, LitElement } from 'lit-element/lit-element.js';
+import { css, html, LitElement } from 'lit';
 import { Classes } from 'd2l-hypermedia-constants';
 import { runAsync } from '@brightspace-ui/core/directives/run-async/run-async.js';
 
