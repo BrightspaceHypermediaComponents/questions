@@ -6,11 +6,11 @@ import '@brightspace-ui/core/components/offscreen/offscreen.js';
 import 'd2l-polymer-siren-behaviors/store/entity-store.js';
 import { css, html, LitElement } from 'lit-element/lit-element.js';
 import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
-import { LocalizeDynamicMixin } from '@brightspace-ui/core/mixins/localize-dynamic-mixin.js';
+import { LocalizeQuestions } from '../localize-questions.js';
 
 //Database is using magic numbers
 const IS_CHECKED = '1';
-class D2lQuestionsMultiSelect extends LocalizeDynamicMixin(LitElement) {
+class D2lQuestionsMultiSelect extends LocalizeQuestions(LitElement) {
 
 	static get properties() {
 		return {
@@ -59,12 +59,6 @@ class D2lQuestionsMultiSelect extends LocalizeDynamicMixin(LitElement) {
 				color: var(--d2l-color-olivine);
 			}
 		`];
-	}
-
-	static get localizeConfig() {
-		return {
-			importFunc: async lang => (await import(`../lang/${lang}.js`)).default
-		};
 	}
 
 	render() {

@@ -10,11 +10,11 @@ import { Classes, Rels } from 'd2l-hypermedia-constants';
 import { css, html, LitElement } from 'lit-element/lit-element.js';
 import { getFileIconTypeFromExtension } from '@brightspace-ui/core/components/icons/getFileIconType';
 import { linkStyles } from '@brightspace-ui/core/components/link/link.js';
-import { LocalizeDynamicMixin } from '@brightspace-ui/core/mixins/localize-dynamic-mixin.js';
+import { LocalizeQuestions } from '../localize-questions.js';
 import { removeParagraphFormat } from './helpers/htmlTextHelper.js';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
-class D2lQuestionWrittenResponse extends LocalizeDynamicMixin(LitElement) {
+class D2lQuestionWrittenResponse extends LocalizeQuestions(LitElement) {
 
 	static get properties() {
 		return {
@@ -39,6 +39,7 @@ class D2lQuestionWrittenResponse extends LocalizeDynamicMixin(LitElement) {
 				overflow-wrap: break-word;
 				text-overflow: ellipsis;
 				white-space: nowrap;
+				z-index: 1;
 			}
 			.d2l-questions-written-response-question-text {
 				padding-bottom: 1.2rem;
@@ -63,12 +64,6 @@ class D2lQuestionWrittenResponse extends LocalizeDynamicMixin(LitElement) {
 				padding-top: 0.1rem;
 			}
 		`];
-	}
-
-	static get localizeConfig() {
-		return {
-			importFunc: async lang => (await import(`../lang/${lang}.js`)).default
-		};
 	}
 
 	render() {

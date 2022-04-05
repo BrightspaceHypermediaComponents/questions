@@ -7,12 +7,12 @@ import { Classes, Rels } from 'd2l-hypermedia-constants';
 import { css, html, LitElement } from 'lit-element/lit-element.js';
 import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
 import { getUniqueId } from '@brightspace-ui/core/helpers/uniqueId.js';
-import { LocalizeDynamicMixin } from '@brightspace-ui/core/mixins/localize-dynamic-mixin.js';
+import { LocalizeQuestions } from '../localize-questions.js';
 import { radioStyles } from '@brightspace-ui/core/components/inputs/input-radio-styles.js';
 import { removeParagraphFormat } from './helpers/htmlTextHelper.js';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
-class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
+class D2lQuestionsMultipleChoice extends LocalizeQuestions(LitElement) {
 
 	static get properties() {
 		return {
@@ -78,12 +78,6 @@ class D2lQuestionsMultipleChoice extends LocalizeDynamicMixin(LitElement) {
 	constructor() {
 		super();
 		this.radioGroupId = getUniqueId();
-	}
-
-	static get localizeConfig() {
-		return {
-			importFunc: async lang => (await import(`../lang/${lang}.js`)).default
-		};
 	}
 
 	render() {
