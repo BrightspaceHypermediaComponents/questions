@@ -45,7 +45,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@brightspace-ui/core": "^2",
+    "@brightspace-ui/core": "^2.9",
     "d2l-hypermedia-constants": "^6.60.0",
     "lit": "^2",
     "siren-sdk": "github:BrightspaceHypermediaComponents/siren-sdk#semver:^2"
