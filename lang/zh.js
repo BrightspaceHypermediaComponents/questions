@@ -10,5 +10,5 @@ export default {
 	"incorrectAnswer": "错误回答",
 	"incorrectResponse": "错误响应",
 	"kB": "KB",
-	"words": "个字"
+	"words": "字"
 };

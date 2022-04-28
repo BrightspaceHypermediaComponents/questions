@@ -10,5 +10,5 @@ export default {
 	"incorrectAnswer": "Onjuist antwoord",
 	"incorrectResponse": "Onjuist antwoord",
 	"kB": "kB",
-	"words": "woorden"
+	"words": "Woorden"
 };

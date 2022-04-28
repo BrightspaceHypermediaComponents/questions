@@ -10,5 +10,5 @@ export default {
 	"incorrectAnswer": "Respuesta incorrecta",
 	"incorrectResponse": "Respuesta incorrecta",
 	"kB": "KB",
-	"words": "palabras"
+	"words": "Palabras"
 };
