@@ -3,8 +3,25 @@
 [![NPM version](https://img.shields.io/npm/v/@brightspace-hmc/questions.svg)](https://www.npmjs.org/package/@brightspace-hmc/questions)
 [![NPM downloads](https://img.shields.io/npm/dt/@brightspace-hmc/questions.svg)](https://www.npmjs.com/package/@brightspace-hmc/questions)
 
-Question components for use in quizzing and/or surveys
+Question components for use in quizzing and/or surveys. Questions are able to populate/display using hypermedia with the `d2l-questions-question` component regardless of question type, or with custom logic via type-specific presentational components. *Development of these components is ongoing and implemented question types are listed below*.
 
+| Question Type | Answerable | Readonly |
+|--|--|--|
+| Arithmetic | | |
+| Significant Figures | | |
+| Fill In the Blanks | | |
+| Matching | | |
+| [Multiple Choice](./docs/multiple-choice.md) | &check; | &check; |
+| Multi Select | | |
+| Multi Short-Answer | | |
+| Ordering | | |
+| Short Answer | | |
+| True-False | | |
+| Written Response | | &check; |
+
+Answerable components are interactable, while readonly components are designed for viewing previously answered questions and, depending on question type, may support indicating 'correct' answers.
+
+---
 ## Installation
 
 Install from NPM:
@@ -34,14 +51,6 @@ npm install @brightspace-hmc/questions
 | question-response-href | String | Hypermedia href to the question response |
 | readonly | Boolean | If true, the question is not clickable/answerable |
 | token | String | Hypermedia token |
-
-**Accessibility:**
-
-To make your usage of `d2l-questions-question` accessible, use the following properties when applicable:
-
-| Attribute | Description |
-|--|--|
-| | |
 
 ## Developing, Testing and Contributing
 
