@@ -24,6 +24,7 @@ jobs:
             - [ ] I have received PR approval from two reviewers
             - [ ] I have made the necessary changes to the Demo pages
             - [ ] I have updated the tests to reflect the changes in this PR (Unit & Visual-diff)
+            - [ ] I have updated README documentation where required
             - [ ] I have included langterms where applicable
               `
             })
