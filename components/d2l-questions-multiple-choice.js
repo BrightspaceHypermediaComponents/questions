@@ -1,18 +1,9 @@
-import './icons/d2l-questions-icons-radio.js';
-import '@brightspace-ui/core/components/colors/colors.js';
-import '@brightspace-ui/core/components/icons/icon.js';
-import '@brightspace-ui/core/components/offscreen/offscreen.js';
+import './d2l-questions-multiple-choice-presentational.js';
 import 'd2l-polymer-siren-behaviors/store/entity-store.js';
 import { Classes, Rels } from 'd2l-hypermedia-constants';
-import { css, html, LitElement } from 'lit';
-import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
-import { getUniqueId } from '@brightspace-ui/core/helpers/uniqueId.js';
-import { LocalizeQuestions } from '../localize-questions.js';
-import { radioStyles } from '@brightspace-ui/core/components/inputs/input-radio-styles.js';
-import { removeParagraphFormat } from './helpers/htmlTextHelper.js';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { html, LitElement } from 'lit';
 
-class D2lQuestionsMultipleChoice extends LocalizeQuestions(LitElement) {
+class D2lQuestionsMultipleChoice extends LitElement {
 
 	static get properties() {
 		return {
@@ -20,87 +11,34 @@ class D2lQuestionsMultipleChoice extends LocalizeQuestions(LitElement) {
 			question: { type: Object },
 			questionResponse: { type: Object },
 			token: { type: Object },
-			_choices: { type: Object }
+			_choices: { type: Array },
+			_questionTextHTML: { type: String }
 		};
-	}
-
-	static get styles() {
-		return [radioStyles, bodyCompactStyles, css`
-			:host {
-				display: inline-block;
-			}
-			:host([hidden]) {
-				display: none;
-			}
-			.d2l-questions-multiple-choice-group {
-				display: flex;
-				flex-direction: column;
-			}
-			.d2l-questions-multiple-choice-question-text {
-				padding-bottom: 1rem;
-			}
-			.d2l-questions-multiple-choice-row {
-				align-items: flex-start;
-				color: var(--d2l-color-galena);
-				display: flex;
-				flex-wrap: nowrap;
-				padding-bottom: 1.2rem;
-			}
-			.d2l-input-radio-label {
-				align-items: flex-start;
-				color: var(--d2l-color-galena);
-				display: flex;
-				flex-wrap: nowrap;
-			}
-			.d2l-questions-multiple-choice-row d2l-questions-icons-radio-unchecked,
-			.d2l-questions-multiple-choice-row d2l-questions-icons-radio-checked {
-				flex: none;
-				margin-right: 0.3rem;
-				margin-top: -0.1rem;
-			}
-			.d2l-questions-multiple-choice-row d2l-icon {
-				flex: none;
-				margin-right: 0.3rem;
-			}
-			.d2l-questions-multiple-choice-incorrect-icon {
-				color: var(--d2l-color-cinnabar);
-			}
-			.d2l-questions-multiple-choice-correct-icon {
-				color: var(--d2l-color-olivine);
-			}
-			.d2l-questions-multiple-choice-without-icon {
-				flex: none;
-				width: 1.2rem;
-			}
-		`];
 	}
 
 	constructor() {
 		super();
-		this.radioGroupId = getUniqueId();
+		this._choices = [];
 	}
-
 	render() {
-		const questionText = this.question.entity.getSubEntityByClass(Classes.questions.questionText);
-
-		if (this._choices !== undefined) {
-			return html`
-				<div class="d2l-questions-multiple-choice-question-text">
-					<d2l-html-block>
-						${unsafeHTML(removeParagraphFormat(questionText.properties.html))}
-					</d2l-html-block>
-				</div>
-
-				<div class="d2l-questions-multiple-choice-group">
-					${this._choices.map((choice) => this._renderChoice(choice))}
-				</div>
-			`;
-		}
+		return html`
+			<d2l-questions-multiple-choice-presentational
+				?readonly=${this.readonly}
+				question-text=${this._questionTextHTML}
+				.choices=${this._choices}>
+			</d2l-questions-multiple-choice-presentational>`;
 	}
 
 	async updated(changedProperties) {
 		super.updated();
 		if ((changedProperties.has('question') || changedProperties.has('questionResponse'))) {
+			try {
+				const questionTextEntity = this.question.entity.getSubEntityByClass(Classes.questions.questionText);
+				this._questionTextHTML = questionTextEntity.properties.html;
+			} catch (err) {
+				console.error(err);
+				throw new Error('d2l-questions-multiple-choice: Unable to question text from question');
+			}
 			try {
 				await this._loadChoices();
 			} catch (err) {
@@ -131,7 +69,7 @@ class D2lQuestionsMultipleChoice extends LocalizeQuestions(LitElement) {
 				text: choiceEntity.entity.getSubEntityByClass(Classes.text.richtext).properties.text,
 			};
 		}));
-		this._choices = choices;
+		this._choices = choices === undefined ? [] : choices;
 	}
 
 	async _loadChoicesFromResponse() {
@@ -161,53 +99,5 @@ class D2lQuestionsMultipleChoice extends LocalizeQuestions(LitElement) {
 		this._choices = choices;
 		return;
 	}
-
-	_renderChoice(choice) {
-		if (this.readonly) {
-			return this._renderReadonlyChoice(choice);
-		} else {
-			return html`
-				<div class="d2l-questions-multiple-choice-row">
-					<label class="d2l-input-radio-label">
-						<input type="radio" name="${this.radioGroupId}"
-						?checked=${choice.selected}
-						aria-label="${choice.text}">
-						<d2l-html-block>
-							${unsafeHTML(removeParagraphFormat(choice.htmlText))}
-						</d2l-html-block>
-					</label>
-				</div>
-			`;
-		}
-	}
-
-	_renderReadonlyChoice(choice) {
-		let icon = undefined;
-		let lang = '';
-		let iconStyle = '';
-		if (choice.selected && choice.correct) {
-			icon = 'check';
-			lang = 'correctResponse';
-		} else if (choice.selected && !choice.correct) {
-			icon = 'close-large-thick';
-			lang = 'incorrectResponse';
-			iconStyle = 'd2l-questions-multiple-choice-incorrect-icon';
-		} else if (!choice.selected && choice.correct) {
-			icon = 'arrow-thin-right';
-			lang = 'correctAnswer';
-			iconStyle = 'd2l-questions-multiple-choice-correct-icon';
-		}
-
-		return html`
-			<div class="d2l-questions-multiple-choice-row d2l-body-compact">
-				${icon ? html`<d2l-icon icon="tier1:${icon}" class="${iconStyle}"></d2l-icon>` : html`<div class="d2l-questions-multiple-choice-without-icon"></div>`}
-				${choice.selected ? html`<d2l-questions-icons-radio-checked></d2l-questions-icons-radio-checked>` : html`<d2l-questions-icons-radio-unchecked></d2l-questions-icons-radio-unchecked>`}
-				<d2l-offscreen>${this.localize(lang)}${choice.text}</d2l-offscreen>
-				<d2l-html-block aria-hidden="true">
-					${unsafeHTML(removeParagraphFormat(choice.htmlText))}
-				</d2l-html-block>
-			</div>`;
-	}
-
 }
 customElements.define('d2l-questions-multiple-choice', D2lQuestionsMultipleChoice);
