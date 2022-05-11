@@ -1,20 +1,9 @@
-import '@brightspace-ui/core/components/inputs/input-textarea.js';
-import '@brightspace-ui/core/components/icons/icon.js';
-import '@brightspace-ui/core/components/list/list.js';
-import '@brightspace-ui/core/components/list/list-item.js';
-import '@brightspace-ui/core/components/html-block/html-block.js';
+import './d2l-questions-written-response-presentational.js';
 import 'd2l-polymer-siren-behaviors/store/entity-store.js';
-import { AttachmentTypes, getAttachmentType, getLinkIconTypeFromUrl, getReadableFileSizeString } from './helpers/attachmentsHelper.js';
-import { bodySmallStyles, bodyStandardStyles, labelStyles } from '@brightspace-ui/core/components/typography/styles.js';
 import { Classes, Rels } from 'd2l-hypermedia-constants';
-import { css, html, LitElement } from 'lit';
-import { getFileIconTypeFromExtension } from '@brightspace-ui/core/components/icons/getFileIconType';
-import { linkStyles } from '@brightspace-ui/core/components/link/link.js';
-import { LocalizeQuestions } from '../localize-questions.js';
-import { removeParagraphFormat } from './helpers/htmlTextHelper.js';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { html, LitElement } from 'lit';
 
-class D2lQuestionWrittenResponse extends LocalizeQuestions(LitElement) {
+class D2lQuestionWrittenResponse extends LitElement {
 
 	static get properties() {
 		return {
@@ -22,80 +11,37 @@ class D2lQuestionWrittenResponse extends LocalizeQuestions(LitElement) {
 			question: { type: Object },
 			questionResponse: { type: Object },
 			token: { type: Object },
-			_answerKey: { type: String }
+			_answerKey: { type: String },
+			_questionText: { type: String },
+			_responseAttachments: { type: Array },
+			_responseLength: { type: Number },
+			_responseText: { type: String }
 		};
 	}
 
-	static get styles() {
-		return [bodyStandardStyles, bodySmallStyles, labelStyles, linkStyles, css`
-			:host {
-				display: inline-block;
-			}
-			:host([hidden]) {
-				display: none;
-			}
-			.d2l-questions-written-response-attachment-container {
-				overflow: hidden;
-				overflow-wrap: break-word;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-				z-index: 1;
-			}
-			.d2l-questions-written-response-question-text {
-				padding-bottom: 1.2rem;
-			}
-			.d2l-questions-written-response-question-initial-text {
-				margin-left: 0.95rem;
-				margin-right: 0.95rem;
-				padding-bottom: 0.619rem;
-			}
-			.d2l-questions-written-response-question-answer-key {
-				padding-bottom: 0.8rem;
-			}
-			.d2l-questions-written-response-question-word-count {
-				padding-bottom: 0.5rem;
-				padding-top: 0.5rem;
-			}
-			.d2l-questions-written-response-question-word-count > h3 {
-				font-size: 0.65rem;
-			}
-			.d2l-questions-written-response-question-attachment-list {
-				padding-bottom: 0.1rem;
-				padding-top: 0.1rem;
-			}
-		`];
-	}
-
 	render() {
-		const questionText = this.question.entity.getSubEntityByClass(Classes.questions.questionText);
-
 		return html`
-			<div class="d2l-questions-question-wrapper">
-				<div class="d2l-questions-written-response-question-text">
-					<d2l-html-block>
-						${unsafeHTML(removeParagraphFormat(questionText.properties.html))}
-					</d2l-html-block>
-				</div>
-				${this._renderInitialText()}
-				${this._renderAnswerKey()}
-			</div>
+			<d2l-questions-written-response-presentational
+				?readonly=${this.readonly}
+				answer-key=${this._answerKey}
+				question-text=${this._questionText}
+				response-length=${this._responseLength}
+				response-text=${this._responseText}
+				.responseAttachments=${this._responseAttachments}>
+			</d2l-questions-written-response-presentational>
 		`;
 	}
 
 	async updated(changedProperties) {
 		super.updated();
-		if ((changedProperties.has('question') || changedProperties.has('questionResponse')) && this.readonly) {
-			try {
-				await this._loadAnswerKey();
-			} catch (err) {
-				console.error(err);
-				throw new Error('d2l-questions-written-response: Unable to load answer key from question');
-			}
+		if (changedProperties.has('question')) {
+			await this._loadQuestionText();
+			await this._loadAnswerKey();
 		}
-	}
-
-	_downloadAttachment(href) {
-		window.location.href = href;
+		if (changedProperties.has('question') || changedProperties.has('questionResponse')) {
+			await this._loadResponse();
+			await this._loadResponseAttachments();
+		}
 	}
 
 	async _getEntityFromHref(targetHref) {
@@ -103,116 +49,77 @@ class D2lQuestionWrittenResponse extends LocalizeQuestions(LitElement) {
 	}
 
 	async _loadAnswerKey() {
-		const itemBodyHref = this.question.entity.getSubEntityByRel(Rels.Questions.itemBody);
+		this._answerKey = undefined;
 
-		if (itemBodyHref !== undefined) {
-			const itemBodyEntity = await this._getEntityFromHref(itemBodyHref);
-			const answerKeyEntity = itemBodyEntity.entity.getSubEntityByClass(Classes.text.richtext);
+		try {
+			const itemBodyHref = this.question.entity.getSubEntityByRel(Rels.Questions.itemBody);
 
-			if (answerKeyEntity !== undefined) {
-				this._answerKey = answerKeyEntity.properties.html;
-			}
-		}
-	}
+			if (itemBodyHref !== undefined) {
+				const itemBodyEntity = await this._getEntityFromHref(itemBodyHref);
+				const answerKeyEntity = itemBodyEntity.entity.getSubEntityByClass(Classes.text.richtext);
 
-	_renderAnswerKey() {
-		if (this.readonly && this._answerKey !== undefined) {
-			return html`
-				<div class="d2l-questions-written-response-question-answer-key">
-					<h2 class="d2l-label-text">
-						${this.localize('answerKey')}
-					</h2>
-					<d2l-html-block>
-						${unsafeHTML(removeParagraphFormat(this._answerKey))}
-					</d2l-html-block>
-				</div>
-			`;
-		}
-
-		return html``;
-	}
-
-	_renderAttachments() {
-		if (this.readonly && this.questionResponse) {
-			const fileUploadEntities = this.questionResponse.entity.getSubEntityByClass('file-upload');
-
-			if (fileUploadEntities && fileUploadEntities.entities) {
-				const fileAttachments = fileUploadEntities.entities;
-
-				return html`${fileAttachments.map((fileAttachment, index) => {
-					const { name, size, extension, href } = fileAttachment.properties;
-
-					const onClickHandler = () => this._downloadAttachment(href);
-					const onKeydownHandler = (e) => {
-						if (e.key === 'Enter' || e.key === ' ') {
-							this._downloadAttachment(href);
-						}
-					};
-
-					const attachmentType = getAttachmentType(fileAttachment);
-
-					let iconType;
-					switch (attachmentType) {
-						case AttachmentTypes.LINK:
-							iconType = getLinkIconTypeFromUrl(href);
-							break;
-						case AttachmentTypes.PAGE:
-							iconType = 'browser';
-							break;
-						default:
-							iconType = getFileIconTypeFromExtension(extension);
-					}
-
-					return html`
-						<d2l-list-item key=${index} class="d2l-questions-written-response-attachment-list-item">
-							<div class="d2l-questions-written-response-attachment-container">
-								<d2l-icon icon="tier1:${iconType}"></d2l-icon>
-								<a
-									class="d2l-link d2l-body-compact"
-									tabindex="0"
-									aria-label="${this.localize('clickToDownloadAttachmentFile', 'fileName', name)}"
-									@keydown=${onKeydownHandler}
-									@click=${onClickHandler}
-								>${name}</a>
-								${attachmentType === AttachmentTypes.LINK ? html`` : html`<span class="d2l-body-compact">(${getReadableFileSizeString(size, this.localize.bind(this))})</span>`}
-							</div>
-						</d2l-list-item>
-					`;
-				})}`;
-			}
-		}
-
-		return html``;
-	}
-
-	_renderInitialText() {
-		if (this.readonly && this.questionResponse) {
-			const responseEntities = this.questionResponse.entity.getSubEntityByClass(Classes.questions.candidateResponse);
-
-			if (responseEntities !== undefined) {
-				const initialTextResponse = responseEntities.getSubEntityByClass(Classes.text.richtext);
-
-				if (initialTextResponse !== undefined) {
-					return html`
-						<div class="d2l-questions-written-response-question-initial-text">
-							<d2l-html-block>
-								${unsafeHTML(removeParagraphFormat(initialTextResponse.properties.html))}
-							</d2l-html-block>
-							<div class="d2l-questions-written-response-question-word-count">
-								<h3 class="d2l-label-text">
-									${initialTextResponse.properties.wordCount} ${this.localize('words')}
-								</h3>
-							</div>
-							<d2l-list class="d2l-questions-written-response-question-attachment-list" aria-role="attachment list" separators="between">
-								${this._renderAttachments()}
-							</d2l-list>
-						</div>
-					`;
+				if (answerKeyEntity !== undefined) {
+					this._answerKey = answerKeyEntity.properties.html;
 				}
 			}
+		} catch (err) {
+			console.error(err);
+			throw new Error('d2l-questions-written-response: Unable to load answer key from question');
 		}
+	}
 
-		return html``;
+	async _loadQuestionText() {
+		this._questionText = undefined;
+		try {
+			const questionTextEntity = this.question.entity.getSubEntityByClass(Classes.questions.questionText);
+			this._questionText = questionTextEntity.properties.html;
+		} catch (err) {
+			console.error(err);
+			throw new Error('d2l-questions-written-response: Unable to load question text from question');
+		}
+	}
+
+	async _loadResponse() {
+		this._responseText = undefined;
+		this._responseLength = undefined;
+
+		try {
+			if (this.questionResponse) {
+				const responseEntity = this.questionResponse.entity.getSubEntityByClass(Classes.questions.candidateResponse);
+
+				if (responseEntity !== undefined) {
+					const responseTextEntity = responseEntity.getSubEntityByClass(Classes.text.richtext);
+					this._responseText = responseTextEntity.properties.html;
+					this._responseLength = responseTextEntity.properties.wordCount;
+				}
+			}
+		} catch (err) {
+			console.error(err);
+			throw new Error('d2l-questions-written-response: Unable to load response from questionResponse');
+		}
+	}
+
+	async _loadResponseAttachments() {
+		this._responseAttachments = undefined;
+
+		try {
+			if (this.questionResponse) {
+				const fileUploadEntity = this.questionResponse.entity.getSubEntityByClass('file-upload');
+				const attachedFiles = fileUploadEntity && fileUploadEntity.entities;
+
+				if (attachedFiles) {
+					this._responseAttachments = attachedFiles.map(attachedFile => ({
+						name: attachedFile.properties.name,
+						size: attachedFile.properties.size,
+						extension: attachedFile.properties.extension,
+						href: attachedFile.properties.href
+					}));
+				}
+			}
+		} catch (err) {
+			console.error(err);
+			throw new Error('d2l-questions-written-response: Unable to load response attachments from questionResponse');
+		}
 	}
 }
 customElements.define('d2l-questions-written-response', D2lQuestionWrittenResponse);

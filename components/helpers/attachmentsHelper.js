@@ -4,8 +4,8 @@ export const AttachmentTypes = {
 	PAGE: 'page'
 };
 
-export function getAttachmentType(attachment) {
-	switch (attachment.properties.extension) {
+export function getAttachmentType(extension) {
+	switch (extension) {
 		case 'url':
 			return AttachmentTypes.LINK;
 		case 'html':
