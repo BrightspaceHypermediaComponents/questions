@@ -104,7 +104,7 @@ class D2lQuestionWrittenResponsePresentational extends LocalizeQuestions(LitElem
 	}
 
 	_renderAnswerKey() {
-		if (this.readonly && this.answerKey !== undefined) {
+		if (this.readonly && this.answerKey) {
 			return html`
 				<div class="d2l-questions-written-response-question-answer-key">
 					<h2 class="d2l-label-text">

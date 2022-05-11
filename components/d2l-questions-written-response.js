@@ -2,6 +2,7 @@ import './d2l-questions-written-response-presentational.js';
 import 'd2l-polymer-siren-behaviors/store/entity-store.js';
 import { Classes, Rels } from 'd2l-hypermedia-constants';
 import { html, LitElement } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 class D2lQuestionWrittenResponse extends LitElement {
 
@@ -23,10 +24,10 @@ class D2lQuestionWrittenResponse extends LitElement {
 		return html`
 			<d2l-questions-written-response-presentational
 				?readonly=${this.readonly}
-				answer-key=${this._answerKey}
+				answer-key=${ifDefined(this._answerKey)}
 				question-text=${this._questionText}
-				response-length=${this._responseLength}
-				response-text=${this._responseText}
+				response-length=${ifDefined(this._responseLength)}
+				response-text=${ifDefined(this._responseText)}
 				.responseAttachments=${this._responseAttachments}>
 			</d2l-questions-written-response-presentational>
 		`;
@@ -109,10 +110,10 @@ class D2lQuestionWrittenResponse extends LitElement {
 
 				if (attachedFiles) {
 					this._responseAttachments = attachedFiles.map(attachedFile => ({
-						name: attachedFile.properties.name,
-						size: attachedFile.properties.size,
 						extension: attachedFile.properties.extension,
-						href: attachedFile.properties.href
+						href: attachedFile.properties.href,
+						name: attachedFile.properties.name,
+						size: attachedFile.properties.size
 					}));
 				}
 			}
