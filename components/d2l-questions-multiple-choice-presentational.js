@@ -1,5 +1,6 @@
 import './icons/d2l-questions-icons-radio.js';
 import '@brightspace-ui/core/components/colors/colors.js';
+import '@brightspace-ui/core/components/html-block/html-block.js';
 import '@brightspace-ui/core/components/icons/icon.js';
 import '@brightspace-ui/core/components/offscreen/offscreen.js';
 import { css, html, LitElement } from 'lit';
@@ -7,7 +8,6 @@ import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/st
 import { getUniqueId } from '@brightspace-ui/core/helpers/uniqueId.js';
 import { LocalizeQuestions } from '../localize-questions.js';
 import { radioStyles } from '@brightspace-ui/core/components/inputs/input-radio-styles.js';
-import { removeParagraphFormat } from './helpers/htmlTextHelper.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 class D2lQuestionsMultipleChoicePresentational extends LocalizeQuestions(LitElement) {
@@ -84,7 +84,7 @@ class D2lQuestionsMultipleChoicePresentational extends LocalizeQuestions(LitElem
 			return html`
 				<div class="d2l-questions-multiple-choice-question-text">
 					<d2l-html-block>
-						${unsafeHTML(removeParagraphFormat(this.questionText))}
+						${unsafeHTML(this.questionText)}
 					</d2l-html-block>
 				</div>
 
@@ -106,7 +106,7 @@ class D2lQuestionsMultipleChoicePresentational extends LocalizeQuestions(LitElem
 						?checked=${choice.selected}
 						aria-label="${choice.text}">
 						<d2l-html-block>
-							${unsafeHTML(removeParagraphFormat(choice.htmlText))}
+							${unsafeHTML(choice.htmlText)}
 						</d2l-html-block>
 					</label>
 				</div>
@@ -137,7 +137,7 @@ class D2lQuestionsMultipleChoicePresentational extends LocalizeQuestions(LitElem
 				${choice.selected ? html`<d2l-questions-icons-radio-checked></d2l-questions-icons-radio-checked>` : html`<d2l-questions-icons-radio-unchecked></d2l-questions-icons-radio-unchecked>`}
 				<d2l-offscreen>${this.localize(lang)}${choice.text}</d2l-offscreen>
 				<d2l-html-block aria-hidden="true">
-					${unsafeHTML(removeParagraphFormat(choice.htmlText))}
+					${unsafeHTML(choice.htmlText)}
 				</d2l-html-block>
 			</div>`;
 	}
