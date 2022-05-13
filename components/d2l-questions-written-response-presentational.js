@@ -9,7 +9,6 @@ import { css, html, LitElement } from 'lit';
 import { getFileIconTypeFromExtension } from '@brightspace-ui/core/components/icons/getFileIconType';
 import { linkStyles } from '@brightspace-ui/core/components/link/link.js';
 import { LocalizeQuestions } from '../localize-questions.js';
-import { removeParagraphFormat } from './helpers/htmlTextHelper.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 class D2lQuestionWrittenResponsePresentational extends LocalizeQuestions(LitElement) {
@@ -87,7 +86,7 @@ class D2lQuestionWrittenResponsePresentational extends LocalizeQuestions(LitElem
 			<div class="d2l-questions-question-wrapper">
 				<div class="d2l-questions-written-response-question-text">
 					<d2l-html-block>
-						${unsafeHTML(removeParagraphFormat(this.questionText))}
+						${unsafeHTML(this.questionText)}
 					</d2l-html-block>
 				</div>
 				<div class="d2l-questions-written-response-question-response">
@@ -111,7 +110,7 @@ class D2lQuestionWrittenResponsePresentational extends LocalizeQuestions(LitElem
 						${this.localize('answerKey')}
 					</h2>
 					<d2l-html-block>
-						${unsafeHTML(removeParagraphFormat(this.answerKey))}
+						${unsafeHTML(this.answerKey)}
 					</d2l-html-block>
 				</div>
 			`;
@@ -171,7 +170,7 @@ class D2lQuestionWrittenResponsePresentational extends LocalizeQuestions(LitElem
 		if (this.readonly && this.responseText || this.responseLength) {
 			return html`
 				<d2l-html-block>
-					${unsafeHTML(removeParagraphFormat(this.responseText))}
+					${unsafeHTML(this.responseText)}
 				</d2l-html-block>
 				<div class="d2l-questions-written-response-question-word-count">
 					<h3 class="d2l-label-text">
