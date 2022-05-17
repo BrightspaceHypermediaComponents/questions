@@ -64,7 +64,7 @@ class D2lQuestionsMultiSelectPresentational extends LocalizeQuestions(LitElement
 		`];
 	}
 
-	render() {		
+	render() {
 		if (typeof this.choices !== 'undefined') {
 			return html`
 				<div class="d2l-questions-multi-select-question-text">
