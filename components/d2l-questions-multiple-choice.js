@@ -2,8 +2,9 @@ import './d2l-questions-multiple-choice-presentational.js';
 import 'd2l-polymer-siren-behaviors/store/entity-store.js';
 import { Classes, Rels } from 'd2l-hypermedia-constants';
 import { html, LitElement } from 'lit';
+import { SkeletonMixin } from '@brightspace-ui/core/components/skeleton/skeleton-mixin.js';
 
-class D2lQuestionsMultipleChoice extends LitElement {
+class D2lQuestionsMultipleChoice extends SkeletonMixin(LitElement) {
 
 	static get properties() {
 		return {
@@ -19,33 +20,32 @@ class D2lQuestionsMultipleChoice extends LitElement {
 	constructor() {
 		super();
 		this._choices = [];
+		this.skeleton = true;
 	}
 	render() {
 		return html`
 			<d2l-questions-multiple-choice-presentational
 				?readonly=${this.readonly}
 				question-text=${this._questionTextHTML}
-				.choices=${this._choices}>
+				.choices=${this._choices}
+				?skeleton=${this.skeleton}>
 			</d2l-questions-multiple-choice-presentational>`;
 	}
 
 	async updated(changedProperties) {
 		super.updated();
 		if ((changedProperties.has('question') || changedProperties.has('questionResponse'))) {
-			try {
-				const questionTextEntity = this.question.entity.getSubEntityByClass(Classes.questions.questionText);
-				this._questionTextHTML = questionTextEntity.properties.html;
-			} catch (err) {
-				console.error(err);
-				throw new Error('d2l-questions-multiple-choice: Unable to question text from question');
-			}
-			try {
-				await this._loadChoices();
-			} catch (err) {
-				console.error(err);
-				throw new Error('d2l-questions-multiple-choice: Unable to load choices from question');
-			}
+			this.skeleton = true;
+			await this._loadQuestionData();
 		}
+	}
+
+	async _finishedLoadingQuestionData() {
+		this.skeleton = false;
+		this.dispatchEvent(new CustomEvent('d2l-questions-question-loaded', {
+			composed: true,
+			bubbles: true,
+		}));
 	}
 
 	async _getEntityFromHref(targetHref, bypassCache) {
@@ -98,6 +98,23 @@ class D2lQuestionsMultipleChoice extends LitElement {
 		}
 		this._choices = choices;
 		return;
+	}
+
+	async _loadQuestionData() {
+		try {
+			const questionTextEntity = this.question.entity.getSubEntityByClass(Classes.questions.questionText);
+			this._questionTextHTML = questionTextEntity.properties.html;
+		} catch (err) {
+			console.error(err);
+			throw new Error('d2l-questions-multiple-choice: Unable to question text from question');
+		}
+		try {
+			await this._loadChoices();
+		} catch (err) {
+			console.error(err);
+			throw new Error('d2l-questions-multiple-choice: Unable to load choices from question');
+		}
+		await this._finishedLoadingQuestionData();
 	}
 }
 customElements.define('d2l-questions-multiple-choice', D2lQuestionsMultipleChoice);
