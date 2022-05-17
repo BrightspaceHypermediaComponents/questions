@@ -15,7 +15,8 @@ class D2lQuestionsMultiSelect extends LitElement {
 	}
 
 	render() {
-		this._questionTextHTML = this.question.entity.getSubEntityByClass('questionText');
+		const questionTextEntity = this.question.entity.getSubEntityByClass('questionText');
+		this._questionTextHTML = questionTextEntity.properties.html;
 		this._choices = this._loadChoices();
 	
 		return html`

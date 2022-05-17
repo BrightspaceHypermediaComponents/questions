@@ -3,25 +3,25 @@ Represents a multi select question where multiple options are selectable.
 
 **Default**
 
-<img src="./screenshots/multiple-choice-answerable.png" alt="Multiple Choice Question" width="500">
+<img src="./screenshots/multi-select-answerable.png" alt="Multi Select Question" width="500">
 
 **Readonly**
 
-<img src="./screenshots/multiple-choice-readonly.png" alt="Multiple Choice Question Readonly" width="500">
+<img src="./screenshots/multi-select-readonly.png" alt="Multi Select Question Readonly" width="500">
 
 
 ## Usage (Presentational)
 
 ```html
 <script type="module">
-    import '@brightspace-hmc/questions/components/d2l-questions-multiple-choice-presentational.js';
+    import '@brightspace-hmc/questions/components/d2l-questions-multi-select-presentational.js';
 </script>
-<d2l-questions-multiple-choice-presentational
+<d2l-questions-multi-select-presentational
 	readonly
 	question-text=""
 	.choices=${choices}
 	>
-</d2l-questions-multiple-choice-presentational>
+</d2l-questions-multi-select-presentational>
 ```
 
 **Properties:**

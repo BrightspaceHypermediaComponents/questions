@@ -6,6 +6,7 @@ import '@brightspace-ui/core/components/offscreen/offscreen.js';
 import { css, html, LitElement } from 'lit';
 import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
 import { LocalizeQuestions } from '../localize-questions.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 //Database is using magic numbers
 const IS_CHECKED = '1';
@@ -66,7 +67,11 @@ class D2lQuestionsMultiSelectPresentational extends LocalizeQuestions(LitElement
 	render() {		
 		if (typeof this.choices !== 'undefined') {
 			return html`
-				<div class="d2l-questions-multi-select-question-text">${this.questionText}</div>
+				<div class="d2l-questions-multi-select-question-text">
+					<d2l-html-block>
+						${unsafeHTML(this.questionText)}
+					</d2l-html-block>
+				</div>
 				${this.choices.map((choice) => this._renderChoice(choice))}
 			`;
 		} else {
