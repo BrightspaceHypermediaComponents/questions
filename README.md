@@ -12,7 +12,7 @@ Question components for use in quizzing and/or surveys. Questions are able to po
 | Fill In the Blanks | | |
 | Matching | | |
 | [Multiple Choice](./docs/multiple-choice.md) | &check; | &check; |
-| Multi Select | | |
+| [Multi Select](./docs/multi-select.md) | &check; | &check; |
 | Multi Short-Answer | | |
 | Ordering | | |
 | Short Answer | | |
