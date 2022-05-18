@@ -28,6 +28,7 @@ class D2lQuestionsMultipleChoicePresentational extends SkeletonMixin(LocalizeQue
 		return [super.styles, radioStyles, bodyCompactStyles, css`
 			:host {
 				display: inline-block;
+				width: 100%;
 			}
 			:host([hidden]) {
 				display: none;
@@ -39,7 +40,7 @@ class D2lQuestionsMultipleChoicePresentational extends SkeletonMixin(LocalizeQue
 			:host([skeleton]) .d2l-questions-multiple-choice-question-text-skeleton {
 				height: 20px;
 				margin-bottom: 28px;
-				width: 603px;
+				max-width: 603px;
 			}
 			.d2l-questions-multiple-choice-row-skeleton {
 				align-items: flex-start;
@@ -176,6 +177,7 @@ class D2lQuestionsMultipleChoicePresentational extends SkeletonMixin(LocalizeQue
 					}})}
 			</div>
 		`;
+		/* eslint-enable indent */
 	}
 
 	_renderReadonlyChoice(choice) {

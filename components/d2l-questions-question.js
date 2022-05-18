@@ -43,6 +43,7 @@ class D2lQuestionsQuestion extends SkeletonMixin((LitElement)) {
 		return css`
 			:host {
 				display: inline-block;
+				width: 100%;
 			}
 			:host([hidden]) {
 				display: none;

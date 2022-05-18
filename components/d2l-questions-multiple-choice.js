@@ -1,7 +1,7 @@
 import './d2l-questions-multiple-choice-presentational.js';
 import 'd2l-polymer-siren-behaviors/store/entity-store.js';
 import { Classes, Rels } from 'd2l-hypermedia-constants';
-import { html, LitElement } from 'lit';
+import { css, html, LitElement } from 'lit';
 import { SkeletonMixin } from '@brightspace-ui/core/components/skeleton/skeleton-mixin.js';
 
 class D2lQuestionsMultipleChoice extends SkeletonMixin(LitElement) {
@@ -15,6 +15,18 @@ class D2lQuestionsMultipleChoice extends SkeletonMixin(LitElement) {
 			_choices: { type: Array },
 			_questionTextHTML: { type: String }
 		};
+	}
+
+	static get styles() {
+		return css`
+			:host {
+				display: inline-block;
+				width: 100%;
+			}
+			:host([hidden]) {
+				display: none;
+			}
+		`;
 	}
 
 	constructor() {
