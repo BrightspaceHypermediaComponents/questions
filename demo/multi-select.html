@@ -6,13 +6,13 @@
 			import '@brightspace-ui/core/components/demo/demo-page.js';
 			import '../components/d2l-questions-question.js';
 		</script>
-		<title>D2lQuestionsQuestion With Multi-Selet</title>
+		<title>D2lQuestionsQuestion Multi-Selet</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="UTF-8">
 	</head>
 	<body>
 		<d2l-demo-page page-title="D2l Questions - Given Multi-Select">
-			<h2>D2l-Questions-Question Multi Select ReadOnly</h2>
+			<h2>ReadOnly - Incorrect</h2>
 			<d2l-demo-snippet>
 				<d2l-questions-question
 					readonly
@@ -20,6 +20,15 @@
 					question-response-href="./data/question-multi-select-response.json"
 					token="token"></d2l-questions-question>
 			</d2l-demo-snippet>
+
+			<h2>Answerable - Incorrect</h2>
+			<d2l-demo-snippet>
+				<d2l-questions-question
+					question-href="./data/question-multi-select.json"
+					question-response-href="./data/question-multi-select-response.json"
+					token="token"></d2l-questions-question>
+			</d2l-demo-snippet>
+
 		</d2l-demo-page>
 	</body>
 </html>

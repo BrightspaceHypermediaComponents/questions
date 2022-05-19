@@ -34,6 +34,7 @@ class D2lQuestionsMultipleChoice extends SkeletonMixin(LitElement) {
 		this._choices = [];
 		this.skeleton = true;
 	}
+
 	render() {
 		return html`
 			<d2l-questions-multiple-choice-presentational
