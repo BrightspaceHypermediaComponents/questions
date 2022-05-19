@@ -96,7 +96,7 @@ class D2lQuestionsMultipleChoice extends LitElement {
 			const correctChoiceHref = correctResponse.getSubEntityByClass(Classes.questions.value).getLinkByRel(Rels.Questions.identifier).href;
 			choices.find(choice => choice.href === correctChoiceHref).correct = true;
 		}
-		this._choices = choices;
+		this._choices = choices === undefined ? [] : choices;
 		return;
 	}
 }
