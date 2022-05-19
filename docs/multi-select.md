@@ -1,5 +1,5 @@
 # Multi Select
-Represents a multi select question where multiple options are selectable.
+Represents a multi select question where multiple options are selectable. There may be 0, 1 or many correct options.
 
 **Default**
 
@@ -36,26 +36,26 @@ Represents a multi select question where multiple options are selectable.
 ```JSON
 [
 	{
-		"htmlText": "<s>Mistake</s> Apple",
-		"text": "Mistake Apple",
-		"selected": false,
-		"correct": false
-	},
-	{
-		"htmlText": "<p>Ocean</p>",
-		"text": "Ocean",
+		"htmlText": "Option 1",
+		"text": "Option 1",
 		"selected": false,
 		"correct": true
 	},
 	{
-		"htmlText": "<p>Oil and a very long answer for testing. lorem ipsum dolor sit amet, consecteteur adipiscing elit.</p>",
-		"text": "Oil and a very long answer for testing. lorem ipsum dolor sit amet, consecteteur adipiscing elit.",
+		"htmlText": "Option 2",
+		"text": "Option 2",
 		"selected": true,
+		"correct": true
+	},
+	{
+		"htmlText": "Option 3",
+		"text": "Option 3",
+		"selected": false,
 		"correct": false
 	},
 	{
-		"htmlText": "<p>Sun</p>",
-		"text": "Sun",
+		"htmlText": "Option 4",
+		"text": "Option 4",
 		"selected": false,
 		"correct": false
 	}

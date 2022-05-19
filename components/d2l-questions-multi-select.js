@@ -15,10 +15,6 @@ class D2lQuestionsMultiSelect extends LitElement {
 	}
 
 	render() {
-		const questionTextEntity = this.question.entity.getSubEntityByClass('questionText');
-		this._questionTextHTML = questionTextEntity.properties.html;
-		this._choices = this._loadChoices();
-
 		return html`
 			<d2l-questions-multi-select-presentational
 				?readonly=${this.readonly}
@@ -28,6 +24,13 @@ class D2lQuestionsMultiSelect extends LitElement {
 		`;
 	}
 
+	async updated(changedProperties) {
+		super.updated();
+		if ((changedProperties.has('question') || changedProperties.has('questionResponse'))) {
+			this._loadQuestionData();
+		}
+	}
+
 	_loadChoices() {
 		const choices = this.question.entity.getSubEntityByClass('atoms').entities;
 		const answers = this.questionResponse.entity.entities;
@@ -35,6 +38,12 @@ class D2lQuestionsMultiSelect extends LitElement {
 			const answer = answers.find(answer => answer.properties.atomId === choice.properties.atomId);
 			return { ...choice.properties, ...answer.properties };
 		});
+	}
+
+	_loadQuestionData() {
+		const questionTextEntity = this.question.entity.getSubEntityByClass('questionText');
+		this._questionTextHTML = questionTextEntity.properties.html;
+		this._choices = this._loadChoices();
 	}
 
 }
