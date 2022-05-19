@@ -101,7 +101,7 @@ npm run vdiff
 # subset of visual-diff tests:
 npx mocha './test/**/*.visual-diff.js' -t 10000 -g some-pattern
 # update visual-diff goldens
-npm run vdiff:golden
+npm run vdiff:goldens
 ```
 
 ### Running the demos
