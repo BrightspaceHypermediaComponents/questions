@@ -78,19 +78,6 @@ class D2lQuestionsMultiSelectPresentational extends LocalizeQuestions(LitElement
 		`;
 	}
 
-	_renderChoice(choice) {
-		const checked = choice.response === IS_CHECKED;
-		const correctAnswer = choice.isCorrect;
-		const correctResponse = choice.responseIsCorrect && checked || !choice.responseIsCorrect && !checked;
-		const accessibleDescription = `${this.localize(correctAnswer ? 'correctAnswer' : 'incorrectAnswer')} ${this.localize(correctResponse ? 'correctResponse' : 'incorrectResponse')}`;
-
-		if (this.readonly) {
-			return this._renderReadonlyChoice(choice.value, checked, correctAnswer, correctResponse, accessibleDescription);
-		} else {
-			return this._renderAnswerableChoice(choice.value, checked, correctAnswer, correctResponse, accessibleDescription);
-		}
-	}
-
 	_renderAnswerableChoice(value, checked, correctAnswer, correctResponse, accessibleDescription) {
 		return html`
 			<div class="d2l-questions-multi-select-row">
@@ -105,6 +92,19 @@ class D2lQuestionsMultiSelectPresentational extends LocalizeQuestions(LitElement
 				</d2l-input-checkbox>
 			</div>
 		`;
+	}
+
+	_renderChoice(choice) {
+		const checked = choice.response === IS_CHECKED;
+		const correctAnswer = choice.isCorrect;
+		const correctResponse = choice.responseIsCorrect && checked || !choice.responseIsCorrect && !checked;
+		const accessibleDescription = `${this.localize(correctAnswer ? 'correctAnswer' : 'incorrectAnswer')} ${this.localize(correctResponse ? 'correctResponse' : 'incorrectResponse')}`;
+
+		if (this.readonly) {
+			return this._renderReadonlyChoice(choice.value, checked, correctAnswer, correctResponse, accessibleDescription);
+		} else {
+			return this._renderAnswerableChoice(choice.value, checked, correctAnswer, correctResponse, accessibleDescription);
+		}
 	}
 
 	_renderReadonlyChoice(value, checked, correctAnswer, correctResponse, accessibleDescription) {
