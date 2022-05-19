@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script type="module">
+			import '@brightspace-ui/core/components/typography/typography.js';
+			import '../components/d2l-questions-multiple-choice-presentational.js';
+		</script>
+		<title>d2l-questions-multiple-choice-skeleton visual-diff tests</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+		<style>
+			html {
+				font-size: 20px;
+			}
+			div {
+				display: flex;
+				margin: 10px;
+				width: 600px;
+			}
+		</style>
+	</head>
+	<body class="d2l-typography">
+		<div id="multiple-choice-skeleton">
+			<d2l-questions-multiple-choice-presentational
+				skeleton
+				token="token">
+			</d2l-questions-multiple-choice-presentational>
+		</div>
+		<div id="multiple-choice-skeleton-readonly">
+			<d2l-questions-multiple-choice-presentational
+				readonly
+				skeleton
+				token="token">
+			</d2l-questions-multiple-choice-presentational>
+		</div>
+	</body>
+</html>

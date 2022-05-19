@@ -2,8 +2,9 @@ import 'd2l-polymer-siren-behaviors/store/entity-store.js';
 import { css, html, LitElement } from 'lit';
 import { Classes } from 'd2l-hypermedia-constants';
 import { runAsync } from '@brightspace-ui/core/directives/run-async/run-async.js';
+import { SkeletonMixin } from '@brightspace-ui/core/components/skeleton/skeleton-mixin.js';
 
-class D2lQuestionsQuestion extends (LitElement) {
+class D2lQuestionsQuestion extends SkeletonMixin((LitElement)) {
 
 	static get properties() {
 		return {
@@ -42,6 +43,7 @@ class D2lQuestionsQuestion extends (LitElement) {
 		return css`
 			:host {
 				display: inline-block;
+				width: 100%;
 			}
 			:host([hidden]) {
 				display: none;
@@ -68,9 +70,10 @@ class D2lQuestionsQuestion extends (LitElement) {
 
 	async updated(changedProperties) {
 		if (changedProperties.has('questionHref')
-		|| changedProperties.has('questionResponseHref')) {
+		|| changedProperties.has('questionResponseHref')
+		|| changedProperties.has('skeleton')) {
 			await this._update();
-			this._questionKey = `${this.questionHref}${this.questionResponseHref}`;
+			this._questionKey = `${this.questionHref}${this.questionResponseHref}${this.skeleton}`;
 		}
 	}
 
@@ -102,6 +105,7 @@ class D2lQuestionsQuestion extends (LitElement) {
 						?readonly=${this.readonly}
 						.question=${this._question}
 						.questionResponse=${this._questionResponse}
+						?skeleton=${this.skeleton}
 						.token=${this.token}>
 					</d2l-questions-multiple-choice>`;
 

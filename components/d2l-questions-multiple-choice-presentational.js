@@ -8,9 +8,10 @@ import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/st
 import { getUniqueId } from '@brightspace-ui/core/helpers/uniqueId.js';
 import { LocalizeQuestions } from '../localize-questions.js';
 import { radioStyles } from '@brightspace-ui/core/components/inputs/input-radio-styles.js';
+import { SkeletonMixin } from '@brightspace-ui/core/components/skeleton/skeleton-mixin.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
-class D2lQuestionsMultipleChoicePresentational extends LocalizeQuestions(LitElement) {
+class D2lQuestionsMultipleChoicePresentational extends SkeletonMixin(LocalizeQuestions(LitElement)) {
 
 	static get properties() {
 		return {
@@ -24,12 +25,48 @@ class D2lQuestionsMultipleChoicePresentational extends LocalizeQuestions(LitElem
 	}
 
 	static get styles() {
-		return [radioStyles, bodyCompactStyles, css`
+		return [super.styles, radioStyles, bodyCompactStyles, css`
 			:host {
 				display: inline-block;
+				width: 100%;
 			}
 			:host([hidden]) {
 				display: none;
+			}
+			:host([skeleton]) .d2l-questions-multiple-choice-group {
+				display: flex;
+				flex-direction: column;
+			}
+			:host([skeleton]) .d2l-questions-multiple-choice-question-text-skeleton {
+				height: 20px;
+				margin-bottom: 28px;
+				max-width: 603px;
+			}
+			.d2l-questions-multiple-choice-row-skeleton {
+				align-items: flex-start;
+				color: var(--d2l-color-galena);
+				display: flex;
+				flex-wrap: nowrap;
+				height: 24px;
+				padding-bottom: 1.2rem;
+			}
+			:host([skeleton]) .d2l-input-radio-skeleton {
+				align-self: center;
+				height: 24px;
+				margin-left: 0;
+				width: 24px;
+			}
+			:host([skeleton]) .d2l-input-radio-skeleton-readonly {
+				align-self: center;
+				height: 18px;
+				margin-left: 26px;
+				width: 18px;
+			}
+			:host([skeleton]) .d2l-questions-html-block {
+				align-self: center;
+				height: 14px;
+				margin-left: 12px;
+				width: 134px;
 			}
 			.d2l-questions-multiple-choice-group {
 				display: flex;
@@ -80,7 +117,7 @@ class D2lQuestionsMultipleChoicePresentational extends LocalizeQuestions(LitElem
 	}
 
 	render() {
-		if (this.choices !== undefined) {
+		if (this.choices !== undefined && !this.skeleton) {
 			return html`
 				<div class="d2l-questions-multiple-choice-question-text">
 					<d2l-html-block>
@@ -92,6 +129,8 @@ class D2lQuestionsMultipleChoicePresentational extends LocalizeQuestions(LitElem
 					${this.choices.map((choice) => this._renderChoice(choice))}
 				</div>
 			`;
+		} else {
+			return this._renderMultipleChoiceSkeleton();
 		}
 	}
 
@@ -112,6 +151,33 @@ class D2lQuestionsMultipleChoicePresentational extends LocalizeQuestions(LitElem
 				</div>
 			`;
 		}
+	}
+
+	_renderMultipleChoiceSkeleton() {
+		const skeletonChoices = [1, 2, 3, 4];
+		/* eslint-disable indent */
+		return html`
+			<div class="d2l-skeletize d2l-questions-multiple-choice-question-text-skeleton"></div>
+			<div class="d2l-questions-multiple-choice-group">
+				${skeletonChoices.map(() => {
+					if (this.readonly) {
+						return html`
+							<div class="d2l-questions-multiple-choice-row-skeleton">
+								<div class="d2l-input-radio-skeleton-readonly d2l-skeletize"></div>
+								<div class="d2l-questions-html-block d2l-skeletize"></div>
+							</div>
+						`;
+					} else {
+						return html`
+							<div class="d2l-questions-multiple-choice-row">
+								<div class="d2l-input-radio-skeleton d2l-skeletize"></div>
+								<div class="d2l-questions-html-block d2l-skeletize"></div>
+							</div>
+						`;
+					}})}
+			</div>
+		`;
+		/* eslint-enable indent */
 	}
 
 	_renderReadonlyChoice(choice) {
