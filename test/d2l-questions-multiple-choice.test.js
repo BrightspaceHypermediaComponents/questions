@@ -170,8 +170,6 @@ describe('d2l-questions-multiple-choice', () => {
 		expect(elem._questionTextHTML).to.equal(QUESTION_TEXT);
 	});
 
-	//Stubbing webcomponents https://open-wc.org/guides/knowledge/testing/stubs/
-	//Stub the component, test individual load functions, check data after loading functions
 	it('should load options for question', async() => {
 		const elem = await fixture(html` <d2l-questions-multiple-choice></d2l-questions-multiple-choice> `);
 		stub(elem, '_getEntityFromHref').callsFake(stubGetEntityFromHref);
