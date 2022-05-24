@@ -45,5 +45,15 @@ describe('d2l-questions-multiple-choice', () => {
 			const rect = await visualDiff.getRect(page, '#multiple-choice-readonly-incorrect');
 			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
 		});
+
+		it('skeleton-default', async function() {
+			const rect = await visualDiff.getRect(page, '#multiple-choice-skeleton');
+			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+		});
+
+		it('skeleton-readonly', async function() {
+			const rect = await visualDiff.getRect(page, '#multiple-choice-skeleton-readonly');
+			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+		});
 	});
 });

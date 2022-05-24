@@ -118,7 +118,7 @@ class D2lQuestionsMultipleChoice extends SkeletonMixin(LitElement) {
 			this._questionTextHTML = questionTextEntity.properties.html;
 		} catch (err) {
 			console.error(err);
-			throw new Error('d2l-questions-multiple-choice: Unable to question text from question');
+			throw new Error('d2l-questions-multiple-choice: Unable to get question text from question');
 		}
 		try {
 			await this._loadChoices();
