@@ -99,7 +99,9 @@ describe('d2l-questions-written-response', () => {
 		stub(elem, '_loadAnswerKey').callsFake(() => { elem._answerKey = '';});
 		elem.question = QUESTION_ENTITY;
 		await elementUpdated(elem);
-		expect(elem._questionText).to.equal(QUESTION_TEXT);
+		elem.addEventListener('d2l-questions-question-loaded', async() => {
+			expect(elem._questionText).to.equal(QUESTION_TEXT);
+		});
 	});
 
 	it('should load the answer key', async() => {
@@ -107,7 +109,9 @@ describe('d2l-questions-written-response', () => {
 		stub(elem, '_getEntityFromHref').callsFake(stubGetEntityFromHref);
 		elem.question = QUESTION_ENTITY;
 		await elementUpdated(elem);
-		expect(elem._answerKey).to.equal(ANSWER_KEY_TEXT);
+		elem.addEventListener('d2l-questions-question-loaded', async() => {
+			expect(elem._answerKey).to.equal(ANSWER_KEY_TEXT);
+		});
 	});
 
 	it('should reload when question changes', async() => {
