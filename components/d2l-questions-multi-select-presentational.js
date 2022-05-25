@@ -6,11 +6,12 @@ import '@brightspace-ui/core/components/offscreen/offscreen.js';
 import { css, html, LitElement } from 'lit';
 import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
 import { LocalizeQuestions } from '../localize-questions.js';
+import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 //Database is using magic numbers
 const IS_CHECKED = '1';
-class D2lQuestionsMultiSelectPresentational extends LocalizeQuestions(LitElement) {
+class D2lQuestionsMultiSelectPresentational extends LocalizeQuestions(RtlMixin(LitElement)) {
 
 	static get properties() {
 		return {
@@ -44,13 +45,26 @@ class D2lQuestionsMultiSelectPresentational extends LocalizeQuestions(LitElement
 				margin-right: 0.3rem;
 				margin-top: 0.1rem;
 			}
+			:host([dir="rtl"]) .d2l-questions-multi-select-row d2l-icon {
+				margin-left: 0.3rem;
+				margin-right: 0;
+			}
 			.d2l-questions-multi-select-row d2l-questions-icons-checkbox-unchecked,
 			.d2l-questions-multi-select-row d2l-questions-icons-checkbox-checked {
 				margin-right: 0.3rem;
 				margin-top: -0.1rem;
 			}
+			:host([dir="rtl"]) .d2l-questions-multi-select-row d2l-questions-icons-checkbox-unchecked,
+			:host([dir="rtl"]) .d2l-questions-multi-select-row d2l-questions-icons-checkbox-checked {
+				margin-left: 0.3rem;
+				margin-right: 0;
+			}
 			.d2l-questions-incorrect-answer-icon {
 				padding-left: 1.2rem;
+			}
+			:host([dir="rtl"]) .d2l-questions-incorrect-answer-icon {
+				padding-left: 0;
+				padding-right: 1.2rem;
 			}
 			.d2l-questions-multi-select-correct-response-icon {
 				color: var(--d2l-color-galena);
@@ -60,6 +74,9 @@ class D2lQuestionsMultiSelectPresentational extends LocalizeQuestions(LitElement
 			}
 			.d2l-questions-multi-select-correct-answer-icon {
 				color: var(--d2l-color-olivine);
+			}
+			:host([dir="rtl"]) .d2l-questions-multi-select-correct-answer-icon {
+				transform: scaleX(-1);
 			}
 		`];
 	}
