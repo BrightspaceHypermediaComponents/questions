@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<script type="module">
-			import '@brightspace-ui/core/components/typography/typography.js';
-			import '../components/d2l-questions-question.js';
-		</script>
 		<title>d2l-questions-written-response visual-diff tests</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="UTF-8">
@@ -18,54 +14,84 @@
 				width: 200px;
 			}
 		</style>
+		<script type="module">
+			import '@brightspace-ui/core/components/typography/typography.js';
+			import '../components/d2l-questions-written-response-presentational.js';
+			import { answerKey, emptyResponse, emptyResponseWordCount, longResponseText, longResponseText2, longResponseWordCount, longResponseWordCount2, multipleAttachments, questionText, responseText, singleAttachment, wordCount } from './d2l-questions-written-response-presentational-data.js';
+
+			const readonlyResponse = document.getElementById('readonly-response');
+			readonlyResponse.questionText = questionText;
+			readonlyResponse.responseText = responseText;
+			readonlyResponse.answerKey = answerKey;
+			readonlyResponse.responseLength = wordCount;
+			
+			const readonlyNoResponse = document.getElementById('readonly-no-response');
+			readonlyNoResponse.questionText = questionText;
+			readonlyNoResponse.answerKey = answerKey;
+
+			const readonlyNoAnswerKey = document.getElementById('readonly-no-answer-key');
+			readonlyNoAnswerKey.questionText = questionText;
+			readonlyNoAnswerKey.responseText = responseText;
+			readonlyNoAnswerKey.responseLength = wordCount;
+
+			const readonlyEmptyResponse = document.getElementById('readonly-empty-response');
+			readonlyEmptyResponse.questionText = questionText;
+			readonlyEmptyResponse.responseText = emptyResponse;
+			readonlyEmptyResponse.responseLength = emptyResponseWordCount;
+			readonlyEmptyResponse.answerKey = answerKey;
+
+			const readonlySingleAttachment = document.getElementById('readonly-single-attachment');
+			readonlySingleAttachment.questionText = questionText;
+			readonlySingleAttachment.responseText = longResponseText;
+			readonlySingleAttachment.responseLength = longResponseWordCount;
+			readonlySingleAttachment.responseAttachments = singleAttachment;
+			readonlySingleAttachment.answerKey = answerKey;
+
+			const readonlyMultipleAttachment = document.getElementById('readonly-multiple-attachment');
+			readonlyMultipleAttachment.questionText = questionText;
+			readonlyMultipleAttachment.responseText = longResponseText2;
+			readonlyMultipleAttachment.responseLength = longResponseWordCount2;
+			readonlyMultipleAttachment.responseAttachments = multipleAttachments;
+			readonlyMultipleAttachment.answerKey = answerKey;
+
+		</script>
 	</head>
 	<body class="d2l-typography">
 		<div id="written-response-readonly">
-			<d2l-questions-question
-				readonly
-				question-href="./data/written-response/question.json"
-				question-response-href="./data/written-response/question-response.json"
-				token="token">
-			</d2l-questions-question>
+			<d2l-questions-written-response-presentational
+				id="readonly-response"
+				readonly>
+			</d2l-questions-written-response-presentational>
 		</div>
 		<div id="written-response-readonly-no-response">
-			<d2l-questions-question
-				readonly
-				question-href="./data/written-response/question.json"
-				token="token">
-			</d2l-questions-question>
+			<d2l-questions-written-response-presentational
+				id="readonly-no-response"
+				readonly>
+			</d2l-questions-written-response-presentational>
 		</div>
 		<div id="written-response-readonly-no-answer-key">
-			<d2l-questions-question
-				readonly
-				question-href="./data/written-response/question-no-answer-key.json"
-				question-response-href="./data/written-response/question-response-no-answer-key.json"
-				token="token">
-			</d2l-questions-question>
+			<d2l-questions-written-response-presentational
+				id="readonly-no-answer-key"
+				readonly>
+			</d2l-questions-written-response-presentational>
 		</div>
 		<div id="written-response-readonly-empty-response">
-			<d2l-questions-question
-				readonly
-				question-href="./data/written-response/question.json"
-				question-response-href="./data/written-response/question-response-empty-response.json"
-				token="token">
-			</d2l-questions-question>
+			<d2l-questions-written-response-presentational
+				id="readonly-empty-response"
+				readonly>
+			</d2l-questions-written-response-presentational>
 		</div>
 		<div id="written-response-readonly-single-attachment">
-			<d2l-questions-question
-				readonly
-				question-href="./data/written-response/question.json"
-				question-response-href="./data/written-response/question-response-single-attachment.json"
-				token="token">
-			</d2l-questions-question>
+			<d2l-questions-written-response-presentational
+				id="readonly-single-attachment"
+				readonly>
+			</d2l-questions-written-response-presentational>
 		</div>
 		<div id="written-response-readonly-multiple-attachment">
-			<d2l-questions-question
-				readonly
-				question-href="./data/written-response/question.json"
-				question-response-href="./data/written-response/question-response-multiple-attachments.json"
-				token="token">
-			</d2l-questions-question>
+			<d2l-questions-written-response-presentational
+				id="readonly-multiple-attachment"
+				readonly>
+			</d2l-questions-written-response-presentational>
 		</div>
 	</body>
 </html>
