@@ -8,10 +8,11 @@ import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/st
 import { getUniqueId } from '@brightspace-ui/core/helpers/uniqueId.js';
 import { LocalizeQuestions } from '../localize-questions.js';
 import { radioStyles } from '@brightspace-ui/core/components/inputs/input-radio-styles.js';
+import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 import { SkeletonMixin } from '@brightspace-ui/core/components/skeleton/skeleton-mixin.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
-class D2lQuestionsMultipleChoicePresentational extends SkeletonMixin(LocalizeQuestions(LitElement)) {
+class D2lQuestionsMultipleChoicePresentational extends SkeletonMixin(RtlMixin(LocalizeQuestions(LitElement))) {
 
 	static get properties() {
 		return {
@@ -62,11 +63,19 @@ class D2lQuestionsMultipleChoicePresentational extends SkeletonMixin(LocalizeQue
 				margin-left: 26px;
 				width: 18px;
 			}
+			:host([skeleton][dir="rtl"]) .d2l-input-radio-skeleton-readonly {
+				margin-left: 0;
+				margin-right: 26px;
+			}
 			:host([skeleton]) .d2l-questions-html-block {
 				align-self: center;
 				height: 14px;
 				margin-left: 12px;
 				width: 134px;
+			}
+			:host([skeleton][dir="rtl"]) .d2l-questions-html-block {
+				margin-left: 0;
+				margin-right: 12px;
 			}
 			.d2l-questions-multiple-choice-group {
 				display: flex;
@@ -94,15 +103,27 @@ class D2lQuestionsMultipleChoicePresentational extends SkeletonMixin(LocalizeQue
 				margin-right: 0.3rem;
 				margin-top: -0.1rem;
 			}
+			:host([dir="rtl"]) .d2l-questions-multiple-choice-row d2l-questions-icons-radio-unchecked,
+			:host([dir="rtl"]) .d2l-questions-multiple-choice-row d2l-questions-icons-radio-checked {
+				margin-left: 0.3rem;
+				margin-right: 0;
+			}
 			.d2l-questions-multiple-choice-row d2l-icon {
 				flex: none;
 				margin-right: 0.3rem;
+			}
+			:host([dir="rtl"]) .d2l-questions-multiple-choice-row d2l-icon {
+				margin-left: 0.3rem;
+				margin-right: 0;
 			}
 			.d2l-questions-multiple-choice-incorrect-icon {
 				color: var(--d2l-color-cinnabar);
 			}
 			.d2l-questions-multiple-choice-correct-icon {
 				color: var(--d2l-color-olivine);
+			}
+			:host([dir="rtl"]) .d2l-questions-multiple-choice-correct-icon {
+				transform: scaleX(-1);
 			}
 			.d2l-questions-multiple-choice-without-icon {
 				flex: none;

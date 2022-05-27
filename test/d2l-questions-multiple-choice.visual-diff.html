@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<script type="module">
-			import '@brightspace-ui/core/components/typography/typography.js';
-			import '../components/d2l-questions-question.js';
-		</script>
 		<title>d2l-questions-multiple-choice visual-diff tests</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="UTF-8">
@@ -18,43 +14,64 @@
 				width: 200px;
 			}
 		</style>
+		<script type="module">
+			import '@brightspace-ui/core/components/typography/typography.js';
+			import '../components/d2l-questions-multiple-choice-presentational.js';
+			import { choicesCorrect, choicesIncorrect, choicesUnanswered } from './d2l-questions-multiple-choice-presentational-data.js';
+
+			const answered = document.getElementById('answered');
+			answered.choices = choicesCorrect;
+			const unanswered = document.getElementById('unanswered');
+			unanswered.choices = choicesUnanswered;
+
+			const readonlyUnanswered = document.getElementById('readonly-unanswered');
+			readonlyUnanswered.choices = choicesUnanswered;
+			const readonlyCorrect = document.getElementById('readonly-correct');
+			readonlyCorrect.choices = choicesCorrect;
+			const readonlyIncorrect = document.getElementById('readonly-incorrect');
+			readonlyIncorrect.choices = choicesIncorrect;
+
+		</script>
 	</head>
 	<body class="d2l-typography">
 		<div id="multiple-choice">
-			<d2l-questions-question
-				question-href="./data/multiple-choice/question.json"
-				question-response-href="./data/multiple-choice/question-response-correct.json"
-				token="token">
-			</d2l-questions-question>
+			<d2l-questions-multiple-choice-presentational id="answered"
+				question-text="<p>Mark the item that is <i>blue.</i></p>">
+			</d2l-questions-multiple-choice-presentational>
 		</div>
 		<div id="multiple-choice-unanswered">
-			<d2l-questions-question
-				question-href="./data/multiple-choice/question.json"
-				token="token">
-			</d2l-questions-question>
+			<d2l-questions-multiple-choice-presentational id="unanswered"
+				question-text="<p>Mark the item that is <i>blue.</i></p>">
+			</d2l-questions-multiple-choice-presentational>
 		</div>
 		<div id="multiple-choice-readonly">
-			<d2l-questions-question
+			<d2l-questions-multiple-choice-presentational id="readonly-unanswered"
 				readonly
-				question-href="./data/multiple-choice/question.json"
-				token="token">
-			</d2l-questions-question>
+				question-text="<p>Mark the item that is <i>blue.</i></p>">
+			</d2l-questions-multiple-choice-presentational>
 		</div>
 		<div id="multiple-choice-readonly-correct">
-			<d2l-questions-question
+			<d2l-questions-multiple-choice-presentational  id="readonly-correct"
 				readonly
-				question-href="./data/multiple-choice/question.json"
-				question-response-href="./data/multiple-choice/question-response-correct.json"
-				token="token">
-			</d2l-questions-question>
+				question-text="<p>Mark the item that is <i>blue.</i></p>">
+			</d2l-questions-multiple-choice-presentational>
 		</div>
 		<div id="multiple-choice-readonly-incorrect">
-			<d2l-questions-question
+			<d2l-questions-multiple-choice-presentational id="readonly-incorrect"
 				readonly
-				question-href="./data/multiple-choice/question.json"
-				question-response-href="./data/multiple-choice/question-response-incorrect.json"
-				token="token">
-			</d2l-questions-question>
+				question-text="<p>Mark the item that is <i>blue.</i></p>">
+			</d2l-questions-multiple-choice-presentational>
+		</div>
+		<div id="multiple-choice-skeleton">
+			<d2l-questions-multiple-choice-presentational
+				skeleton>
+			</d2l-questions-multiple-choice-presentational>
+		</div>
+		<div id="multiple-choice-skeleton-readonly">
+			<d2l-questions-multiple-choice-presentational
+				readonly
+				skeleton>
+			</d2l-questions-multiple-choice-presentational>
 		</div>
 	</body>
 </html>
