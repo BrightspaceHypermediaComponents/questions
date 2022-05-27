@@ -54,7 +54,7 @@ class D2lQuestionsMultipleChoice extends SkeletonMixin(LitElement) {
 	}
 
 	async _finishedLoadingQuestionData() {
-		this.skeleton = false;
+		// this.skeleton = false;
 		this.dispatchEvent(new CustomEvent('d2l-questions-question-loaded', {
 			composed: true,
 			bubbles: true,

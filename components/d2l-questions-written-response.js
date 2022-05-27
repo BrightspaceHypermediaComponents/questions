@@ -3,8 +3,9 @@ import 'd2l-polymer-siren-behaviors/store/entity-store.js';
 import { Classes, Rels } from 'd2l-hypermedia-constants';
 import { html, LitElement } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { SkeletonMixin } from '@brightspace-ui/core/components/skeleton/skeleton-mixin.js';
 
-class D2lQuestionWrittenResponse extends LitElement {
+class D2lQuestionWrittenResponse extends SkeletonMixin(LitElement) {
 
 	static get properties() {
 		return {
