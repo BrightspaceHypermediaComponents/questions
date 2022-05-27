@@ -9,9 +9,10 @@ import { css, html, LitElement } from 'lit';
 import { getFileIconTypeFromExtension } from '@brightspace-ui/core/components/icons/getFileIconType';
 import { linkStyles } from '@brightspace-ui/core/components/link/link.js';
 import { LocalizeQuestions } from '../localize-questions.js';
+import { SkeletonMixin } from '@brightspace-ui/core/components/skeleton/skeleton-mixin.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
-class D2lQuestionWrittenResponsePresentational extends LocalizeQuestions(LitElement) {
+class D2lQuestionWrittenResponsePresentational extends SkeletonMixin(LocalizeQuestions(LitElement)) {
 
 	static get properties() {
 		return {
@@ -42,12 +43,46 @@ class D2lQuestionWrittenResponsePresentational extends LocalizeQuestions(LitElem
 	}
 
 	static get styles() {
-		return [bodyStandardStyles, bodySmallStyles, labelStyles, linkStyles, css`
+		return [super.styles, bodyStandardStyles, bodySmallStyles, labelStyles, linkStyles, css`
 			:host {
 				display: inline-block;
+				width: 100%;
 			}
 			:host([hidden]) {
 				display: none;
+			}
+			:host([skeleton]) .d2l-questions-written-response-question-title-skeleton {
+				height: 20px;
+				margin-bottom: 34px;
+				max-width: 603px;
+			}
+			:host([skeleton]) .d2l-questions-written-response-question-text-long-skeleton {
+				height: 14px;
+				margin-bottom: 14px;
+				margin-left: 12px;
+				max-width: 603px;
+			}
+			:host([skeleton]) .d2l-questions-written-response-question-text-short-skeleton {
+				height: 14px;
+				margin-bottom: 34px;
+				margin-left: 12px;
+				max-width: 540px;
+			}
+			:host([skeleton]) .d2l-questions-written-response-question-word-count-skeleton {
+				height: 10px;
+				margin-bottom: 60px;
+				margin-left: 12px;
+				max-width: 100px;
+			}
+			:host([skeleton]) .d2l-questions-written-response-question-answer-key-title-skeleton {
+				height: 14px;
+				margin-bottom: 18px;
+				max-width: 150px;
+			}
+			:host([skeleton]) .d2l-questions-written-response-question-answer-key-text-skeleton {
+				height: 14px;
+				margin-bottom: 19px;
+				max-width: 540px;
 			}
 			.d2l-questions-written-response-attachment-container {
 				overflow: hidden;
@@ -82,20 +117,24 @@ class D2lQuestionWrittenResponsePresentational extends LocalizeQuestions(LitElem
 	}
 
 	render() {
-		return html`
-			<div class="d2l-questions-question-wrapper">
-				<div class="d2l-questions-written-response-question-text">
-					<d2l-html-block>
-						${unsafeHTML(this.questionText)}
-					</d2l-html-block>
+		if (!this.skeleton) {
+			return html`
+				<div class="d2l-questions-question-wrapper">
+					<div class="d2l-questions-written-response-question-text">
+						<d2l-html-block>
+							${unsafeHTML(this.questionText)}
+						</d2l-html-block>
+					</div>
+					<div class="d2l-questions-written-response-question-response">
+						${this._renderResponse()}
+						${this._renderAttachments()}
+					</div>
+					${this._renderAnswerKey()}
 				</div>
-				<div class="d2l-questions-written-response-question-response">
-					${this._renderResponse()}
-					${this._renderAttachments()}
-				</div>
-				${this._renderAnswerKey()}
-			</div>
-		`;
+			`;
+		} else {
+			return this._renderWrittenResponseSkeleton();
+		}
 	}
 
 	_downloadAttachment(href) {
@@ -179,6 +218,18 @@ class D2lQuestionWrittenResponsePresentational extends LocalizeQuestions(LitElem
 				</div>
 			`;
 		}
+	}
+
+	_renderWrittenResponseSkeleton() {
+		return html`
+			<div class="d2l-skeletize d2l-questions-written-response-question-title-skeleton"></div>
+			<div class="d2l-skeletize d2l-questions-written-response-question-text-long-skeleton"></div>
+			<div class="d2l-skeletize d2l-questions-written-response-question-text-long-skeleton"></div>
+			<div class="d2l-skeletize d2l-questions-written-response-question-text-short-skeleton"></div>
+			<div class="d2l-skeletize d2l-questions-written-response-question-word-count-skeleton"></div>
+			<div class="d2l-skeletize d2l-questions-written-response-question-answer-key-title-skeleton"></div>
+			<div class="d2l-skeletize d2l-questions-written-response-question-answer-key-text-skeleton"></div>
+		`;
 	}
 }
 customElements.define('d2l-questions-written-response-presentational', D2lQuestionWrittenResponsePresentational);
