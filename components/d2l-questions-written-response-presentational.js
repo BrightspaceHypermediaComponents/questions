@@ -167,7 +167,7 @@ class D2lQuestionWrittenResponsePresentational extends LocalizeQuestions(LitElem
 
 	_renderResponse() {
 		//Checking for text or length so we can display "0 words" when a response exists but is empty
-		if (this.readonly && this.responseText || this.responseLength) {
+		if (this.readonly && this.responseText !== undefined || this.responseLength) {
 			return html`
 				<d2l-html-block>
 					${unsafeHTML(this.responseText)}

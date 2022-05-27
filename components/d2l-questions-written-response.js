@@ -35,14 +35,17 @@ class D2lQuestionWrittenResponse extends LitElement {
 
 	async updated(changedProperties) {
 		super.updated();
-		if (changedProperties.has('question')) {
-			await this._loadQuestionText();
-			await this._loadAnswerKey();
-		}
 		if (changedProperties.has('question') || changedProperties.has('questionResponse')) {
-			await this._loadResponse();
-			await this._loadResponseAttachments();
+			await this._loadQuestionData(changedProperties);
 		}
+	}
+
+	async _finishedLoadingQuestionData() {
+		// this.skeleton = false;
+		this.dispatchEvent(new CustomEvent('d2l-questions-question-loaded', {
+			composed: true,
+			bubbles: true,
+		}));
 	}
 
 	async _getEntityFromHref(targetHref) {
@@ -67,6 +70,18 @@ class D2lQuestionWrittenResponse extends LitElement {
 			console.error(err);
 			throw new Error('d2l-questions-written-response: Unable to load answer key from question');
 		}
+	}
+
+	async _loadQuestionData(changedProperties) {
+		if (changedProperties.has('question')) {
+			await this._loadQuestionText();
+			await this._loadAnswerKey();
+		}
+		if (changedProperties.has('question') || changedProperties.has('questionResponse')) {
+			await this._loadResponse();
+			await this._loadResponseAttachments();
+		}
+		await this._finishedLoadingQuestionData();
 	}
 
 	async _loadQuestionText() {
