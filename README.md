@@ -1,4 +1,4 @@
-# @brightspace-hmc/questions
+# @brightspace-hmc/questions 
 
 [![NPM version](https://img.shields.io/npm/v/@brightspace-hmc/questions.svg)](https://www.npmjs.org/package/@brightspace-hmc/questions)
 [![NPM downloads](https://img.shields.io/npm/dt/@brightspace-hmc/questions.svg)](https://www.npmjs.com/package/@brightspace-hmc/questions)
