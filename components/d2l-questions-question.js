@@ -125,6 +125,7 @@ class D2lQuestionsQuestion extends SkeletonMixin((LitElement)) {
 						?readonly=${this.readonly}
 						.question=${this._question}
 						.questionResponse=${this._questionResponse}
+						?skeleton=${this.skeleton}
 						.token=${this.token}>
 					</d2l-questions-written-response>`;
 

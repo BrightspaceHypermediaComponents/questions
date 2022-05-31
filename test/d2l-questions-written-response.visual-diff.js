@@ -50,5 +50,10 @@ describe('d2l-questions-written-response', () => {
 			const rect = await visualDiff.getRect(page, '#written-response-readonly-multiple-attachment');
 			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
 		});
+
+		it('readonly-skeleton', async function() {
+			const rect = await visualDiff.getRect(page, '#written-response-readonly-skeleton');
+			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+		});
 	});
 });

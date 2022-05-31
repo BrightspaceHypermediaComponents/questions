@@ -1,10 +1,11 @@
 import './d2l-questions-written-response-presentational.js';
 import 'd2l-polymer-siren-behaviors/store/entity-store.js';
 import { Classes, Rels } from 'd2l-hypermedia-constants';
-import { html, LitElement } from 'lit';
+import { css, html, LitElement } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { SkeletonMixin } from '@brightspace-ui/core/components/skeleton/skeleton-mixin.js';
 
-class D2lQuestionWrittenResponse extends LitElement {
+class D2lQuestionWrittenResponse extends SkeletonMixin(LitElement) {
 
 	static get properties() {
 		return {
@@ -20,6 +21,18 @@ class D2lQuestionWrittenResponse extends LitElement {
 		};
 	}
 
+	static get styles() {
+		return css`
+			:host {
+				display: inline-block;
+				width: 100%;
+			}
+			:host([hidden]) {
+				display: none;
+			}
+		`;
+	}
+
 	render() {
 		return html`
 			<d2l-questions-written-response-presentational
@@ -28,7 +41,8 @@ class D2lQuestionWrittenResponse extends LitElement {
 				question-text=${this._questionText}
 				response-length=${ifDefined(this._responseLength)}
 				response-text=${ifDefined(this._responseText)}
-				.responseAttachments=${this._responseAttachments}>
+				.responseAttachments=${this._responseAttachments}
+				?skeleton=${this.skeleton}>
 			</d2l-questions-written-response-presentational>
 		`;
 	}
@@ -41,7 +55,6 @@ class D2lQuestionWrittenResponse extends LitElement {
 	}
 
 	async _finishedLoadingQuestionData() {
-		// this.skeleton = false;
 		this.dispatchEvent(new CustomEvent('d2l-questions-question-loaded', {
 			composed: true,
 			bubbles: true,
