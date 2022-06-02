@@ -33,6 +33,11 @@ class D2lQuestionWrittenResponse extends SkeletonMixin(LitElement) {
 		`;
 	}
 
+	constructor() {
+		super();
+		this.skeleton = true;
+	}
+
 	render() {
 		return html`
 			<d2l-questions-written-response-presentational
@@ -50,11 +55,13 @@ class D2lQuestionWrittenResponse extends SkeletonMixin(LitElement) {
 	async updated(changedProperties) {
 		super.updated();
 		if (changedProperties.has('question') || changedProperties.has('questionResponse')) {
+			this.skeleton = true;
 			await this._loadQuestionData(changedProperties);
 		}
 	}
 
 	async _finishedLoadingQuestionData() {
+		this.skeleton = false;
 		this.dispatchEvent(new CustomEvent('d2l-questions-question-loaded', {
 			composed: true,
 			bubbles: true,
