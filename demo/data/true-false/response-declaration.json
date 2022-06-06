@@ -1,0 +1,57 @@
+{
+  "class": [
+    "response-declaration"
+  ],
+  "properties": {
+    "cardinality": "single",
+    "baseType": "identifier"
+  },
+  "entities": [
+    {
+      "class": [
+        "correct-response"
+      ],
+      "rel": [
+        "item"
+      ],
+      "entities": [
+        {
+          "class": [
+            "value"
+          ],
+          "rel": [
+            "item"
+          ],
+          "links": [
+            {
+              "rel": [
+                "https://questions.api.brightspace.com/rels/identifier"
+              ],
+              "href": "./data/true-false/simple-choice-1.json"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "rel": [
+        "https://questions.api.brightspace.com/rels/item-body"
+      ],
+      "href": "#not-included-in-demo-data"
+    },
+    {
+      "rel": [
+        "https://questions.api.brightspace.com/rels/interaction"
+      ],
+      "href": "#not-included-in-demo-data"
+    },
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "#"
+    }
+  ]
+}
