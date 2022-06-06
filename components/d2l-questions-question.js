@@ -91,6 +91,8 @@ class D2lQuestionsQuestion extends SkeletonMixin((LitElement)) {
 				this._questionType = Classes.questions.multiSelect;
 			} else if (this._question.entity.hasClass(Classes.questions.longAnswer)) { // previous naming convention for "Written Response" is "Long Answer", API response displaying LongAnswer currently
 				this._questionType = Classes.questions.longAnswer;
+			} else if (this._question.entity.hasClass(Classes.questions.trueFalse)) {
+				this._questionType = Classes.questions.trueFalse;
 			}
 		}
 	}
@@ -127,6 +129,16 @@ class D2lQuestionsQuestion extends SkeletonMixin((LitElement)) {
 						.questionResponse=${this._questionResponse}
 						.token=${this.token}>
 					</d2l-questions-written-response>`;
+
+			case Classes.questions.trueFalse:
+				await import('./d2l-questions-true-false.js');
+				return html`
+					<d2l-questions-true-false
+						?readonly=${this.readonly}
+						.question=${this._question}
+						.questionResponse=${this._questionResponse}
+						.token=${this.token}>
+					</d2l-questions-true-false>`;
 
 			default:
 				throw 'Unknown question type';
