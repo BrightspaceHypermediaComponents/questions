@@ -2,9 +2,10 @@ import './d2l-questions-true-false-presentational.js';
 import 'd2l-polymer-siren-behaviors/store/entity-store.js';
 import { Classes, Rels } from 'd2l-hypermedia-constants';
 import { css, html, LitElement } from 'lit';
+import { LocalizeQuestions } from '../localize-questions.js';
 import { SkeletonMixin } from '@brightspace-ui/core/components/skeleton/skeleton-mixin.js';
 
-class D2lQuestionsTrueFalse extends SkeletonMixin(LitElement) {
+class D2lQuestionsTrueFalse extends SkeletonMixin(LocalizeQuestions(LitElement)) {
 
 	static get properties() {
 		return {
@@ -95,8 +96,8 @@ class D2lQuestionsTrueFalse extends SkeletonMixin(LitElement) {
 			const choiceHref = choice.getLinkByRel(Rels.Questions.identifier).href;
 			const choiceEntity = await this._getEntityFromHref(choiceHref, false);
 			return {
-				htmlText: choiceEntity.entity.getSubEntityByClass(Classes.text.richtext).properties.html,
-				text: choiceEntity.entity.getSubEntityByClass(Classes.text.richtext).properties.text,
+				htmlText: choiceEntity.entity.getSubEntityByClass(Classes.text.richtext).properties.html === 'True' ? this.localize('true') : this.localize('false'),
+				text: choiceEntity.entity.getSubEntityByClass(Classes.text.richtext).properties.text === 'True' ? this.localize('true') : this.localize('false'),
 				selected: choice.hasClass(Classes.questions.selected),
 				correct: choice.hasClass(Classes.questions.correctResponse),
 				href: choiceHref
