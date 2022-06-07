@@ -111,6 +111,7 @@ class D2lQuestionsQuestion extends SkeletonMixin((LitElement)) {
 
 			case Classes.questions.multiSelect:
 				await import('./d2l-questions-multi-select.js');
+				await this._tempSendQuestionLoaded();
 				return html`
 					<d2l-questions-multi-select
 						?readonly=${this.readonly}

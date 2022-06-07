@@ -32,7 +32,6 @@ class D2lQuestionsMultipleChoice extends SkeletonMixin(LitElement) {
 	constructor() {
 		super();
 		this._choices = [];
-		this.skeleton = true;
 	}
 
 	render() {
@@ -48,13 +47,11 @@ class D2lQuestionsMultipleChoice extends SkeletonMixin(LitElement) {
 	async updated(changedProperties) {
 		super.updated();
 		if ((changedProperties.has('question') || changedProperties.has('questionResponse'))) {
-			this.skeleton = true;
 			await this._loadQuestionData();
 		}
 	}
 
 	async _finishedLoadingQuestionData() {
-		// this.skeleton = false;
 		this.dispatchEvent(new CustomEvent('d2l-questions-question-loaded', {
 			composed: true,
 			bubbles: true,
