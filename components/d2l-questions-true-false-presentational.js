@@ -156,6 +156,8 @@ class D2lQuestionsTrueFalsePresentational extends SkeletonMixin(RtlMixin(Localiz
 	}
 
 	_renderChoice(choice) {
+		choice.text = choice.text === 'True' ? this.localize('true') : this.localize('false');
+		choice.htmlText = choice.htmlText === 'True' ? this.localize('true') : this.localize('false');
 		if (this.readonly) {
 			return this._renderReadonlyChoice(choice);
 		} else {
