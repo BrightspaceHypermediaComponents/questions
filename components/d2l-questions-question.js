@@ -111,11 +111,14 @@ class D2lQuestionsQuestion extends SkeletonMixin((LitElement)) {
 
 			case Classes.questions.multiSelect:
 				await import('./d2l-questions-multi-select.js');
+				// We can get rid of this when multiselect is properly implemented and sends this event
+				await this._sendQuestionLoaded();
 				return html`
 					<d2l-questions-multi-select
 						?readonly=${this.readonly}
 						.question=${this._question}
-						.questionResponse=${this._questionResponse}>
+						.questionResponse=${this._questionResponse}
+						?skeleton=${this.skeleton}>
 					</d2l-questions-multi-select>`;
 
 			case Classes.questions.longAnswer:
@@ -130,8 +133,16 @@ class D2lQuestionsQuestion extends SkeletonMixin((LitElement)) {
 					</d2l-questions-written-response>`;
 
 			default:
+				await this._sendQuestionLoaded();
 				throw 'Unknown question type';
 		}
+	}
+
+	async _sendQuestionLoaded() {
+		this.dispatchEvent(new CustomEvent('d2l-questions-question-loaded', {
+			composed: true,
+			bubbles: true,
+		}));
 	}
 
 	async _update() {

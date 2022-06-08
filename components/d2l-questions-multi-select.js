@@ -1,8 +1,9 @@
 import './d2l-questions-multi-select-presentational.js';
 import 'd2l-polymer-siren-behaviors/store/entity-store.js';
 import { html, LitElement } from 'lit';
+import { SkeletonMixin } from '@brightspace-ui/core/components/skeleton/skeleton-mixin.js';
 
-class D2lQuestionsMultiSelect extends LitElement {
+class D2lQuestionsMultiSelect extends SkeletonMixin(LitElement) {
 
 	static get properties() {
 		return {
@@ -31,6 +32,13 @@ class D2lQuestionsMultiSelect extends LitElement {
 		}
 	}
 
+	_finishedLoadingQuestionData() {
+		this.dispatchEvent(new CustomEvent('d2l-questions-question-loaded', {
+			composed: true,
+			bubbles: true,
+		}));
+	}
+
 	_loadChoices() {
 		const choices = this.question.entity.getSubEntityByClass('atoms').entities;
 		const answers = this.questionResponse.entity.entities;
@@ -44,6 +52,7 @@ class D2lQuestionsMultiSelect extends LitElement {
 		const questionTextEntity = this.question.entity.getSubEntityByClass('questionText');
 		this._questionTextHTML = questionTextEntity.properties.html;
 		this._choices = this._loadChoices();
+		this._finishedLoadingQuestionData();
 	}
 
 }
