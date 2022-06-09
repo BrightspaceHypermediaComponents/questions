@@ -1,4 +1,5 @@
-# Multiple Choice
+# True & False
+NOTE: True & False question types use the same component as multiple-choice but with the `isTrueFalse` flag
 Represents a true-false question where only one option is selectable.
 
 **Default**
@@ -14,14 +15,16 @@ Represents a true-false question where only one option is selectable.
 
 ```html
 <script type="module">
-    import '@brightspace-hmc/questions/components/d2l-questions-true-false-presentational.js';
+    import '@brightspace-hmc/questions/components/d2l-questions-multiple-choice-presentational.js';
 </script>
-<d2l-questions-true-false-presentational
+
+<d2l-questions-multiple-choice-presentational
+	isTrueFalse
 	readonly
 	question-text=""
 	.choices=${choices}
 	>
-</d2l-questions-true-false-presentational>
+</d2l-questions-multiple-choice-presentational>
 ```
 
 **Properties:**
@@ -29,6 +32,7 @@ Represents a true-false question where only one option is selectable.
 | Property | Type | Description |
 |--|--|--|
 | choices | Array | Object representing the possible answers and their selected state. Example below. |
+| isTrueFalse | Boolean | If true, the question choices will only show two options and be translated (true & false) |
 | question-text | String | Question text - will be parsed as HTML |
 | readonly | Boolean | If true, the question is not clickable/ answerable and will display answer correctness if provided. |
 

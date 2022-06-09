@@ -17,6 +17,7 @@ Represents a multiple-choice question where only one option is selectable.
     import '@brightspace-hmc/questions/components/d2l-questions-multiple-choice-presentational.js';
 </script>
 <d2l-questions-multiple-choice-presentational
+	isTrueFalse
 	readonly
 	question-text=""
 	.choices=${choices}
@@ -29,6 +30,7 @@ Represents a multiple-choice question where only one option is selectable.
 | Property | Type | Description |
 |--|--|--|
 | choices | Array | Object representing the possible answers and their selected state. Example below. |
+| isTrueFalse | Boolean | If true, the question choices will only show two options and be translated (true & false) |
 | question-text | String | Question text - will be parsed as HTML |
 | readonly | Boolean | If true, the question is not clickable/ answerable and will display answer correctness if provided. |
 
