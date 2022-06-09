@@ -25,7 +25,9 @@ export const choicesCorrect = [
 export const choicesIncorrect = [
 	{
 		htmlText: 'True',
-		text: 'True'
+		text: 'True',
+		selected: false,
+		correct: true
 	},
 	{
 		htmlText: 'False',

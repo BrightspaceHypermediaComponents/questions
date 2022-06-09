@@ -16,7 +16,7 @@
 		</style>
 		<script type="module">
 			import '@brightspace-ui/core/components/typography/typography.js';
-			import '../components/d2l-questions-true-false-presentational.js';
+			import '../components/d2l-questions-multiple-choice-presentational.js';
 			import { choicesCorrect, choicesIncorrect, choicesUnanswered } from './d2l-questions-true-false-presentational-data.js';
 
 			const answered = document.getElementById('answered');
@@ -35,43 +35,55 @@
 	</head>
 	<body class="d2l-typography">
 		<div id="true-false">
-			<d2l-questions-true-false-presentational id="answered"
+			<d2l-questions-multiple-choice-presentational
+				id="answered"
+				isTrueFalse
 				question-text="<p>Mark the item that is <i>True.</i></p>">
-			</d2l-questions-true-false-presentational>
+			</d2l-questions-multiple-choice-presentational>
 		</div>
 		<div id="true-false-unanswered">
-			<d2l-questions-true-false-presentational id="unanswered"
+			<d2l-questions-multiple-choice-presentational
+				id="unanswered"
+				isTrueFalse
 				question-text="<p>Mark the item that is <i>True.</i></p>">
-			</d2l-questions-true-false-presentational>
+			</d2l-questions-multiple-choice-presentational>
 		</div>
 		<div id="true-false-readonly">
-			<d2l-questions-true-false-presentational id="readonly-unanswered"
+			<d2l-questions-multiple-choice-presentational
+				id="readonly-unanswered"
+				isTrueFalse
 				readonly
 				question-text="<p>Mark the item that is <i>True.</i></p>">
-			</d2l-questions-true-false-presentational>
+			</d2l-questions-multiple-choice-presentational>
 		</div>
 		<div id="true-false-readonly-correct">
-			<d2l-questions-true-false-presentational  id="readonly-correct"
+			<d2l-questions-multiple-choice-presentational
+				id="readonly-correct"
+				isTrueFalse
 				readonly
 				question-text="<p>Mark the item that is <i>True.</i></p>">
-			</d2l-questions-true-false-presentational>
+			</d2l-questions-multiple-choice-presentational>
 		</div>
 		<div id="true-false-readonly-incorrect">
-			<d2l-questions-true-false-presentational id="readonly-incorrect"
+			<d2l-questions-multiple-choice-presentational
+				id="readonly-incorrect"
+				isTrueFalse
 				readonly
 				question-text="<p>Mark the item that is <i>True.</i></p>">
-			</d2l-questions-true-false-presentational>
+			</d2l-questions-multiple-choice-presentational>
 		</div>
 		<div id="true-false-skeleton">
-			<d2l-questions-true-false-presentational
+			<d2l-questions-multiple-choice-presentational
+				isTrueFalse
 				skeleton>
-			</d2l-questions-true-false-presentational>
+			</d2l-questions-multiple-choice-presentational>
 		</div>
 		<div id="true-false-skeleton-readonly">
-			<d2l-questions-true-false-presentational
+			<d2l-questions-multiple-choice-presentational
 				readonly
+				isTrueFalse
 				skeleton>
-			</d2l-questions-true-false-presentational>
+			</d2l-questions-multiple-choice-presentational>
 		</div>
 	</body>
 </html>
