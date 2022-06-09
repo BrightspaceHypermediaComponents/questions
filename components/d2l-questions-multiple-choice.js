@@ -8,6 +8,7 @@ class D2lQuestionsMultipleChoice extends SkeletonMixin(LitElement) {
 
 	static get properties() {
 		return {
+			isTrueFalse: { type: Boolean },
 			readonly: { type: Boolean },
 			question: { type: Object },
 			questionResponse: { type: Object },
@@ -39,6 +40,7 @@ class D2lQuestionsMultipleChoice extends SkeletonMixin(LitElement) {
 		return html`
 			<d2l-questions-multiple-choice-presentational
 				?readonly=${this.readonly}
+				?isTrueFalse=${this.isTrueFalse}
 				question-text=${this._questionTextHTML}
 				.choices=${this._choices}
 				?skeleton=${this.skeleton}>

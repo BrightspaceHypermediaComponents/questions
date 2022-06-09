@@ -104,6 +104,7 @@ class D2lQuestionsQuestion extends SkeletonMixin((LitElement)) {
 				await import('./d2l-questions-multiple-choice.js');
 				return html`
 					<d2l-questions-multiple-choice
+						?isTrueFalse=${false}
 						?readonly=${this.readonly}
 						.question=${this._question}
 						.questionResponse=${this._questionResponse}
@@ -131,14 +132,15 @@ class D2lQuestionsQuestion extends SkeletonMixin((LitElement)) {
 					</d2l-questions-written-response>`;
 
 			case Classes.questions.trueFalse:
-				await import('./d2l-questions-true-false.js');
+				await import('./d2l-questions-multiple-choice.js');
 				return html`
-					<d2l-questions-true-false
+					<d2l-questions-multiple-choice
+						?isTrueFalse=${true}
 						?readonly=${this.readonly}
 						.question=${this._question}
 						.questionResponse=${this._questionResponse}
 						.token=${this.token}>
-					</d2l-questions-true-false>`;
+					</d2l-questions-multiple-choice>`;
 
 			default:
 				throw 'Unknown question type';
