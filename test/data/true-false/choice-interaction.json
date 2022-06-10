@@ -1,0 +1,62 @@
+{
+  "class": [
+    "choice-interaction",
+    "shuffle"
+  ],
+  "properties": {
+    "maxChoices": 1,
+    "enumerationType": "None"
+  },
+  "entities": [
+    {
+      "class": [
+        "richtext"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/prompt"
+      ],
+      "properties": {
+        "text": "Mark the item that is true.",
+        "html": "Mark the item that is true."
+      }
+    },
+    {
+      "class": [
+        "simple-choice"
+      ],
+      "rel": [
+        "item"
+      ],
+      "href": "./data/true-false/simple-choice-1.json"
+    },
+    {
+      "class": [
+        "simple-choice"
+      ],
+      "rel": [
+        "item"
+      ],
+      "href": "./data/true-false/simple-choice-2.json"
+    }
+  ],
+  "links": [
+    {
+      "rel": [
+        "https://questions.api.brightspace.com/rels/item-body"
+      ],
+      "href": "./data/true-false/item-body.json"
+    },
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "#"
+    },
+    {
+      "rel": [
+        "https://questions.api.brightspace.com/rels/response-declaration"
+      ],
+      "href": "./data/true-false/response-declaration.json"
+    }
+  ]
+}

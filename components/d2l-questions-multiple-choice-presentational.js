@@ -17,6 +17,7 @@ class D2lQuestionsMultipleChoicePresentational extends SkeletonMixin(RtlMixin(Lo
 	static get properties() {
 		return {
 			choices: { type: Array },
+			isTrueFalse: { type: Boolean },
 			questionText: {
 				attribute: 'question-text',
 				type: String
@@ -156,6 +157,11 @@ class D2lQuestionsMultipleChoicePresentational extends SkeletonMixin(RtlMixin(Lo
 	}
 
 	_renderChoice(choice) {
+		if (this.isTrueFalse) {
+			choice.text = choice.text === 'True' ? this.localize('true') : this.localize('false');
+			choice.htmlText = choice.htmlText === 'True' ? this.localize('true') : this.localize('false');
+		}
+
 		if (this.readonly) {
 			return this._renderReadonlyChoice(choice);
 		} else {
@@ -175,7 +181,7 @@ class D2lQuestionsMultipleChoicePresentational extends SkeletonMixin(RtlMixin(Lo
 	}
 
 	_renderMultipleChoiceSkeleton() {
-		const skeletonChoices = [1, 2, 3, 4];
+		const skeletonChoices = this.isTrueFalse ? [1, 2] : [1, 2, 3, 4];
 		/* eslint-disable indent */
 		return html`
 			<div class="d2l-skeletize d2l-questions-multiple-choice-question-text-skeleton"></div>

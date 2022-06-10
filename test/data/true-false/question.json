@@ -1,0 +1,37 @@
+{
+  "class": [
+    "named-entity",
+    "TrueFalse"
+  ],
+  "properties": {
+    "name": "True False Question 1",
+    "type": 2,
+    "typeText": "true-false"
+  },
+  "entities": [
+    {
+      "class": [
+        "richtext",
+        "questionText"
+      ],
+      "rel": [
+        "item",
+        "https://questions.api.brightspace.com/rels/questionText",
+        "https://questions.api.brightspace.com/rels/title"
+      ],
+      "properties": {
+        "text": "Mark the item that is True.",
+        "html": "<p>Mark the item that is <em>True</em>.</p>"
+      }
+    },
+    {
+      "class": [
+        "item-body"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/item-body"
+      ],
+      "href": "./data/true-false/item-body.json"
+    }
+  ]
+}

@@ -16,7 +16,7 @@ Question components for use in quizzing and/or surveys. Questions are able to po
 | Multi Short-Answer | | |
 | Ordering | | |
 | Short Answer | | |
-| True-False | | |
+| [True False](./docs/true-false.md) | &check; | &check; |
 | [Written Response](./docs/written-response.md) | | &check; |
 
 Answerable components are interactable, while readonly components are designed for viewing previously answered questions and, depending on question type, may support indicating 'correct' answers.

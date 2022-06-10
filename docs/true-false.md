@@ -1,13 +1,14 @@
-# Multiple Choice
-Represents a multiple-choice question where only one option is selectable.
+# True & False
+NOTE: True & False question types use the same component as multiple-choice but with the `isTrueFalse` flag
+Represents a true-false question where only one option is selectable.
 
 **Default**
 
-<img src="./screenshots/multiple-choice-answerable.png" alt="Multiple Choice Question" width="500">
+<img src="./screenshots/true-false-answerable.png" alt="True & False Question" width="500">
 
 **Readonly**
 
-<img src="./screenshots/multiple-choice-readonly.png" alt="Multiple Choice Question Readonly" width="500">
+<img src="./screenshots/true-false-readonly.png" alt="True & False Question Readonly" width="500">
 
 
 ## Usage (Presentational)
@@ -16,6 +17,7 @@ Represents a multiple-choice question where only one option is selectable.
 <script type="module">
     import '@brightspace-hmc/questions/components/d2l-questions-multiple-choice-presentational.js';
 </script>
+
 <d2l-questions-multiple-choice-presentational
 	isTrueFalse
 	readonly
@@ -38,28 +40,16 @@ Represents a multiple-choice question where only one option is selectable.
 ```JSON
 [
 	{
-		"htmlText": "<s>Mistake</s> Apple",
-		"text": "Mistake Apple",
+		"htmlText": "<s>True</s> ",
+		"text": "True",
 		"selected": false,
 		"correct": false
 	},
 	{
-		"htmlText": "<p>Ocean</p>",
-		"text": "Ocean",
+		"htmlText": "<p>False</p>",
+		"text": "False",
 		"selected": false,
 		"correct": true
-	},
-	{
-		"htmlText": "<p>Oil and a very long answer for testing. lorem ipsum dolor sit amet, consecteteur adipiscing elit.</p>",
-		"text": "Oil and a very long answer for testing. lorem ipsum dolor sit amet, consecteteur adipiscing elit.",
-		"selected": true,
-		"correct": false
-	},
-	{
-		"htmlText": "<p>Sun</p>",
-		"text": "Sun",
-		"selected": false,
-		"correct": false
 	}
 ]
 ```

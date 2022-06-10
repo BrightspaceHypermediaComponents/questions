@@ -1,0 +1,24 @@
+{
+  "class": [
+    "item-body"
+  ],
+  "entities": [
+    {
+      "class": [
+        "choice-interaction"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/interaction"
+      ],
+      "href": "./data/true-false/choice-interaction.json"
+    }
+  ],
+  "links": [
+    {
+      "rel": [
+        "https://questions.api.brightspace.com/rels/question"
+      ],
+      "href": "./data/true-false/question.json"
+    }
+  ]
+}
