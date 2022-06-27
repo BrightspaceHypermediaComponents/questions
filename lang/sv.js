@@ -7,8 +7,10 @@ export default {
 	"clickToDownloadAttachmentFile": "Klicka för att hämta bilagan {fileName}",
 	"correctAnswer": "Rätt svar",
 	"correctResponse": "Rätt respons",
+	"false": "Falskt",
 	"incorrectAnswer": "Fel svar",
 	"incorrectResponse": "Fel respons",
 	"kB": "kB",
+	"true": "Sant",
 	"words": "Ord"
 };

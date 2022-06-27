@@ -7,8 +7,10 @@ export default {
 	"clickToDownloadAttachmentFile": "Cliquez pour télécharger la pièce jointe {fileName}",
 	"correctAnswer": "Réponse exacte",
 	"correctResponse": "Réponse exacte",
+	"false": "Faux",
 	"incorrectAnswer": "Réponse incorrecte",
 	"incorrectResponse": "Réponse incorrecte",
 	"kB": "Ko",
+	"true": "Vrai",
 	"words": "Mots"
 };

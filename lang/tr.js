@@ -7,8 +7,10 @@ export default {
 	"clickToDownloadAttachmentFile": "{fileName} ekini indirmek için tıklayın",
 	"correctAnswer": "Doğru Cevap",
 	"correctResponse": "Doğru Yanıt",
+	"false": "Yanlış",
 	"incorrectAnswer": "Yanlış Cevap",
 	"incorrectResponse": "Yanlış Yanıt",
 	"kB": "KB",
+	"true": "Doğru",
 	"words": "Kelime"
 };
