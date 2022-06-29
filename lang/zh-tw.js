@@ -7,8 +7,10 @@ export default {
 	"clickToDownloadAttachmentFile": "按一下以下載附件 {fileName}",
 	"correctAnswer": "正確答案",
 	"correctResponse": "正確回應",
+	"false": "非",
 	"incorrectAnswer": "不正確的答案",
 	"incorrectResponse": "不正確的回應",
 	"kB": "KB",
+	"true": "是",
 	"words": "個字"
 };
