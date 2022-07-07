@@ -86,45 +86,25 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 	}
 
 	async _loadBlanks() {
-		const itemBodyHref = this.question.entity.getSubEntityByRel(Rels.Questions.itemBody);
-		const itemBodyEntity = await this._getEntityFromHref(itemBodyHref);
-		const interactionEntityHrefs = itemBodyEntity.entity.getSubEntitiesByClass('text-entry-interaction');
-		
-		console.log('itemBodyEntity', itemBodyEntity.entity.entities);
-		console.log('interactionEntityHrefs', interactionEntityHrefs);
-
-		const blanks = await Promise.all(interactionEntityHrefs.map(async interactionHref => {
-			const interaction = await this._getEntityFromHref(interactionHref.href, false);
-			console.log('interactionEntity', interaction)
-			const responseDeclarationHref = interaction.entity.getLinkByRel(Rels.Questions.responseDeclaration).href;
+		const candidateResponses = this.questionResponse.entity.getSubEntitiesByClass(Classes.questions.candidateResponse);
+		const blanks = await Promise.all(candidateResponses.map(async candidateResponse => {
+			const responseValue = candidateResponse.getSubEntityByClass(Classes.questions.value);
+			const responseDeclarationHref = candidateResponse.getLinkByRel(Rels.Questions.responseDeclaration).href;
 			const responseDeclaration = await this._getEntityFromHref(responseDeclarationHref, false);
-			console.log('responseDeclaration', responseDeclaration)
-			const mapping = responseDeclaration.entity.getSubEntityByClass('mapping');
+			const mapping = responseDeclaration.entity.getSubEntityByClass(Classes.questions.mapping);
 			const mapEntryHref = mapping.getSubEntityByClass('map-entry').href;
 			const mapEntry = await this._getEntityFromHref(mapEntryHref, false);
-			console.log('mapEntryEntity', mapEntry)
 
 			return {
 				correctAnswerText: mapEntry.entity.properties.key,
 				value: mapEntry.entity.properties.value,
+				responseText: responseValue.properties.response,
+				correct: responseValue.hasClass(Classes.questions.correctResponse)
 			};
 		}));
+	
 		console.log('blanks', blanks)
 		this._blanks = blanks === undefined ? [] : blanks;
-		return;
-	}
-
-	async _loadResponses() {
-		const candidateResponse = this.questionResponse.entity.getSubEntityByClass(Classes.questions.candidateResponse);
-		console.log('candidateResponse', candidateResponse)
-		const blankResponses = await Promise.all(candidateResponse.entities.map(async blankResponse => {
-			return {
-				responseText: blankResponse.properties.response,
-				correct: blankResponse.hasClass(Classes.questions.correctResponse)
-			};
-		}));
-		console.log('blankResponses', blankResponses)
-		this._responses = blankResponses === undefined ? [] : blankResponses;
 		return;
 	}
 
@@ -138,7 +118,6 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 		}
 		try {
 			await this._loadBlanks();
-			await this._loadResponses();
 		} catch (err) {
 			console.error(err);
 			throw new Error('d2l-questions-short-answer: Unable to load blanks from question');
