@@ -12,8 +12,9 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 			question: { type: Object },
 			questionResponse: { type: Object },
 			token: { type: Object },
-			_choices: { type: Array },
-			_questionTextHTML: { type: String }
+			_blanks: { type: Array },
+			_questionTextHTML: { type: String },
+			_responses: { type: Array }
 		};
 	}
 
@@ -35,12 +36,33 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 	}
 
 	render() {
+		this._blanks = [
+			{
+				correctAnswerText: 'correct response',
+				value: 50,
+				responseText: 'correct response',
+				correct: true
+			},
+			{
+				correctAnswerText: 'question 2',
+				value: 50,
+				responseText: 'incorrect response',
+				correct: false
+			},
+			{
+				correctAnswerText: 'question 3',
+				value: 50,
+				responseText: 'incorrect response 2',
+				correct: false
+			}
+		];
+
 		return html`
 			<d2l-questions-short-answer-presentational
-				?readonly=${this.readonly}
 				?skeleton=${this.skeleton}
 				question-text=${this._questionTextHTML}
-				.choices=${this._choices}
+				.blanks=${this._blanks}
+				.responses=${this._responses}
 			>
 			</d2l-questions-short-answer-presentational>`;
 	}
@@ -63,57 +85,46 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 		return await window.D2L.Siren.EntityStore.fetch(targetHref, this.token, bypassCache);
 	}
 
-	async _loadChoices() {
-		// Reponse has the choices more readily available than the actual question does + the answer/correctness states
-		if (this.questionResponse) {
-			return await this._loadChoicesFromResponse();
-		}
+	async _loadBlanks() {
 		const itemBodyHref = this.question.entity.getSubEntityByRel(Rels.Questions.itemBody);
 		const itemBodyEntity = await this._getEntityFromHref(itemBodyHref);
-		const interactionHref = itemBodyEntity.entity.getSubEntityByRel(Rels.Questions.interaction);
-		const interactionEntity = await this._getEntityFromHref(interactionHref);
-		// const choices = await Promise.all(interactionEntity.entity.getSubEntitiesByClass(Classes.questions.simpleChoice).map(async choice => {
-		// 	const choiceEntity = await this._getEntityFromHref(choice.href, false);
-		// 	return {
-		// 		href: choice.href,
-		// 		htmlText: choiceEntity.entity.getSubEntityByClass(Classes.text.richtext).properties.html,
-		// 		text: choiceEntity.entity.getSubEntityByClass(Classes.text.richtext).properties.text,
-		// 	};
-		// }));
-		// this._choices = choices === undefined ? [] : choices;
-		console.log('itemBodyEntity', itemBodyEntity);
-		console.log('interactionEntity', interactionEntity);
-		this._choices = [];
+		const interactionEntityHrefs = itemBodyEntity.entity.getSubEntitiesByClass('text-entry-interaction');
+		
+		console.log('itemBodyEntity', itemBodyEntity.entity.entities);
+		console.log('interactionEntityHrefs', interactionEntityHrefs);
+
+		const blanks = await Promise.all(interactionEntityHrefs.map(async interactionHref => {
+			const interaction = await this._getEntityFromHref(interactionHref.href, false);
+			console.log('interactionEntity', interaction)
+			const responseDeclarationHref = interaction.entity.getLinkByRel(Rels.Questions.responseDeclaration).href;
+			const responseDeclaration = await this._getEntityFromHref(responseDeclarationHref, false);
+			console.log('responseDeclaration', responseDeclaration)
+			const mapping = responseDeclaration.entity.getSubEntityByClass('mapping');
+			const mapEntryHref = mapping.getSubEntityByClass('map-entry').href;
+			const mapEntry = await this._getEntityFromHref(mapEntryHref, false);
+			console.log('mapEntryEntity', mapEntry)
+
+			return {
+				correctAnswerText: mapEntry.entity.properties.key,
+				value: mapEntry.entity.properties.value,
+			};
+		}));
+		console.log('blanks', blanks)
+		this._blanks = blanks === undefined ? [] : blanks;
+		return;
 	}
 
-	async _loadChoicesFromResponse() {
-		let hasCorrectAnswer = false;
+	async _loadResponses() {
 		const candidateResponse = this.questionResponse.entity.getSubEntityByClass(Classes.questions.candidateResponse);
 		console.log('candidateResponse', candidateResponse)
-		// const choices = await Promise.all(candidateResponse.entities.map(async choice => {
-		// 	if (choice.hasClass(Classes.questions.correctResponse)) {
-		// 		hasCorrectAnswer = true;
-		// 	}
-		// 	const choiceHref = choice.getLinkByRel(Rels.Questions.identifier).href;
-		// 	const choiceEntity = await this._getEntityFromHref(choiceHref, false);
-		// 	return {
-		// 		htmlText: choiceEntity.entity.getSubEntityByClass(Classes.text.richtext).properties.html,
-		// 		text: choiceEntity.entity.getSubEntityByClass(Classes.text.richtext).properties.text,
-		// 		selected: choice.hasClass(Classes.questions.selected),
-		// 		correct: choice.hasClass(Classes.questions.correctResponse),
-		// 		href: choiceHref
-		// 	};
-		// }));
-		// if (!hasCorrectAnswer) {
-			const responseHref = candidateResponse.getLinkByRel(Rels.Questions.responseDeclaration).href;
-			const response = await this._getEntityFromHref(responseHref, false);
-			console.log('response', response)
-			// const correctResponse = response.entity.getSubEntityByClass(Classes.questions.correctResponse);
-			// const correctChoiceHref = correctResponse.getSubEntityByClass(Classes.questions.value).getLinkByRel(Rels.Questions.identifier).href;
-		// 	choices.find(choice => choice.href === correctChoiceHref).correct = true;
-		// }
-		// this._choices = choices === undefined ? [] : choices;
-		this._choices = [];
+		const blankResponses = await Promise.all(candidateResponse.entities.map(async blankResponse => {
+			return {
+				responseText: blankResponse.properties.response,
+				correct: blankResponse.hasClass(Classes.questions.correctResponse)
+			};
+		}));
+		console.log('blankResponses', blankResponses)
+		this._responses = blankResponses === undefined ? [] : blankResponses;
 		return;
 	}
 
@@ -126,10 +137,11 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 			throw new Error('d2l-questions-short-answer: Unable to get question text from question');
 		}
 		try {
-			await this._loadChoices();
+			await this._loadBlanks();
+			await this._loadResponses();
 		} catch (err) {
 			console.error(err);
-			throw new Error('d2l-questions-short-answer: Unable to load choices from question');
+			throw new Error('d2l-questions-short-answer: Unable to load blanks from question');
 		}
 		await this._finishedLoadingQuestionData();
 	}
