@@ -118,7 +118,7 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 				</d2l-html-block>
 				${html`<d2l-icon icon="tier1:${icon}" class="${iconStyle}"></d2l-icon>`}
 				<d2l-html-block class="${bracketTextStyle}" aria-hidden="true"> ${bracketText}</d2l-html-block>
-				<d2l-offscreen>${choice.text}</d2l-offscreen>
+				<d2l-offscreen>${screenReaderText}</d2l-offscreen>
 			</div>`;
 	}
 
