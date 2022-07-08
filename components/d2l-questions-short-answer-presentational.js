@@ -4,7 +4,6 @@ import '@brightspace-ui/core/components/html-block/html-block.js';
 import '@brightspace-ui/core/components/icons/icon.js';
 import '@brightspace-ui/core/components/offscreen/offscreen.js';
 import { css, html, LitElement } from 'lit';
-import { bodyCompactStyles } from '@brightspace-ui/core/components/typography/styles.js';
 import { LocalizeQuestions } from '../localize-questions.js';
 import { RtlMixin } from '@brightspace-ui/core/mixins/rtl-mixin.js';
 import { SkeletonMixin } from '@brightspace-ui/core/components/skeleton/skeleton-mixin.js';
@@ -83,9 +82,7 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 						${unsafeHTML(this.questionText)}
 					</d2l-html-block>
 				</div>
-				<div class="d2l-questions-multiple-choice-group">
-					${this.blanks.map((blank, index) => this._renderBlank(blank, index+1))}
-				</div>
+				${this.blanks.map((blank, index) => this._renderBlank(blank, index+1))}
 			`;
 		}
 	}
@@ -113,9 +110,7 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 				<d2l-html-block class="d2l-questions-short-answer-preface">
 					${this.localize('answerForBlank', { blankNumber: index })}
 				</d2l-html-block>
-				<d2l-html-block class="d2l-questions-short-answer-response">
-					${unsafeHTML(blank.responseText)}
-				</d2l-html-block>
+				<d2l-html-block class="d2l-questions-short-answer-response">${blank.responseText}</d2l-html-block>
 				${html`<d2l-icon icon="tier1:${icon}" class="${iconStyle}"></d2l-icon>`}
 				<d2l-html-block class="${bracketTextStyle}" aria-hidden="true"> ${bracketText}</d2l-html-block>
 				<d2l-offscreen>${screenReaderText}</d2l-offscreen>

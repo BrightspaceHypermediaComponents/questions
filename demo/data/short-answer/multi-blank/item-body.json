@@ -1,0 +1,60 @@
+{
+  "class": [
+    "item-body"
+  ],
+  "entities": [
+    {
+      "class": [
+        "richtext"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/prompt"
+      ],
+      "properties": {
+        "text": "What are the names of the 3 Rice Krispie elves?",
+        "html": "<p>What are the names of the 3 Rice Krispie elves</p>"
+      }
+    },
+    {
+      "class": [
+        "text-entry-interaction"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/interaction"
+      ],
+      "href": "./data/short-answer/multi-blank/text-entry-interaction-1.json"
+    },
+    {
+      "class": [
+        "text-entry-interaction"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/interaction"
+      ],
+      "href": "./data/short-answer/multi-blank/text-entry-interaction-2.json"
+    },
+    {
+      "class": [
+        "text-entry-interaction"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/interaction"
+      ],
+      "href": "./data/short-answer/multi-blank/text-entry-interaction-3.json"
+    }
+  ],
+  "links": [
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "#"
+    },
+    {
+      "rel": [
+        "https://questions.api.brightspace.com/rels/question"
+      ],
+      "href": "./data/short-answer/multi-blank/question.json"
+    }
+  ]
+}

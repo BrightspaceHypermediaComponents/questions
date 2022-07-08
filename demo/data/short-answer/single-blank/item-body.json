@@ -1,0 +1,42 @@
+{
+  "class": [
+    "item-body"
+  ],
+  "entities": [
+    {
+      "class": [
+        "richtext"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/prompt"
+      ],
+      "properties": {
+        "text": "Who was the first female astronaut?",
+        "html": "<p>Who was the first <b>female</b> astronaut?</p>"
+      }
+    },
+    {
+      "class": [
+        "text-entry-interaction"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/interaction"
+      ],
+      "href": "./data/short-answer/single-blank/text-entry-interaction.json"
+    }
+  ],
+  "links": [
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "#"
+    },
+    {
+      "rel": [
+        "https://questions.api.brightspace.com/rels/question"
+      ],
+      "href": "./data/short-answer/single-blank/question.json"
+    }
+  ]
+}
