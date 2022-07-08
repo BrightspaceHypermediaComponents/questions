@@ -76,7 +76,6 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 	}
 
 	render() {
-		console.log('render presentational', this.blanks)
 		if (this.blanks !== undefined && !this.skeleton) {
 			return html`
 				<div class="d2l-questions-short-answer-question-text">
@@ -92,7 +91,7 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 	}
 
 	_renderBlank(blank, index) {
-		let icon, bracketText = undefined;
+		let icon, bracketText, screenReaderText = undefined;
 		let iconStyle, bracketTextStyle = '';
 
 		if (blank.correct) {
@@ -100,23 +99,26 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 			iconStyle = 'd2l-questions-short-answer-correct-icon';
 			bracketText = this.localize('correctBlank', { percentage : blank.value} );
 			bracketTextStyle = 'd2l-questions-short-answer-correct-bracket';
+			screenReaderText = this.localize('correctBlankScreenReader', { percentage: blank.value });
 		} else {
 			icon = 'close-large-thick';
 			iconStyle = 'd2l-questions-short-answer-incorrect-icon';
 			bracketText = this.localize('incorrectBlank', { correctAnswerText: blank.correctAnswerText });
 			bracketTextStyle = 'd2l-questions-short-answer-incorrect-bracket';
+			screenReaderText = this.localize('incorrectBlankScreenReader', { correctAnswerText: blank.correctAnswerText });
 		}
 
 		return html`
 			<div class="d2l-questions-short-answer-row">
-				<d2l-html-block class="d2l-questions-short-answer-preface" aria-hidden="true">
+				<d2l-html-block class="d2l-questions-short-answer-preface">
 					${this.localize('answerForBlank', { blankNumber: index })}
 				</d2l-html-block>
-				<d2l-html-block class="d2l-questions-short-answer-response" aria-hidden="true">
+				<d2l-html-block class="d2l-questions-short-answer-response">
 					${unsafeHTML(blank.responseText)}
 				</d2l-html-block>
 				${html`<d2l-icon icon="tier1:${icon}" class="${iconStyle}"></d2l-icon>`}
 				<d2l-html-block class="${bracketTextStyle}" aria-hidden="true"> ${bracketText}</d2l-html-block>
+				<d2l-offscreen>${choice.text}</d2l-offscreen>
 			</div>`;
 	}
 

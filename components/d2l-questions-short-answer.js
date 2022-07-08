@@ -8,13 +8,11 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 
 	static get properties() {
 		return {
-			readonly: { type: Boolean },
 			question: { type: Object },
 			questionResponse: { type: Object },
 			token: { type: Object },
 			_blanks: { type: Array },
-			_questionTextHTML: { type: String },
-			_responses: { type: Array }
+			_questionTextHTML: { type: String }
 		};
 	}
 
@@ -36,33 +34,11 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 	}
 
 	render() {
-		this._blanks = [
-			{
-				correctAnswerText: 'correct response',
-				value: 50,
-				responseText: 'correct response',
-				correct: true
-			},
-			{
-				correctAnswerText: 'question 2',
-				value: 50,
-				responseText: 'incorrect response',
-				correct: false
-			},
-			{
-				correctAnswerText: 'question 3',
-				value: 50,
-				responseText: 'incorrect response 2',
-				correct: false
-			}
-		];
-
 		return html`
 			<d2l-questions-short-answer-presentational
 				?skeleton=${this.skeleton}
 				question-text=${this._questionTextHTML}
 				.blanks=${this._blanks}
-				.responses=${this._responses}
 			>
 			</d2l-questions-short-answer-presentational>`;
 	}
@@ -87,23 +63,23 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 
 	async _loadBlanks() {
 		const candidateResponses = this.questionResponse.entity.getSubEntitiesByClass(Classes.questions.candidateResponse);
+
 		const blanks = await Promise.all(candidateResponses.map(async candidateResponse => {
 			const responseValue = candidateResponse.getSubEntityByClass(Classes.questions.value);
 			const responseDeclarationHref = candidateResponse.getLinkByRel(Rels.Questions.responseDeclaration).href;
 			const responseDeclaration = await this._getEntityFromHref(responseDeclarationHref, false);
 			const mapping = responseDeclaration.entity.getSubEntityByClass(Classes.questions.mapping);
-			const mapEntryHref = mapping.getSubEntityByClass('map-entry').href;
+			const mapEntryHref = mapping.getSubEntityByClass(Classes.questions.mapEntry).href;
 			const mapEntry = await this._getEntityFromHref(mapEntryHref, false);
 
 			return {
+				responseText: responseValue.properties.response,
 				correctAnswerText: mapEntry.entity.properties.key,
 				value: mapEntry.entity.properties.value,
-				responseText: responseValue.properties.response,
 				correct: responseValue.hasClass(Classes.questions.correctResponse)
 			};
 		}));
 	
-		console.log('blanks', blanks)
 		this._blanks = blanks === undefined ? [] : blanks;
 		return;
 	}

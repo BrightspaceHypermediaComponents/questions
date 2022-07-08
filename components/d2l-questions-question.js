@@ -103,7 +103,6 @@ class D2lQuestionsQuestion extends SkeletonMixin((LitElement)) {
 		switch (this._questionType) {
 
 			case Classes.questions.multipleChoice:
-				console.log('MC this._question', this._question.entity)
 				await import('./d2l-questions-multiple-choice.js');
 				return html`
 					<d2l-questions-multiple-choice
@@ -150,21 +149,15 @@ class D2lQuestionsQuestion extends SkeletonMixin((LitElement)) {
 					</d2l-questions-multiple-choice>`;
 				
 			case Classes.questions.shortAnswer:
-				if (this._question.entity.hasClass('ShortAnswer')) {
-					console.log('SA this._question', this._question.entity)
-					console.log('SA this._questionResponse', this._questionResponse.entity)
-					await import('./d2l-questions-short-answer.js');
-					return html`
-						<d2l-questions-short-answer
-							?readonly=${this.readonly}
-							.question=${this._question}
-							.questionResponse=${this._questionResponse}
-							.token=${this.token}>
-						</d2l-questions-short-answer>`;
-				} else {
-					await this._sendQuestionLoaded();
-					throw 'Unknown question type';
-				}
+				await import('./d2l-questions-short-answer.js');
+				return html`
+					<d2l-questions-short-answer
+						?readonly=${this.readonly}
+						?skeleton=${this.skeleton}
+						.question=${this._question}
+						.questionResponse=${this._questionResponse}
+						.token=${this.token}>
+					</d2l-questions-short-answer>`;
 
 			default:
 				await this._sendQuestionLoaded();
