@@ -1,0 +1,25 @@
+{
+  "class": [
+    "text-entry-interaction"
+  ],
+  "links": [
+    {
+      "rel": [
+        "https://questions.api.brightspace.com/rels/item-body"
+      ],
+      "href": "./data/short-answer/multi-blank/item-body.json"
+    },
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "#"
+    },
+    {
+      "rel": [
+        "https://questions.api.brightspace.com/rels/response-declaration"
+      ],
+      "href": "./data/short-answer/multi-blank/response-declaration-2.json"
+    }
+  ]
+}

@@ -62,31 +62,32 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 	}
 
 	async _loadBlanks() {
-		const candidateResponses = this.questionResponse.entity.getSubEntitiesByClass(Classes.questions.candidateResponse);
+		if (this.questionResponse) {
+			const candidateResponses = this.questionResponse.entity.getSubEntitiesByClass('candidate-response');
 
-		const blanks = await Promise.all(candidateResponses.map(async candidateResponse => {
-			const responseValue = candidateResponse.getSubEntityByClass(Classes.questions.value);
-			const responseDeclarationHref = candidateResponse.getLinkByRel(Rels.Questions.responseDeclaration).href;
-			const responseDeclaration = await this._getEntityFromHref(responseDeclarationHref, false);
-			const mapping = responseDeclaration.entity.getSubEntityByClass(Classes.questions.mapping);
-			const mapEntryHref = mapping.getSubEntityByClass(Classes.questions.mapEntry).href;
-			const mapEntry = await this._getEntityFromHref(mapEntryHref, false);
+			const blanks = await Promise.all(candidateResponses.map(async candidateResponse => {
+				const responseValue = candidateResponse.getSubEntityByClass('value');
+				const responseDeclarationHref = candidateResponse.getLinkByRel('https://questions.api.brightspace.com/rels/response-declaration').href;
+				const responseDeclaration = await this._getEntityFromHref(responseDeclarationHref, false);
+				const mapping = responseDeclaration.entity.getSubEntityByClass('mapping');
+				const mapEntryHref = mapping.getSubEntityByClass('map-entry').href;
+				const mapEntry = await this._getEntityFromHref(mapEntryHref, false);
 
-			return {
-				responseText: responseValue.properties.response,
-				correctAnswerText: mapEntry.entity.properties.key,
-				value: mapEntry.entity.properties.value,
-				correct: responseValue.hasClass(Classes.questions.correctResponse)
-			};
-		}));
-	
+				return {
+					responseText: responseValue.properties.response,
+					correctAnswerText: mapEntry.entity.properties.key,
+					value: mapEntry.entity.properties.value,
+					correct: responseValue.hasClass('correct-response')
+				};
+			}));
+		}
 		this._blanks = blanks === undefined ? [] : blanks;
 		return;
 	}
 
 	async _loadQuestionData() {
 		try {
-			const questionTextEntity = this.question.entity.getSubEntityByClass(Classes.questions.questionText);
+			const questionTextEntity = this.question.entity.getSubEntityByClass('questionText');
 			this._questionTextHTML = questionTextEntity.properties.html;
 		} catch (err) {
 			console.error(err);

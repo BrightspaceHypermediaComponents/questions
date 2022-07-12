@@ -1,0 +1,27 @@
+{
+  "class": [
+    "map-entry"
+  ],
+  "properties": {
+    "key": "Pop",
+    "value": 10,
+    "evaluationType": "CaseInsensitive"
+  },
+  "links": [
+    {
+      "rel": [
+        "up"
+      ],
+      "href": "./data/short-answer/multi-blank/response-declaration-3.json"
+    },
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "#"
+    }
+  ],
+  "rel": [
+    "item"
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "class": [
+    "question-response"
+  ],
+  "properties": {
+    "questionNumber": 5,
+    "savedTime": "2013-12-16T01:06:41.807Z"
+  },
+  "entities": [
+    {
+      "class": [
+        "candidate-response"
+      ],
+      "rel": [
+        "item"
+      ],
+      "properties": {
+        "baseType": "string",
+        "cardinality": "single"
+      },
+      "entities": [
+        {
+          "class": [
+            "value",
+            "correct-response"
+          ],
+          "rel": [
+            "item"
+          ],
+          "properties": {
+            "response": "Snap"
+          }
+        }
+      ],
+      "links": [
+        {
+          "rel": [
+            "https://questions.api.brightspace.com/rels/interaction"
+          ],
+          "href": "./data/short-answer/multi-blank/text-entry-interaction-1.json"
+        },
+        {
+          "rel": [
+            "https://questions.api.brightspace.com/rels/response-declaration"
+          ],
+          "href": "./data/short-answer/multi-blank/response-declaration-1.json"
+        }
+      ]
+    },
+    {
+      "class": [
+        "candidate-response"
+      ],
+      "rel": [
+        "item"
+      ],
+      "properties": {
+        "baseType": "string",
+        "cardinality": "single"
+      },
+      "entities": [
+        {
+          "class": [
+            "value",
+            "correct-response"
+          ],
+          "rel": [
+            "item"
+          ],
+          "properties": {
+            "response": "Crackle"
+          }
+        }
+      ],
+      "links": [
+        {
+          "rel": [
+            "https://questions.api.brightspace.com/rels/interaction"
+          ],
+          "href": "./data/short-answer/multi-blank/text-entry-interaction-2.json"
+        },
+        {
+          "rel": [
+            "https://questions.api.brightspace.com/rels/response-declaration"
+          ],
+          "href": "./data/short-answer/multi-blank/response-declaration-2.json"
+        }
+      ]
+    },
+    {
+      "class": [
+        "candidate-response"
+      ],
+      "rel": [
+        "item"
+      ],
+      "properties": {
+        "baseType": "string",
+        "cardinality": "single"
+      },
+      "entities": [
+        {
+          "class": [
+            "value",
+            "correct-response"
+          ],
+          "rel": [
+            "item"
+          ],
+          "properties": {
+            "response": "Pop"
+          }
+        }
+      ],
+      "links": [
+        {
+          "rel": [
+            "https://questions.api.brightspace.com/rels/interaction"
+          ],
+          "href": "./data/short-answer/multi-blank/text-entry-interaction-3.json"
+        },
+        {
+          "rel": [
+            "https://questions.api.brightspace.com/rels/response-declaration"
+          ],
+          "href": "./data/short-answer/multi-blank/response-declaration-3.json"
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "#"
+    }
+  ]
+}

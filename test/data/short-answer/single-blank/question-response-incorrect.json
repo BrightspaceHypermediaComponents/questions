@@ -1,0 +1,58 @@
+{
+  "class": [
+    "question-response"
+  ],
+  "properties": {
+    "questionNumber": 5,
+    "savedTime": "2013-12-16T01:06:41.807Z"
+  },
+  "entities": [
+    {
+      "class": [
+        "candidate-response"
+      ],
+      "rel": [
+        "item"
+      ],
+      "properties": {
+        "baseType": "string",
+        "cardinality": "single"
+      },
+      "entities": [
+        {
+          "class": [
+            "value"
+          ],
+          "rel": [
+            "item"
+          ],
+          "properties": {
+            "response": "Dr. Sally K. Ride"
+          }
+        }
+      ],
+      "links": [
+        {
+          "rel": [
+            "https://questions.api.brightspace.com/rels/interaction"
+          ],
+          "href": "./data/short-answer/single-blank/text-entry-interaction.json"
+        },
+        {
+          "rel": [
+            "https://questions.api.brightspace.com/rels/response-declaration"
+          ],
+          "href": "./data/short-answer/single-blank/response-declaration.json"
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "#"
+    }
+  ]
+}
