@@ -100,7 +100,6 @@ class D2lQuestionsQuestion extends SkeletonMixin((LitElement)) {
 	}
 
 	async _renderType() {
-		console.log('this._questionType', this._questionType)
 		switch (this._questionType) {
 
 			case Classes.questions.multipleChoice:

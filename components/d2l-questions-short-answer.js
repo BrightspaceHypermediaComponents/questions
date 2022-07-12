@@ -62,7 +62,7 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 	}
 
 	async _loadBlanks() {
-		if (this.questionResponse) {
+		if (this.questionResponse && this.questionResponse.entity) {
 			const candidateResponses = this.questionResponse.entity.getSubEntitiesByClass('candidate-response');
 
 			const blanks = await Promise.all(candidateResponses.map(async candidateResponse => {
@@ -80,8 +80,10 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 					correct: responseValue.hasClass('correct-response')
 				};
 			}));
+
+			this._blanks = blanks === undefined ? [] : blanks;
 		}
-		this._blanks = blanks === undefined ? [] : blanks;
+
 		return;
 	}
 

@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@brightspace-ui/core": "^2.18",
-    "d2l-hypermedia-constants": "^6.60.0",
+    "d2l-hypermedia-constants": "^6.72.0",
     "d2l-polymer-siren-behaviors": "^1",
     "lit": "^2"
   }

@@ -94,9 +94,9 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 		if (blank.correct) {
 			icon = 'check';
 			iconStyle = 'd2l-questions-short-answer-correct-icon';
-			bracketText = this.localize('correctBlank', { percentage : blank.value} );
+			bracketText = this.localize('correctBlank', { percentage: Math.round(blank.value * 100) / 100 });
 			bracketTextStyle = 'd2l-questions-short-answer-correct-bracket';
-			screenReaderText = this.localize('correctBlankScreenReader', { percentage: blank.value });
+			screenReaderText = this.localize('correctBlankScreenReader', { percentage: Math.round(blank.value * 100) / 100 });
 		} else {
 			icon = 'close-large-thick';
 			iconStyle = 'd2l-questions-short-answer-incorrect-icon';
@@ -118,4 +118,5 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 	}
 
 }
+
 customElements.define('d2l-questions-short-answer-presentational', D2lQuestionsShortAnswerPresentational);
