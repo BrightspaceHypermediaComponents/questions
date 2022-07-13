@@ -17,10 +17,8 @@
 		<script type="module">
 			import '@brightspace-ui/core/components/typography/typography.js';
 			import '../components/d2l-questions-short-answer-presentational.js';
-			import { blanksUnanswered, blankCorrect, blankIncorrect, blanksCorrect, blanksIncorrect } from './d2l-questions-short-answer-presentational-data.js';
+			import { blankUnanswered, blankCorrect, blankIncorrect, blanksCorrect, blanksIncorrect } from './d2l-questions-short-answer-presentational-data.js';
 
-			const answered = document.getElementById('answered');
-			answered.blanks = blankCorrect;
 			const unanswered = document.getElementById('unanswered');
 			unanswered.blanks = blanksUnanswered;
 
@@ -37,34 +35,29 @@
 		</script>
 	</head>
 	<body class="d2l-typography">
-		<div id="short-answer">
-			<d2l-questions-short-answer-presentational id="answered"
-				question-text="<p>Mark the item that is <i>blue.</i></p>">
-			</d2l-questions-short-answer-presentational>
-		</div>
 		<div id="short-answer-unanswered">
 			<d2l-questions-short-answer-presentational id="unanswered"
-				question-text="<p>Mark the item that is <i>blue.</i></p>">
+				question-text="<p>Who was the first <b>female</b> astronaut?</p>">
 			</d2l-questions-short-answer-presentational>
 		</div>
 		<div id="short-answer-single-blank-correct">
 			<d2l-questions-short-answer-presentational id="single-correct"
-				question-text="<p>Mark the item that is <i>blue.</i></p>">
+				question-text="<p>Who was the first <b>female</b> astronaut?</p>">
 			</d2l-questions-short-answer-presentational>
 		</div>
 		<div id="short-answer-single-blank-incorrect">
 			<d2l-questions-short-answer-presentational  id="single-incorrect"
-				question-text="<p>Mark the item that is <i>blue.</i></p>">
+				question-text="<p>Who was the first <b>female</b> astronaut?</p>">
 			</d2l-questions-short-answer-presentational>
 		</div>
 		<div id="short-answer-multi-blank-correct">
 			<d2l-questions-short-answer-presentational id="multi-correct"
-				question-text="<p>Mark the item that is <i>blue.</i></p>">
+				question-text="What are the names of the 3 Rice Krispie elves?">
 			</d2l-questions-short-answer-presentational>
 		</div>
 		<div id="short-answer-multi-blank-incorrect" id="multi-incorrect">
 			<d2l-questions-short-answer-presentational
-				question-text="<p>Mark the item that is <i>blue.</i></p>">
+				question-text="What are the names of the 3 Rice Krispie elves?">
 			</d2l-questions-short-answer-presentational>
 		</div>
 	</body>

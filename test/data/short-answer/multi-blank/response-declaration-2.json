@@ -22,7 +22,7 @@
           "rel": [
             "item"
           ],
-          "href": "./data/short-answer/multi-blank/map-entry-2.json"
+          "href": "./data/short-answer/multi-blank/map-entry-1.json"
         }
       ]
     }
@@ -38,7 +38,7 @@
       "rel": [
         "https://questions.api.brightspace.com/rels/interaction"
       ],
-      "href": "./data/short-answer/multi-blank/text-entry-interaction-2.json"
+      "href": "./data/short-answer/multi-blank/text-entry-interaction-1.json"
     },
     {
       "rel": [

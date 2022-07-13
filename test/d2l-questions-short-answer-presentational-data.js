@@ -1,8 +1,8 @@
-export const blanksUnanswered = [
+export const blankUnanswered = [
 	{
 		"responseText": null,
 		"correctAnswerText": "correct answer",
-		"value": 10,
+		"value": 100,
 		"correct": false
 
 	}
@@ -10,52 +10,60 @@ export const blanksUnanswered = [
 
 export const blankCorrect = [
 	{
-		"responseText": "correct answer",
-		"correctAnswerText": "correct answer",
-		"value": 10,
+		"responseText": "Dr. Sally K. Ride",
+		"correctAnswerText": "Dr. Sally K. Ride",
+		"value": 100,
 		"correct": true
-
 	}
 ];
 
 export const blankIncorrect = [
 	{
-		"responseText": "incorrect answer",
-		"correctAnswerText": "correct answer",
-		"value": 10,
+		"responseText": "wrong",
+		"correctAnswerText": "Dr. Sally K. Ride",
+		"value": 100,
 		"correct": false
-
 	}
 ];
 
 export const blanksCorrect = [
 	{
-		"responseText": "correct answer",
-		"correctAnswerText": "correct answer",
-		"value": 10,
+		"responseText": "Snap",
+		"correctAnswerText": "Snap",
+		"value": 33.333333333,
 		"correct": true
-
 	},
 	{
-		"responseText": "green",
-		"correctAnswerText": "green",
-		"value": 0,
+		"responseText": "Crackle",
+		"correctAnswerText": "Crackle",
+		"value": 33.333333333,
+		"correct": true
+	},
+	{
+		"responseText": "pop",
+		"correctAnswerText": "Pop",
+		"value": 33.333333333,
 		"correct": true
 	}
 ];
 
 export const blanksIncorrect = [
 	{
-		"responseText": "correct answer",
-		"correctAnswerText": "correct answer",
-		"value": 10,
+		"responseText": "snap",
+		"correctAnswerText": "Snap",
+		"value": 33.333333333,
 		"correct": true
-
 	},
 	{
-		"responseText": "green",
-		"correctAnswerText": "blue",
-		"value": 0,
+		"responseText": "krinkle",
+		"correctAnswerText": "Crackle",
+		"value": 33.333333333,
 		"correct": false
+	},
+	{
+		"responseText": "pop",
+		"correctAnswerText": "Pop",
+		"value": 33.333333333,
+		"correct": true
 	}
 ];

@@ -1,7 +1,8 @@
 /* eslint quotes: 0 */
 
 export default {
-	"answerForBlank": "Answer for blank #{blankNumber}:",
+	"answerForBlank": "Answer:",
+	"answerForBlanks": "Answer for blank #{blankNumber}:",
 	"GB": " GB",
 	"MB": " MB",
 	"answerKey": "Answer Key",

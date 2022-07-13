@@ -46,6 +46,7 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 			.d2l-questions-short-answer-row d2l-icon {
 				flex: none;
 				margin-left: 0.5rem;
+				margin-top: 0.15rem;
 			}
 			:host([dir="rtl"]) .d2l-questions-short-answer-row d2l-icon {
 				margin-right: 0.5rem;
@@ -75,6 +76,7 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 	}
 
 	render() {
+		console.log(this.blanks);
 		if (this.blanks !== undefined && !this.skeleton) {
 			return html`
 				<div class="d2l-questions-short-answer-question-text">
@@ -108,11 +110,11 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 		return html`
 			<div class="d2l-questions-short-answer-row">
 				<d2l-html-block class="d2l-questions-short-answer-preface">
-					${this.localize('answerForBlank', { blankNumber: index })}
+					${this.blanks.length === 1 ? this.localize('answerForBlank') : this.localize('answerForBlanks', { blankNumber: index })}
 				</d2l-html-block>
 				<d2l-html-block class="d2l-questions-short-answer-response">${blank.responseText}</d2l-html-block>
 				${html`<d2l-icon icon="tier1:${icon}" class="${iconStyle}"></d2l-icon>`}
-				<d2l-html-block class="${bracketTextStyle}" aria-hidden="true"> ${bracketText}</d2l-html-block>
+				<d2l-html-block class="${bracketTextStyle}" aria-hidden="true">${bracketText}</d2l-html-block>
 				<d2l-offscreen>${screenReaderText}</d2l-offscreen>
 			</div>`;
 	}

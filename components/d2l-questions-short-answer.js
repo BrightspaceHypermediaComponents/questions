@@ -69,6 +69,7 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 				const responseValue = candidateResponse.getSubEntityByClass('value');
 				const responseDeclarationHref = candidateResponse.getLinkByRel('https://questions.api.brightspace.com/rels/response-declaration').href;
 				const responseDeclaration = await this._getEntityFromHref(responseDeclarationHref, false);
+				console.log('responseDeclaration', responseDeclaration)
 				const mapping = responseDeclaration.entity.getSubEntityByClass('mapping');
 				const mapEntryHref = mapping.getSubEntityByClass('map-entry').href;
 				const mapEntry = await this._getEntityFromHref(mapEntryHref, false);

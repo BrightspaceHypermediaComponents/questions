@@ -21,10 +21,6 @@ describe('d2l-questions-short-answer', () => {
 	after(async() => await browser.close());
 
 	describe('short-answer', () => {
-		it('default', async function() {
-			const rect = await visualDiff.getRect(page, '#short-answer');
-			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
-		});
 
 		it('unanswered', async function() {
 			const rect = await visualDiff.getRect(page, '#short-answer-unanswered');

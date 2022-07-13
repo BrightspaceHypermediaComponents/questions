@@ -21,13 +21,13 @@
       "entities": [
         {
           "class": [
-            "value",
+            "value"
           ],
           "rel": [
             "item"
           ],
           "properties": {
-            "response": "Grumpy"
+            "response": "Snoop"
           }
         }
       ],
@@ -60,13 +60,13 @@
       "entities": [
         {
           "class": [
-            "value",
+            "value"
           ],
           "rel": [
             "item"
           ],
           "properties": {
-            "response": "Sleepy"
+            "response": "Krinkle"
           }
         }
       ],
@@ -99,14 +99,13 @@
       "entities": [
         {
           "class": [
-            "value",
-            "correct-response"
+            "value"
           ],
           "rel": [
             "item"
           ],
           "properties": {
-            "response": "Pop"
+            "response": "Plop"
           }
         }
       ],
