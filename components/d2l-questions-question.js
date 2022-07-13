@@ -93,7 +93,7 @@ class D2lQuestionsQuestion extends SkeletonMixin((LitElement)) {
 				this._questionType = Classes.questions.longAnswer;
 			} else if (this._question.entity.hasClass(Classes.questions.trueFalse)) {
 				this._questionType = Classes.questions.trueFalse;
-			} else if (this._question.entity.hasClass('ShortAnswer')) {
+			} else if (this._question.entity.hasClass(Classes.questions.shortAnswer)) {
 				this._questionType = 'ShortAnswer';
 			}
 		}
@@ -147,8 +147,8 @@ class D2lQuestionsQuestion extends SkeletonMixin((LitElement)) {
 						.questionResponse=${this._questionResponse}
 						.token=${this.token}>
 					</d2l-questions-multiple-choice>`;
-				
-			case 'ShortAnswer':
+
+			case Classes.questions.shortAnswer:
 				await import('./d2l-questions-short-answer.js');
 				return html`
 					<d2l-questions-short-answer

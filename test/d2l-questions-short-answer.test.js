@@ -30,13 +30,56 @@ describe('d2l-questions-multiple-choice', () => {
     const CORRECT_TEXT_1 = 'Red';
     const CORRECT_TEXT_2 = 'Orange';
 
-    const QUESTION_RESPONSE_ENTITY = {
+    const MAP_ENTRY_ENTITY_1 = {
+        href: MAP_ENTRY_HREF_1,
         entity: {
-            getSubEntitiesByClass: function (entityClass) {
-                return entityClass === Classes.questions.candidateResponse ? CANDIDATE_RESPONSE_ENTITIES : undefined;
+            properties: {
+                key: CORRECT_TEXT_1,
+                value: 50
+            },
+        }
+    };
+    const MAP_ENTRY_ENTITY_2 = {
+        href: MAP_ENTRY_HREF_2,
+        entity: {
+            properties: {
+                key: CORRECT_TEXT_2,
+                value: 50
+            },
+        }
+    };
+
+    const RESPONSE_DECLARATION_ENTITY_1 = {
+        entity: {
+            getSubEntityByClass: function (entityClass) {
+                return entityClass === Classes.questions.mapping ? {
+                    entity: {
+                        getSubEntityByClass: function (entityClass) {
+                            return entityClass === Classes.questions.mapEntry ? {
+                                MAP_ENTRY_ENTITY_1
+                            } : undefined;
+                        }
+                    }
+                } : undefined;
             }
         }
     };
+    const RESPONSE_DECLARATION_ENTITY_2 = {
+        entity: {
+            getSubEntityByClass: function (entityClass) {
+                return entityClass === Classes.questions.mapping ? {
+                    entity: {
+                        getSubEntityByClass: function (entityClass) {
+                            return entityClass === Classes.questions.mapEntry ? {
+                                MAP_ENTRY_ENTITY_2
+                            } : undefined;
+                        }
+                    }
+                } : undefined;
+            }
+        }
+    };
+
     const CANDIDATE_RESPONSE_ENTITIES = {
         entities: [
             {
@@ -71,54 +114,15 @@ describe('d2l-questions-multiple-choice', () => {
             }
         ]
     };
-    const RESPONSE_DECLARATION_ENTITY_1 = {
+
+    const QUESTION_RESPONSE_ENTITY = {
         entity: {
-            getSubEntityByClass: function (entityClass) {
-                return entityClass === Classes.questions.mapping ? {
-                    entity: {
-                        getSubEntityByClass: function (entityClass) {
-                            return entityClass === Classes.questions.mapEntry ? {
-                                MAP_ENTRY_ENTITY_1
-                            } : undefined;
-                        }
-                    }
-                } : undefined;
+            getSubEntitiesByClass: function (entityClass) {
+                return entityClass === Classes.questions.candidateResponse ? CANDIDATE_RESPONSE_ENTITIES : undefined;
             }
         }
     };
-    const RESPONSE_DECLARATION_ENTITY_2 = {
-        entity: {
-            getSubEntityByClass: function (entityClass) {
-                return entityClass === Classes.questions.mapping ? {
-                    entity: {
-                        getSubEntityByClass: function (entityClass) {
-                            return entityClass === Classes.questions.mapEntry ? {
-                                MAP_ENTRY_ENTITY_2
-                            } : undefined;
-                        }
-                    }
-                } : undefined;
-            }
-        }
-    };
-    const MAP_ENTRY_ENTITY_1 = {
-        href: MAP_ENTRY_HREF_1,
-        entity: {
-            properties: {
-                key: CORRECT_TEXT_1,
-                value: 50
-            },
-        }
-    };
-    const MAP_ENTRY_ENTITY_2 = {
-        href: MAP_ENTRY_HREF_2,
-        entity: {
-            properties: {
-                key: CORRECT_TEXT_2,
-                value: 50
-            },
-        }
-    };
+
 	const BLANKS_RESPONSE = [
 		{
             responseText: CORRECT_RESPONSE_TEXT,

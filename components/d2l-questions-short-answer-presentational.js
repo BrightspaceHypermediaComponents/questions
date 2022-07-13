@@ -71,12 +71,7 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 		`];
 	}
 
-	constructor() {
-		super();
-	}
-
 	render() {
-		console.log(this.blanks);
 		if (this.blanks !== undefined && !this.skeleton) {
 			return html`
 				<div class="d2l-questions-short-answer-question-text">
@@ -84,7 +79,7 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 						${unsafeHTML(this.questionText)}
 					</d2l-html-block>
 				</div>
-				${this.blanks.map((blank, index) => this._renderBlank(blank, index+1))}
+				${this.blanks.map((blank, index) => this._renderBlank(blank, index + 1))}
 			`;
 		}
 	}

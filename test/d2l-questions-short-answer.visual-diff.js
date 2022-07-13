@@ -37,12 +37,12 @@ describe('d2l-questions-short-answer', () => {
 			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
 		});
 
-		it('multi-blank-correct', async function () {
+		it('multi-blank-correct', async function() {
 			const rect = await visualDiff.getRect(page, '#short-answer-multi-blank-correct');
 			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
 		});
 
-		it('multi-blank-incorrect', async function () {
+		it('multi-blank-incorrect', async function() {
 			const rect = await visualDiff.getRect(page, '#short-answer-multi-blank-incorrect');
 			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
 		});

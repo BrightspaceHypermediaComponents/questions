@@ -17,10 +17,10 @@
 		<script type="module">
 			import '@brightspace-ui/core/components/typography/typography.js';
 			import '../components/d2l-questions-short-answer-presentational.js';
-			import { blankUnanswered, blankCorrect, blankIncorrect, blanksCorrect, blanksIncorrect } from './d2l-questions-short-answer-presentational-data.js';
+			import { blankCorrect, blankIncorrect, blanksCorrect, blanksIncorrect, blankUnanswered } from './d2l-questions-short-answer-presentational-data.js';
 
 			const unanswered = document.getElementById('unanswered');
-			unanswered.blanks = blanksUnanswered;
+			unanswered.blanks = blankUnanswered;
 
 			const singleCorrect = document.getElementById('single-correct');
 			singleCorrect.blanks = blankCorrect;

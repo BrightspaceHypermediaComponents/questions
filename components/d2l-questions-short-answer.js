@@ -1,8 +1,8 @@
 import './d2l-questions-short-answer-presentational.js';
 import 'd2l-polymer-siren-behaviors/store/entity-store.js';
+import { Classes, Rels } from 'd2l-hypermedia-constants';
 import { css, html, LitElement } from 'lit';
 import { SkeletonMixin } from '@brightspace-ui/core/components/skeleton/skeleton-mixin.js';
-import { Classes, Rels } from 'd2l-hypermedia-constants';
 
 class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 
@@ -63,22 +63,21 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 
 	async _loadBlanks() {
 		if (this.questionResponse && this.questionResponse.entity) {
-			const candidateResponses = this.questionResponse.entity.getSubEntitiesByClass('candidate-response');
+			const candidateResponses = this.questionResponse.entity.getSubEntitiesByClass(Classes.questions.candidateResponse);
 
 			const blanks = await Promise.all(candidateResponses.map(async candidateResponse => {
-				const responseValue = candidateResponse.getSubEntityByClass('value');
-				const responseDeclarationHref = candidateResponse.getLinkByRel('https://questions.api.brightspace.com/rels/response-declaration').href;
+				const responseValue = candidateResponse.getSubEntityByClass(Classes.questions.value);
+				const responseDeclarationHref = candidateResponse.getLinkByRel(Rels.Questions.responseDeclaration).href;
 				const responseDeclaration = await this._getEntityFromHref(responseDeclarationHref, false);
-				console.log('responseDeclaration', responseDeclaration)
-				const mapping = responseDeclaration.entity.getSubEntityByClass('mapping');
-				const mapEntryHref = mapping.getSubEntityByClass('map-entry').href;
+				const mapping = responseDeclaration.entity.getSubEntityByClass(Classes.questions.mapping);
+				const mapEntryHref = mapping.getSubEntityByClass(Classes.questions.mapEntry).href;
 				const mapEntry = await this._getEntityFromHref(mapEntryHref, false);
 
 				return {
 					responseText: responseValue.properties.response,
 					correctAnswerText: mapEntry.entity.properties.key,
 					value: mapEntry.entity.properties.value,
-					correct: responseValue.hasClass('correct-response')
+					correct: responseValue.hasClass(Classes.questions.correctResponse)
 				};
 			}));
 
@@ -90,7 +89,7 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 
 	async _loadQuestionData() {
 		try {
-			const questionTextEntity = this.question.entity.getSubEntityByClass('questionText');
+			const questionTextEntity = this.question.entity.getSubEntityByClass(Classes.questions.questionText);
 			this._questionTextHTML = questionTextEntity.properties.html;
 		} catch (err) {
 			console.error(err);
@@ -107,5 +106,3 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 
 }
 customElements.define('d2l-questions-short-answer', D2lQuestionsShortAnswer);
-
-
