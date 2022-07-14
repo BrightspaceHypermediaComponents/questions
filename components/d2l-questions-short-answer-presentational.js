@@ -49,8 +49,8 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 				margin-top: 0.15rem;
 			}
 			:host([dir="rtl"]) .d2l-questions-short-answer-row d2l-icon {
-				margin-right: 0.5rem;
 				margin-left: 0;
+				margin-right: 0.5rem;
 			}
 			.d2l-questions-short-answer-incorrect-icon {
 				color: var(--d2l-color-cinnabar);
@@ -59,13 +59,13 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 				transform: scaleX(-1);
 			}
 			.d2l-questions-short-answer-incorrect-bracket {
-				font-weight: 700;
 				color: var(--d2l-color-citrine-minus-1);
+				font-weight: 700;
 				margin-left: 0.5rem;
 			}
 			.d2l-questions-short-answer-correct-bracket {
-				font-weight: 700;
 				color: var(--d2l-color-celestine);
+				font-weight: 700;
 				margin-left: 0.5rem;
 			}
 		`];

@@ -30,7 +30,7 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 
 	constructor() {
 		super();
-		this._choices = [];
+		this._blanks = [];
 	}
 
 	render() {
@@ -60,7 +60,7 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 	async _getEntityFromHref(targetHref, bypassCache) {
 		return await window.D2L.Siren.EntityStore.fetch(targetHref, this.token, bypassCache);
 	}
-
+	/* eslint-disable */
 	async _loadBlanks() {
 		if (this.questionResponse && this.questionResponse.entity) {
 			const candidateResponses = this.questionResponse.entity.getSubEntitiesByClass(Classes.questions.candidateResponse);
@@ -72,7 +72,7 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 				const mapping = responseDeclaration.entity.getSubEntityByClass(Classes.questions.mapping);
 				const mapEntryHref = mapping.getSubEntityByClass(Classes.questions.mapEntry).href;
 				const mapEntry = await this._getEntityFromHref(mapEntryHref, false);
-
+				console.log('HEYO')
 				return {
 					responseText: responseValue.properties.response,
 					correctAnswerText: mapEntry.entity.properties.key,
@@ -86,6 +86,7 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 
 		return;
 	}
+	/* eslint-disable */
 
 	async _loadQuestionData() {
 		try {
