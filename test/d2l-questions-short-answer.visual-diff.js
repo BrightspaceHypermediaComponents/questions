@@ -22,6 +22,11 @@ describe('d2l-questions-short-answer', () => {
 
 	describe('short-answer', () => {
 
+		it('skeleton', async function () {
+			const rect = await visualDiff.getRect(page, '#short-answer-skeleton');
+			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
+		});
+
 		it('unanswered', async function() {
 			const rect = await visualDiff.getRect(page, '#short-answer-unanswered');
 			await visualDiff.screenshotAndCompare(page, this.test.fullTitle(), { clip: rect });
