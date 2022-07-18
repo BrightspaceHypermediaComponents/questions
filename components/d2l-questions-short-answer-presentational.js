@@ -30,6 +30,11 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 			:host([hidden]) {
 				display: none;
 			}
+			:host([skeleton]) .d2l-questions-short-answer-question-text-skeleton {
+				height: 20px;
+				margin-bottom: 28px;
+				max-width: 603px;
+			}
 			.d2l-questions-short-answer-question-text {
 				padding-bottom: 1rem;
 			}
@@ -42,6 +47,14 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 			.d2l-questions-short-answer-preface {
 				color: var(--d2l-color-galena);
 				margin-right: 0.5rem;
+			}
+			:host([skeleton]) .d2l-questions-short-answer-preface {
+				height: 14px;
+				width: 150px;
+			}
+			:host([skeleton]) .d2l-questions-short-answer-response {
+				height: 14px;
+				width: 218px;
 			}
 			.d2l-questions-short-answer-row d2l-icon {
 				flex: none;
@@ -81,6 +94,8 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 				</div>
 				${this.blanks.map((blank, index) => this._renderBlank(blank, index + 1))}
 			`;
+		} else {
+			return this._renderShortAnswerSkeleton();
 		}
 	}
 
@@ -112,6 +127,16 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 				<d2l-html-block class="${bracketTextStyle}" aria-hidden="true">${bracketText}</d2l-html-block>
 				<d2l-offscreen>${screenReaderText}</d2l-offscreen>
 			</div>`;
+	}
+
+	_renderShortAnswerSkeleton() {
+		return html`
+			<div class="d2l-skeletize d2l-questions-short-answer-question-text-skeleton"></div>
+			<div class="d2l-questions-short-answer-row">
+				<d2l-html-block class="d2l-skeletize d2l-questions-short-answer-preface"></d2l-html-block>
+				<d2l-html-block class="d2l-skeletize d2l-questions-short-answer-response"></d2l-html-block>
+			</div>
+		`;
 	}
 
 }
