@@ -66,16 +66,16 @@ class D2lQuestionsShortAnswer extends SkeletonMixin(LitElement) {
 			const candidateResponses = this.questionResponse.entity.getSubEntitiesByClass(Classes.questions.candidateResponse);
 
 			const blanks = await Promise.all(candidateResponses.map(async candidateResponse => {
-				const responseValue = candidateResponse.getSubEntityByClass(Classes.questions.value);
-				const responseDeclarationHref = candidateResponse.getLinkByRel(Rels.Questions.responseDeclaration).href;
+				const responseValue = candidateResponse?.getSubEntityByClass(Classes.questions.value);
+				const responseDeclarationHref = candidateResponse?.getLinkByRel(Rels.Questions.responseDeclaration)?.href;
 				const responseDeclaration = await this._getEntityFromHref(responseDeclarationHref, false);
-				const mapping = responseDeclaration.entity.getSubEntityByClass(Classes.questions.mapping);
-				const mapEntryHref = mapping.getSubEntityByClass(Classes.questions.mapEntry).href;
+				const mapping = responseDeclaration?.entity?.getSubEntityByClass(Classes.questions.mapping);
+				const mapEntryHref = mapping?.getSubEntityByClass(Classes.questions.mapEntry).href;
 				const mapEntry = await this._getEntityFromHref(mapEntryHref, false);
 				return {
-					responseText: responseValue.properties.response,
-					correctAnswerText: mapEntry.entity.properties.key,
-					value: mapEntry.entity.properties.value,
+					responseText: responseValue?.properties.response,
+					correctAnswerText: mapEntry?.entity.properties.key,
+					value: mapEntry?.entity.properties.value,
 					correct: responseValue.hasClass(Classes.questions.correctResponse)
 				};
 			}));

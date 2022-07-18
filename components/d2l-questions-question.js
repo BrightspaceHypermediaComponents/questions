@@ -94,7 +94,7 @@ class D2lQuestionsQuestion extends SkeletonMixin((LitElement)) {
 			} else if (this._question.entity.hasClass(Classes.questions.trueFalse)) {
 				this._questionType = Classes.questions.trueFalse;
 			} else if (this._question.entity.hasClass(Classes.questions.shortAnswer)) {
-				this._questionType = 'ShortAnswer';
+				this._questionType = Classes.questions.shortAnswer;
 			}
 		}
 	}
