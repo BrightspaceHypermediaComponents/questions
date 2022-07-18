@@ -48,6 +48,10 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 				color: var(--d2l-color-galena);
 				margin-right: 0.5rem;
 			}
+			:host([dir="rtl"]) .d2l-questions-short-answer-preface {
+				margin-left: 0.5rem;
+				margin-right: 0;
+			}
 			:host([skeleton]) .d2l-questions-short-answer-preface {
 				height: 14px;
 				width: 150px;
@@ -80,6 +84,11 @@ class D2lQuestionsShortAnswerPresentational extends SkeletonMixin(RtlMixin(Local
 				color: var(--d2l-color-celestine);
 				font-weight: 700;
 				margin-left: 0.5rem;
+			}
+			:host([dir="rtl"]) .d2l-questions-short-answer-incorrect-bracket,
+			:host([dir="rtl"]) .d2l-questions-short-answer-correct-bracket {
+				margin-left: 0;
+				margin-right: 0.5rem;
 			}
 		`];
 	}
