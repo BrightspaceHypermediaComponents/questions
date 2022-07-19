@@ -1,0 +1,27 @@
+{
+  "class": [
+    "map-entry"
+  ],
+  "properties": {
+    "key": "Crackle",
+    "value": 33.333333,
+    "evaluationType": "CaseInsensitive"
+  },
+  "links": [
+    {
+      "rel": [
+        "up"
+      ],
+      "href": "./data/short-answer/multi-blank/response-declaration-2.json"
+    },
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "#"
+    }
+  ],
+  "rel": [
+    "item"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "class": [
+    "response-declaration"
+  ],
+  "properties": {
+    "cardinality": "single",
+    "baseType": "string"
+  },
+  "entities": [
+    {
+      "class": [
+        "mapping"
+      ],
+      "rel": [
+        "item"
+      ],
+      "entities": [
+        {
+          "class": [
+            "map-entry"
+          ],
+          "rel": [
+            "item"
+          ],
+          "href": "./data/short-answer/multi-blank/map-entry-2.json"
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "rel": [
+        "https://questions.api.brightspace.com/rels/item-body"
+      ],
+      "href": "./data/short-answer/multi-blank/item-body.json"
+    },
+    {
+      "rel": [
+        "https://questions.api.brightspace.com/rels/interaction"
+      ],
+      "href": "./data/short-answer/multi-blank/text-entry-interaction-2.json"
+    },
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "#"
+    }
+  ]
+}

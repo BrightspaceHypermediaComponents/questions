@@ -1,0 +1,48 @@
+{
+  "class": [
+    "named-entity",
+    "ShortAnswer"
+  ],
+  "properties": {
+    "name": "",
+    "type": 8,
+    "typeText": "Short Answer"
+  },
+  "entities": [
+    {
+      "class": [
+        "richtext",
+        "questionText"
+      ],
+      "rel": [
+        "item",
+        "https://questions.api.brightspace.com/rels/questionText",
+        "https://questions.api.brightspace.com/rels/title"
+      ],
+      "properties": {
+        "text": "What are the names of the 3 Rice Krispie elves?",
+        "html": "<p>What are the names of the 3 Rice Krispie elves</p>"
+      }
+    },
+    {
+      "class": [
+        "item-body"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/item-body"
+      ],
+      "href": "./data/short-answer/multi-blank/item-body.json"
+    },
+    {
+      "class": [
+        "item-grading"
+      ],
+      "rel": [
+        "https://questions.api.brightspace.com/rels/grading"
+      ],
+      "properties": {
+        "grading": "PointsPerBlank"
+      }
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "class": [
+    "map-entry"
+  ],
+  "properties": {
+    "key": "Dr. Sally K. Ride",
+    "value": 100,
+    "evaluationType": "CaseInsensitive"
+  },
+  "links": [
+    {
+      "rel": [
+        "up"
+      ],
+      "href": "./data/short-answer/single-blank/response-declaration.json"
+    },
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "#"
+    }
+  ],
+  "rel": [
+    "item"
+  ]
+}

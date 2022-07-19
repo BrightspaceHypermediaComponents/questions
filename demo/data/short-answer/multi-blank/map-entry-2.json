@@ -1,0 +1,27 @@
+{
+  "class": [
+    "map-entry"
+  ],
+  "properties": {
+    "key": "Snap",
+    "value": 33.333333,
+    "evaluationType": "CaseInsensitive"
+  },
+  "links": [
+    {
+      "rel": [
+        "up"
+      ],
+      "href": "./data/short-answer/multi-blank/response-declaration-1.json"
+    },
+    {
+      "rel": [
+        "self"
+      ],
+      "href": "#"
+    }
+  ],
+  "rel": [
+    "item"
+  ]
+}
