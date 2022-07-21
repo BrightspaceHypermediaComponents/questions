@@ -1,4 +1,4 @@
-# @brightspace-hmc/questions 
+# @brightspace-hmc/questions
 
 [![NPM version](https://img.shields.io/npm/v/@brightspace-hmc/questions.svg)](https://www.npmjs.org/package/@brightspace-hmc/questions)
 [![NPM downloads](https://img.shields.io/npm/dt/@brightspace-hmc/questions.svg)](https://www.npmjs.com/package/@brightspace-hmc/questions)
@@ -15,7 +15,7 @@ Question components for use in quizzing and/or surveys. Questions are able to po
 | [Multi Select](./docs/multi-select.md) | &check; | &check; |
 | Multi Short-Answer | | |
 | Ordering | | |
-| Short Answer | | |
+| [Short Answer](./docs/short-answer.md) | &check; | |
 | [True False](./docs/true-false.md) | &check; | &check; |
 | [Written Response](./docs/written-response.md) | | &check; |
 
